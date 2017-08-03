@@ -1,0 +1,18 @@
+// Copyright (c) 2014-2017 Silicon Studio Corp. All rights reserved. (https://www.siliconstudio.co.jp)
+// See LICENSE.md for full license information.
+/// <summary>
+/// Returns the color from a float4 behind the key passed as generic.
+/// </summary>
+/// <remarks>
+/// LinkName: generic LinkType - the name of the key used to set the float4.
+/// </remarks>
+shader ComputeColorConstantLink<LinkType LinkName> : ComputeColor
+{
+    [Link("LinkName")]
+    stage float4 constantColor;
+    
+    override float4 Compute()
+    {
+        return constantColor;
+    }
+};

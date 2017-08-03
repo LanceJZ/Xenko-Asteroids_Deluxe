@@ -1,0 +1,16 @@
+// Copyright (c) 2014-2017 Silicon Studio Corp. All rights reserved. (https://www.siliconstudio.co.jp)
+// See LICENSE.md for full license information.
+namespace SiliconStudio.Xenko.Rendering.Materials
+{
+    shader MaterialSurfaceShadingBlend : MaterialSurfaceArray, MaterialPixelShadingStream
+    {
+        override void Compute()
+        {
+            var backupShadingColor = streams.shadingColor;
+			var blending = streams.matBlend;
+            streams.shadingColor = 0;
+            base.Compute();
+            streams.shadingColor = lerp(backupShadingColor, streams.shadingColor, blending);
+        }
+    };
+}

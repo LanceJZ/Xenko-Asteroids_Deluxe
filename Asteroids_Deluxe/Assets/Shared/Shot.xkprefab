@@ -1,0 +1,35 @@
+!PrefabAsset
+Id: 281818f4-3259-4e9f-b0c2-104e21dd7f4a
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - 913093be-996b-402b-baf9-a36ec38b6c83
+    Parts:
+        -   Entity:
+                Id: 913093be-996b-402b-baf9-a36ec38b6c83
+                Name: Shot
+                Components:
+                    e14ee5d6a0d4d515db67fb31c9e11f2a: !TransformComponent
+                        Id: c6baf28a-57e3-41bd-a893-f30abbae5bb6
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    e4c962f674459eddda82dc79bdbd6672: !ModelComponent
+                        Id: 9a358fbc-52b9-45db-a7ab-4835ebbbccbb
+                        Model: d05e1812-eac8-4073-a15e-607082c81c32:ShotModel
+                        Materials: {}
+                    be282e4a93befff34ae4aed1b764c9d1: !Asteroids_Deluxe.Shot,Asteroids_Deluxe.Game
+                        Id: b4ce5bc6-b736-426b-b620-df454b9e9cd9
+                        Model: null
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Deceleration: 0.0
+                        Hit: false
+                        Active: false
+                        Pause: false
+                        GameOver: false
+                        Radius: 0.0

@@ -1,0 +1,64 @@
+!Package
+Id: b2e463c4-4053-4f59-9cf0-9b63ea5ee205
+SerializedVersion: {Assets: 0.0.4}
+Meta:
+    Name: Asteroids_Deluxe
+    Version: 1.0.0.0
+    Authors: []
+    Owners: []
+    RootNamespace: Asteroids_Deluxe
+    Dependencies:
+        -   Name: Xenko
+            Version: 2.0.3.1
+            RootAssets: []
+LocalDependencies: []
+Profiles:
+    -   Name: Shared
+        Platform: Shared
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Shared
+            -   Path: Asteroids_Deluxe.Game/Effects
+        OutputGroupDirectories: {}
+        ProjectReferences:
+            -   Id: 9bff9bfb-00b2-4681-b51a-1d878cec0f5a
+                Location: Asteroids_Deluxe.Game/Asteroids_Deluxe.Game.csproj
+                Type: Library
+    -   Name: Windows
+        Platform: Windows
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Windows
+        OutputGroupDirectories: {}
+        ProjectReferences:
+            -   Id: 30d86c11-2774-4a82-8a24-74f016528a2f
+                Location: Asteroids_Deluxe.Windows/Asteroids_Deluxe.Windows.csproj
+                Type: Executable
+    -   Name: Linux
+        Platform: Linux
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Linux
+        OutputGroupDirectories: {}
+        ProjectReferences:
+            -   Id: ffc07d60-eb6e-428a-883d-40bdcd8d5410
+                Location: Asteroids_Deluxe.Linux/Asteroids_Deluxe.Linux.csproj
+                Type: Executable
+    -   Name: Android
+        Platform: Android
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Android
+        OutputGroupDirectories: {}
+        ProjectReferences:
+            -   Id: 12bf5959-d3f2-4745-90e0-b14f457955d2
+                Location: Asteroids_Deluxe.Android/Asteroids_Deluxe.Android.csproj
+                Type: Executable
+ExplicitFolders: []
+Bundles: []
+TemplateFolders: []
+RootAssets:
+    - 281818f4-3259-4e9f-b0c2-104e21dd7f4a:Shot
+    - 4e017b31-2af3-4a84-9734-5b51b402c680:ShotMat
+    - d4eb1338-8768-4615-8c94-ef1b90b67765:Player
+    - f8ac2736-496b-42c0-b945-4743608516a6:Rock

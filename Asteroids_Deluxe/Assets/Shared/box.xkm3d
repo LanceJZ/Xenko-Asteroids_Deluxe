@@ -1,0 +1,15 @@
+!Model
+Id: cf2c7e88-1626-4049-b482-ba2444f93151
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../Resources/Models/box.fbx
+PivotPosition: {X: 0.0, Y: 0.0, Z: 0.0}
+Materials:
+    1c1114d90941f1420941f1420941f142:
+        Name: gold
+        MaterialInstance:
+            Material: bad06ceb-762c-499f-aaa0-c01c9189ff79:BoxMat
+            IsShadowCaster: false
+Skeleton: null
+~SourceHashes:
+    d9acbf549cec5fd525e4af77ceca9b3c~../../Resources/Models/box.fbx: 63047528a4b8c7fc888656181dd4dc07

@@ -1,0 +1,22 @@
+// Copyright (c) 2014-2017 Silicon Studio Corp. All rights reserved. (https://www.siliconstudio.co.jp)
+// See LICENSE.md for full license information.
+
+namespace SiliconStudio.Xenko.Rendering.Materials
+{
+    shader MaterialTessellationStream : IStreamInitializer
+    {
+        // Displacement height attribute
+        stage stream float matSmoothingIntensity;
+        
+        // The level of details desired
+        stage stream float oppositeEdgeLOD;
+
+        override void ResetStream()
+        {
+            base.ResetStream();
+
+            streams.oppositeEdgeLOD = 0.0f;
+            streams.matSmoothingIntensity = 0.0f;
+        }
+    };
+}

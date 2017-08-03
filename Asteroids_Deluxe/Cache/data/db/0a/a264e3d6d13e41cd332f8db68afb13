@@ -1,0 +1,18 @@
+// Copyright (c) 2014-2017 Silicon Studio Corp. All rights reserved. (https://www.siliconstudio.co.jp)
+// See LICENSE.md for full license information.
+/// <summary>
+/// Calculates the normal  the normals from a normal map.
+/// </summary>
+shader NormalFromNormalMapping : Transformation, NormalBase, NormalStream
+{
+    override stage void GenerateNormal_PS()
+    {
+        base.GenerateNormal_PS();
+        UpdateTangentToWorld();
+    }
+
+    override float3x3 GetTangentWorldTransform()
+    {
+        return (float3x3)WorldInverseTranspose;
+    }
+};

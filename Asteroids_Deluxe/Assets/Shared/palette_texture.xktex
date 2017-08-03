@@ -1,0 +1,7 @@
+!Texture
+Id: 21cc8b65-5975-4f9a-b3f2-0b4bb9b8871d
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../../../../../Installed Programs/MagicaVoxel-0.98.2/export/palette.png
+Type: !ColorTextureType
+    ColorKeyColor: {R: 255, G: 0, B: 255, A: 255}

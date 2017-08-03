@@ -1,0 +1,12 @@
+// Copyright (c) 2014-2017 Silicon Studio Corp. All rights reserved. (https://www.siliconstudio.co.jp)
+// See LICENSE.md for full license information.
+
+shader Sprite3DBase : SpriteBase
+{
+    stage float SliceCoordinate;  
+
+    override stage float4 Shading()
+    {
+        return Texture3D0.Sample(Sampler, float3(streams.TexCoord, SliceCoordinate));
+    }
+};

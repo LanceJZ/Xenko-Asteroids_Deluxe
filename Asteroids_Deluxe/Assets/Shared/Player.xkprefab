@@ -1,0 +1,79 @@
+!PrefabAsset
+Id: d4eb1338-8768-4615-8c94-ef1b90b67765
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - 976f5fea-af40-497d-b50f-fab3e33decca
+    Parts:
+        -   Entity:
+                Id: 1db533dd-adc2-400e-aff8-0c0f8b12c0b9
+                Name: PlayerShip
+                Components:
+                    23317bf73c4c97b8392328ecd20ccf37: !TransformComponent
+                        Id: 246d8fd9-5c66-4844-a7da-854f83bae4e9
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation*: {X: 0.0, Y: 0.7071067, Z: -0.7071067, W: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children:
+                            416e045539377d84a9d7c30c24564537: ref!! 12ab7d30-3fe0-42b4-a004-86d1cb850980
+                            7833c88ca92207105403c802ad744399: ref!! 0d43c943-f7f6-4e28-8ccd-09512f7db955
+                    1f537be5fee8e3f181070da0d6310d4a: !ModelComponent
+                        Id: 18c91ef7-14df-4532-92d6-94d11f1441e8
+                        Model: 24dd62d9-4b53-4cfc-abdf-6d68eaf5e228:PlayerShip
+                        Materials: {}
+                        IsShadowCaster: false
+        -   Entity:
+                Id: 6cce345a-03f2-4c20-acc8-5744dbc64cab
+                Name: PlayerShield
+                Components:
+                    04351501d58a5a50ec22afd73ab38e32: !TransformComponent
+                        Id: 0d43c943-f7f6-4e28-8ccd-09512f7db955
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    342379e05c2ddad2728c723642ccee48: !ModelComponent
+                        Id: 35da3c41-da3b-427b-995b-e19447ea86c2
+                        Model: 09d52172-5380-46d9-bd9b-756499c94c86:PlayerShield
+                        Materials: {}
+                        IsShadowCaster: false
+        -   Entity:
+                Id: 976f5fea-af40-497d-b50f-fab3e33decca
+                Name: Player
+                Components:
+                    0010d271109377d9259088e39a7d8337: !TransformComponent
+                        Id: f2175172-8348-4c82-a18b-d04a37198bf8
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children:
+                            576eb9dc32d22a81b6c86136b1f970ae: ref!! 246d8fd9-5c66-4844-a7da-854f83bae4e9
+                    4ad07321ad8245f08c9b8c02255371dd: !Asteroids_Deluxe.Player,Asteroids_Deluxe.Game
+                        Id: 84a44a06-1044-4b3c-896b-77e7df3c8928
+                        Model: null
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Deceleration: 0.0
+                        Hit: false
+                        Active: false
+                        Pause: false
+                        GameOver: false
+                        Radius: 0.0
+        -   Entity:
+                Id: da8506d5-dd4e-4cae-821e-0063a6bd4538
+                Name: PlayerFlame
+                Components:
+                    f1e9e2e6c3a08987c3ceef176f37d80d: !TransformComponent
+                        Id: 12ab7d30-3fe0-42b4-a004-86d1cb850980
+                        Position: {X: 1.6, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    779d2ad358268b5834f3f0d6ed948674: !ModelComponent
+                        Id: 45fd9e64-fd74-489f-874f-98e51065ba25
+                        Model: 2c0e83fc-9f36-4ac7-9bd8-a7a77343563a:PlayerFlame
+                        Materials: {}
+                        IsShadowCaster: false

@@ -1,0 +1,16 @@
+// Copyright (c) 2014-2017 Silicon Studio Corp. All rights reserved. (https://www.siliconstudio.co.jp)
+// See LICENSE.md for full license information.
+namespace SiliconStudio.Xenko.Rendering.Materials
+{
+    shader MaterialSurfaceTransparentAlphaDiscard : IMaterialSurface, MaterialPixelShadingStream, ShaderBaseStream
+    {
+        override void Compute()
+        {
+            // Discard a pixel if the alpha from the material diffuse is less than the alpha discard limit
+            if (streams.shadingColorAlpha < streams.matAlphaDiscard)
+            {
+                discard;
+            }
+        }
+    };
+}

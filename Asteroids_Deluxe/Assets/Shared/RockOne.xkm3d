@@ -1,0 +1,16 @@
+!Model
+Id: 13b8ecd9-a9d7-44ef-b038-315fd387af05
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../../../../../Installed Programs/MagicaVoxel-0.98.2/export/ADRockOne.obj
+PivotPosition: {X: 0.0, Y: 0.0, Z: 0.0}
+ScaleImport: 0.1
+Materials:
+    d3dddea9a6e85bd0a42fdea0bbaa5b8e:
+        Name: palette
+        MaterialInstance:
+            Material: 1f2d65b5-cdbf-4bc6-87c4-45bc385cda76:palette
+            IsShadowCaster: false
+Skeleton: null
+~SourceHashes:
+    160323a6e5be7528c984f1efbe21cf9c~../../../../../../Installed Programs/MagicaVoxel-0.98.2/export/ADRockOne.obj: 1f9870db9dd1113034d1a6253fabc62c

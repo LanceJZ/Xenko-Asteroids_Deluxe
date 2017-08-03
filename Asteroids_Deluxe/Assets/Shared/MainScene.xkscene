@@ -1,0 +1,88 @@
+!SceneAsset
+Id: 69d01234-800b-4b33-beaa-174fda06a849
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+ChildrenIds: []
+Offset: {X: 0.0, Y: 0.0, Z: 0.0}
+Hierarchy:
+    RootPartIds:
+        - 43a691e8-8be1-4ccc-95cf-2f01e7c31e3f
+        - 0885079e-34a0-42c4-b623-f8c044815dce
+        - b5585940-8a48-47b4-898a-05b07d625627
+        - 1038cab8-6ab6-459a-8331-141a7b987605
+    Parts:
+        -   Entity:
+                Id: 0885079e-34a0-42c4-b623-f8c044815dce
+                Name: Directional light
+                Components:
+                    57e62fa812f0d37bea65bbb71f888042: !TransformComponent
+                        Id: f2986211-a380-48a8-9d91-b559301cb619
+                        Position: {X: 0.0, Y: 0.0, Z: 30.0}
+                        Rotation: {X: 0.114252716, Y: 0.09252003, Z: 0.09252002, W: 0.984797657}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    a57385ebc61c518138f912b5ee8f82c9: !LightComponent
+                        Id: b44764ee-4d25-461d-832c-cce09e663107
+                        Type: !LightDirectional
+                            Color: !ColorRgbProvider
+                                Value: {R: 0.0, G: 0.342199951, B: 0.944}
+                            Shadow:
+                                Filter: !LightShadowMapFilterTypePcf
+                                    FilterSize: Filter5x5
+                                Size: Large
+                                DepthRange: {}
+                                PartitionMode: !LightDirectionalShadowMap.PartitionLogarithmic {}
+                                BiasParameters: {}
+                        Intensity: 0.75
+        -   Entity:
+                Id: 1038cab8-6ab6-459a-8331-141a7b987605
+                Name: BackGround
+                Components:
+                    ac6928111da11e96e1bba3fe8c826402: !TransformComponent
+                        Id: 2cd6b3a4-886a-4a11-a71f-ccc89038360b
+                        Position: {X: 0.0, Y: 0.0, Z: -1.0}
+                        Rotation: {X: 0.7069834, Y: 0.0, Z: 0.0, W: 0.707230151}
+                        Scale: {X: 10.0, Y: 10.0, Z: 10.0}
+                        Children: {}
+                    968008241bb2e19e328a07bb96e2378d: !ModelComponent
+                        Id: 8a779682-b775-47f5-891f-7994ebed69ab
+                        Model: 82888ef6-a14f-4e3e-b85e-cc7397f5828d:Ground
+                        Materials: {}
+                        IsShadowCaster: false
+                    f101949b2a2b745837a4137b341af2d3: !Asteroids_Deluxe.AsteroidsGame,Asteroids_Deluxe.Game
+                        Id: 7731e637-a1dc-4929-8f70-1695cdfeb63b
+        -   Entity:
+                Id: 43a691e8-8be1-4ccc-95cf-2f01e7c31e3f
+                Name: Camera
+                Components:
+                    62438a76196462f9ba4328d502872218: !TransformComponent
+                        Id: 246f6267-7145-40ba-b566-3bec0bfbe359
+                        Position: {X: 0.0, Y: 0.0, Z: 80.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    f09099b5a330bf223b6dad29f89eba6d: !CameraComponent
+                        Id: 98987b84-47e4-4cc1-8639-31e6557d74d1
+                        Name: Main
+                        Projection: Perspective
+                        NearClipPlane: 1.0
+                        FarClipPlane: 100.0
+                        UseCustomAspectRatio: true
+                        AspectRatio: 1.333
+                        Slot: eb551e6d-cf83-49ac-8504-ab1d3f5bc5ca
+        -   Entity:
+                Id: b5585940-8a48-47b4-898a-05b07d625627
+                Name: Ambient light
+                Components:
+                    77578cde8b9ccf7fc00a4d7a9a7a84d2: !TransformComponent
+                        Id: f3092263-f7c3-40ad-a6c9-53d630fa105f
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    53fec7e7e7b010bca0947ee2876ed9f9: !LightComponent
+                        Id: ab65dd55-8f19-4c8b-8dd6-4975066bacee
+                        Type: !LightAmbient
+                            Color: !ColorRgbProvider
+                                Value: {R: 0.647058845, G: 0.7882353, B: 0.9411765}
+                        Intensity: 0.1
