@@ -1,0 +1,15 @@
+!Model
+Id: 3be118a3-f26a-4bc0-bb83-1185c308bc2f
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../../../../../Installed Programs/MagicaVoxel-0.98.2/export/AsteroidsUFO.obj
+PivotPosition: {X: 0.0, Y: 0.0, Z: 0.0}
+ScaleImport: 0.1
+Materials:
+    a7e5fdc1663600f514c463c46b08b38f:
+        Name: palette
+        MaterialInstance:
+            Material: 1f2d65b5-cdbf-4bc6-87c4-45bc385cda76:palette
+Skeleton: null
+~SourceHashes:
+    8e25742727d02e04ad2f72caff172c21~../../../../../../Installed Programs/MagicaVoxel-0.98.2/export/AsteroidsUFO.obj: 3be46a88f5798661f19d402304a1eb3d

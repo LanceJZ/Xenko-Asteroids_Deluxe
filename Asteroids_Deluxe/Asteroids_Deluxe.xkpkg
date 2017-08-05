@@ -58,7 +58,11 @@ ExplicitFolders: []
 Bundles: []
 TemplateFolders: []
 RootAssets:
+    - 0e59d721-7ea5-42a1-9016-859afdb3023d:Pod
     - 281818f4-3259-4e9f-b0c2-104e21dd7f4a:Shot
+    - 301cba05-8de1-4013-be09-f3d0948239c4:PodPair
     - 4e017b31-2af3-4a84-9734-5b51b402c680:ShotMat
+    - bf6023ac-cf40-4d10-8d15-88fd49008183:UFO
     - d4eb1338-8768-4615-8c94-ef1b90b67765:Player
+    - d5e5f06f-75b8-42da-aa1d-6f63e12dda44:PodGroup
     - f8ac2736-496b-42c0-b945-4743608516a6:Rock

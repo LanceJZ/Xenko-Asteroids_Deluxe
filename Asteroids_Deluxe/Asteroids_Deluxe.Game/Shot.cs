@@ -8,16 +8,17 @@ namespace Asteroids_Deluxe
     public class Shot : PO
     {
         Timer LifeTimer;
-        Entity LifeTimerE = new Entity { new Timer() };
 
         public override void Start()
         {
             base.Start();
 
-            SceneSystem.SceneInstance.RootScene.Entities.Add(LifeTimerE);
-            LifeTimer = LifeTimerE.Get<Timer>();
+            Entity lifeTimerE = new Entity { new Timer() };
+            SceneSystem.SceneInstance.RootScene.Entities.Add(lifeTimerE);
+            LifeTimer = lifeTimerE.Get<Timer>();
             Model = this.Entity.Get<ModelComponent>();
             Active = false;
+            Radius = 0.05f;
             UpdateActive();
         }
 
@@ -25,14 +26,15 @@ namespace Asteroids_Deluxe
         {
             if (Active)
             {
-                if (LifeTimer.Expired || Hit)
+                if (LifeTimer.Expired)
                 {
                     Active = false;
                 }
 
                 CheckForEdge();
-                base.Update();
             }
+
+            base.Update();
         }
 
         public void Spawn(Vector3 position, Vector3 velocity, float timer)
@@ -41,6 +43,7 @@ namespace Asteroids_Deluxe
             Velocity = velocity;
             LifeTimer.Reset(timer);
             Active = true;
+            Hit = false;
             UpdatePR();
         }
     }

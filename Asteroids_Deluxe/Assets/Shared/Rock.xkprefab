@@ -7,18 +7,18 @@ Hierarchy:
         - c630c9a6-0e7a-432c-8046-345ddfafdb35
     Parts:
         -   Entity:
-                Id: c1cc51e6-2c47-4fd8-bada-a2bbc193e7a5
+                Id: 777d11ab-2ae7-42a4-a411-93a6b97ff384
                 Name: RockOne
                 Components:
-                    1175dca2d3436cc47a7d24d300d7437d: !TransformComponent
-                        Id: bb3f8a4b-3574-4b7c-bc7d-d5b24089272b
+                    0c97fdea51ffd97933df9fd4dc05c2fc: !TransformComponent
+                        Id: d4e3d5b4-5bdd-4d85-a9bb-6076f7a7c367
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Rotation: {X: 0.707106769, Y: 0.0, Z: 0.0, W: 0.707106769}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: {}
-                    3a0f4d44f73232659cbcc42ea38a838d: !ModelComponent
-                        Id: d37f6dcb-36b1-44cb-9127-b6a199b450bb
-                        Model: 13b8ecd9-a9d7-44ef-b038-315fd387af05:RockOne
+                    33daba2681eaf078497e7a43960a99a8: !ModelComponent
+                        Id: 87da92dc-06b8-4a49-94a9-23512397f18b
+                        Model: 57ff6442-5265-4292-a1d9-093259816589:ADRockOneThick
                         Materials: {}
         -   Entity:
                 Id: c630c9a6-0e7a-432c-8046-345ddfafdb35
@@ -30,7 +30,7 @@ Hierarchy:
                         Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children:
-                            44f1a0ecb3787125fdf16c13bcfc4602: ref!! bb3f8a4b-3574-4b7c-bc7d-d5b24089272b
+                            9fb8aa5cc272faf197d337a78a6bdc97: ref!! d4e3d5b4-5bdd-4d85-a9bb-6076f7a7c367
                     903a30c0873cf8bf3bb456015a4b4e17: !Asteroids_Deluxe.Rock,Asteroids_Deluxe.Game
                         Id: 632df08f-2faa-4b65-b400-550f0a941bda
                         Model: null
@@ -44,3 +44,5 @@ Hierarchy:
                         Pause: false
                         GameOver: false
                         Radius: 0.0
+                        RandomGenerator: null
+                        PlayerRef: null

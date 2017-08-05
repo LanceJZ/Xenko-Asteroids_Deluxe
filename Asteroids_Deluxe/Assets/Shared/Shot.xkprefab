@@ -33,3 +33,4 @@ Hierarchy:
                         Pause: false
                         GameOver: false
                         Radius: 0.0
+                        RandomGenerator: null

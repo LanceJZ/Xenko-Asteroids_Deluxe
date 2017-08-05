@@ -11,48 +11,137 @@ namespace Asteroids_Deluxe
 {
     public class AsteroidsGame : RockSizes
     {
+        Timer UFOSpawnTimer;
+        readonly float UFOTimerAmount = 10.15f;
         Random Random;
-
         Prefab RockPF;
         Player PlayerS;
+        UFO UFOS;
         List<Rock> LargeRocks = new List<Rock>();
         List<Rock> MedRocks = new List<Rock>();
         List<Rock> SmallRocks = new List<Rock>();
 
-        bool GameOver;
+        int LargeRockAmount = 4;
+        //bool GameOver;
 
         public override void Start()
         {
             this.Random = new Random(DateTime.UtcNow.Millisecond * 666);
+
+            Entity UFOTimerE = new Entity { new Timer() };
+            SceneSystem.SceneInstance.RootScene.Entities.Add(UFOTimerE);
+            UFOSpawnTimer = UFOTimerE.Get<Timer>();
+            UFOSpawnTimer.Reset(UFOTimerAmount);
+
             Prefab playerPF = Content.Load<Prefab>("Player");
+            Prefab UFOPF = Content.Load<Prefab>("UFO");
             RockPF = Content.Load<Prefab>("Rock");
 
-            Entity player = playerPF.Instantiate().First();
-            SceneSystem.SceneInstance.RootScene.Entities.Add(player);
-            PlayerS = player.Get<Player>();
-            SpawnRocks(Vector3.Zero, RockSize.Large, 4);
+            Entity playerE = playerPF.Instantiate().First();
+            SceneSystem.SceneInstance.RootScene.Entities.Add(playerE);
+            PlayerS = playerE.Get<Player>();
+
+            Entity UFOE = UFOPF.Instantiate().First();
+            SceneSystem.SceneInstance.RootScene.Entities.Add(UFOE);
+            UFOS = UFOE.Get<UFO>();
+            UFOS.RandomGenerator = this.Random;
         }
 
         public override void Update()
         {
+            CountRocks();
 
+            if (UFOSpawnTimer.Expired && !UFOS.Active)
+            {
+                SpawnUFO();
+            }
+
+            if (UFOS.Done || UFOS.Hit)
+            {
+                UFOSpawnTimer.Reset();
+                UFOS.Active = false;
+                UFOS.Done = false;
+                UFOS.Hit = false;
+            }
+        }
+
+        void SpawnUFO()
+        {
+            UFOS.Spawn(1, 1);
         }
 
         void CountRocks()
         {
+            int rockCount = 0;
+
+            foreach (Rock rock in LargeRocks)
+            {
+                if (rock.Hit)
+                {
+                    rock.Active = false;
+                    rock.Hit = false;
+                    SpawnRocks(MedRocks, rock.Position, RockSize.Medium, 2);
+                }
+
+                if (rock.Active)
+                {
+                    rockCount++;
+                    //lgrockCount++;
+                }
+            }
+
+            foreach (Rock rock in MedRocks)
+            {
+                if (rock.Hit)
+                {
+                    rock.Active = false;
+                    rock.Hit = false;
+                    SpawnRocks(SmallRocks, rock.Position, RockSize.Small, 2);
+                }
+
+                if (rock.Active)
+                {
+                    rockCount++;
+                    //mdrockCount++;
+                }
+            }
+
+            foreach (Rock rock in SmallRocks)
+            {
+                if (rock.Hit)
+                {
+                    rock.Active = false;
+                    rock.Hit = false;
+                }
+
+                if (rock.Active)
+                {
+                    rockCount++;
+                    //smrockCount++;
+                }
+            }
+
+            if (rockCount == 0)
+            {
+                SpawnRocks(LargeRocks, Vector3.Zero, RockSize.Large, LargeRockAmount);
+
+                if (LargeRockAmount < 12)
+                    LargeRockAmount += 2;
+            }
 
         }
 
-        void SpawnLargeRocks(int count)
+        void SpawnRocks(List<Rock> Rocks, Vector3 position, RockSize rockSize, int count)
         {
             for (int i = 0; i < count; i++)
             {
                 bool spawnNewRock = true;
-                int rockCount = LargeRocks.Count;
+                int rockCount = Rocks.Count;
 
                 for (int rock = 0; rock < rockCount; rock++)
                 {
-                    if (!LargeRocks[rock].Active)// && !LargeRocks[rock].ExplosionActive())
+
+                    if (!Rocks[rock].Active)// && !Rocks[rock].Exploding)
                     {
                         spawnNewRock = false;
                         rockCount = rock;
@@ -64,111 +153,13 @@ namespace Asteroids_Deluxe
                 {
                     Entity rockE = RockPF.Instantiate().First();
                     SceneSystem.SceneInstance.RootScene.Entities.Add(rockE);
-                    LargeRocks.Add(rockE.Components.Get<Rock>());
-                    LargeRocks[rockCount].RandomGenerator = this.Random;
+                    Rocks.Add(rockE.Components.Get<Rock>());
+                    Rocks[rockCount].RandomGenerator = this.Random;
+                    Rocks[rockCount].PlayerRef = PlayerS;
                 }
 
-                LargeRocks[rockCount].Spawn(Vector3.Zero, RockSize.Large);
-                //LargeRocks[rock].GameOver = GameOver;
-            }
-        }
-
-        void SpawnRocks(Vector3 position, RockSize rockSize, int count)
-        {
-            for (int i = 0; i < count; i++)
-            {
-                bool spawnNewRock = true;
-                int rockCount = 0;
-
-                switch (rockSize)
-                {
-                    case RockSize.Large:
-                        rockCount = LargeRocks.Count;
-                        break;
-
-                    case RockSize.Medium:
-                        rockCount = MedRocks.Count;
-                        break;
-
-                    case RockSize.Small:
-                        rockCount = SmallRocks.Count;
-                        break;
-                }
-
-                for (int rock = 0; rock < rockCount; rock++)
-                {
-                    switch (rockSize)
-                    {
-                        case RockSize.Large:
-                            if (!LargeRocks[rock].Active)// && !LargeRocks[rock].ExplosionActive())
-                            {
-                                spawnNewRock = false;
-                                rockCount = rock;
-                                break;
-                            }
-                            break;
-
-                        case RockSize.Medium:
-                            if (!MedRocks[rock].Active)// && !MedRocks[rock].ExplosionActive())
-                            {
-                                spawnNewRock = false;
-                                rockCount = rock;
-                                break;
-                            }
-                            break;
-
-                        case RockSize.Small:
-                            if (!SmallRocks[rock].Active)// && !LargeRocks[rock].ExplosionActive())
-                            {
-                                spawnNewRock = false;
-                                rockCount = rock;
-                                break;
-                            }
-                            break;
-                    }
-                }
-
-                if (spawnNewRock)
-                {
-                    Entity rockE = RockPF.Instantiate().First();
-                    SceneSystem.SceneInstance.RootScene.Entities.Add(rockE);
-
-                    switch (rockSize)
-                    {
-                        case RockSize.Large:
-                            LargeRocks.Add(rockE.Components.Get<Rock>());
-                            LargeRocks[rockCount].RandomGenerator = this.Random;
-                            break;
-
-                        case RockSize.Medium:
-                            MedRocks.Add(rockE.Components.Get<Rock>());
-                            MedRocks[rockCount].RandomGenerator = this.Random;
-                            break;
-
-                        case RockSize.Small:
-                            SmallRocks.Add(rockE.Components.Get<Rock>());
-                            SmallRocks[rockCount].RandomGenerator = this.Random;
-                            break;
-                    }
-                }
-
-                switch (rockSize)
-                {
-                    case RockSize.Large:
-                        LargeRocks[rockCount].Spawn(position, rockSize);
-                        //LargeRocks[rockCount].GameOver = GameOver;
-                        break;
-
-                    case RockSize.Medium:
-                        MedRocks[rockCount].Spawn(position, rockSize);
-                        //MedRocks[rockCount].GameOver = GameOver;
-                        break;
-
-                    case RockSize.Small:
-                        SmallRocks[rockCount].Spawn(position, rockSize);
-                        //SmallRocks[rockCount].GameOver = GameOver;
-                        break;
-                }
+                Rocks[rockCount].Spawn(position, rockSize);
+                //Rocks[rockCount].GameOver = GameOver;
             }
         }
     }

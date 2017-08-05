@@ -10,22 +10,21 @@ using SiliconStudio.Xenko.Audio;
 
 namespace Asteroids_Deluxe
 {
-    class Player : PO
+    public class Player : PO
     {
-        ModelComponent flame;
-        ModelComponent shield;
+        ModelComponent FlameM;
+        ModelComponent ShieldM;
 
-        List<Shot> shotSs;
-        List<Entity> shotEs;
+        public List<Shot> ShotSs;
 
         public override void Start()
         {
             base.Start();
 
+            Active = true;
             Radius = 1.15f;
 
-            shotSs = new List<Shot>();
-            shotEs = new List<Entity>();
+            ShotSs = new List<Shot>();
 
             //Content.Load<Prefab>("MyBulletPrefab");
             //SceneSystem.SceneInstance.RootScene.Entities.Add(bullet);
@@ -33,15 +32,15 @@ namespace Asteroids_Deluxe
 
             for (int i = 0; i < 4; i++)
             {
-                shotEs.Add(shotP.Instantiate().First());
-                SceneSystem.SceneInstance.RootScene.Entities.Add(shotEs[i]);
-                shotSs.Add(shotEs[i].Get<Shot>());
+                Entity ShotE = shotP.Instantiate().First();
+                SceneSystem.SceneInstance.RootScene.Entities.Add(ShotE);
+                ShotSs.Add(ShotE.Get<Shot>());
             }
 
             Deceleration = 0.01f;
 
-            flame = this.Entity.FindChild("PlayerFlame").Get<ModelComponent>();
-            shield = this.Entity.FindChild("PlayerShield").Get<ModelComponent>();
+            FlameM = this.Entity.FindChild("PlayerFlame").Get<ModelComponent>();
+            ShieldM = this.Entity.FindChild("PlayerShield").Get<ModelComponent>();
         }
 
         public override void Update()
@@ -76,8 +75,6 @@ namespace Asteroids_Deluxe
                 ThrustOff();
             }
 
-            //FireShot();
-
             if (Input.IsKeyDown(Keys.Down))
             {
                 Shield();
@@ -97,14 +94,14 @@ namespace Asteroids_Deluxe
         {
             for (int shot = 0; shot < 4; shot++)
             {
-                if (!shotSs[shot].Active)
+                if (!ShotSs[shot].Active)
                 {
                     //m_FireSoundInstance.Stop();
                     //m_FireSoundInstance.Play();
                     float speed = 35;
                     Vector3 dir = new Vector3((float)Math.Cos(Rotation) * speed, (float)Math.Sin(Rotation) * speed, 0);
                     Vector3 offset = new Vector3((float)Math.Cos(Rotation) * Radius, (float)Math.Sin(Rotation) * Radius, 0);
-                    shotSs[shot].Spawn(Position + offset, dir + Velocity * 0.75f, 1.55f);
+                    ShotSs[shot].Spawn(Position + offset, dir + Velocity * 0.75f, 1.55f);
                     break;
                 }
             }
@@ -141,7 +138,7 @@ namespace Asteroids_Deluxe
             if (testX + testY < maxPerSecond)
             {
                 Acceleration = new Vector3((float)Math.Cos(Rotation) * thrustAmount, (float)Math.Sin(Rotation) * thrustAmount, 0);
-                flame.Enabled = true;
+                FlameM.Enabled = true;
 
                 //if (m_FlameTimer.TotalTime.Milliseconds > 18)
                 //{
@@ -162,17 +159,17 @@ namespace Asteroids_Deluxe
         void ThrustOff()
         {
             Acceleration = Vector3.Zero;
-            flame.Enabled = false;
+            FlameM.Enabled = false;
         }
 
         void Shield()
         {
-            shield.Enabled = true;
+            ShieldM.Enabled = true;
         }
 
         void ShieldOff()
         {
-            shield.Enabled = false;
+            ShieldM.Enabled = false;
         }
     }
 }

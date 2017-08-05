@@ -1,0 +1,15 @@
+!Model
+Id: ff63aa78-fd1c-419e-a376-08989b875593
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../../../../../Installed Programs/MagicaVoxel-0.98.2/export/ADPodPair.obj
+PivotPosition: {X: 0.0, Y: 0.0, Z: 0.0}
+ScaleImport: 0.1
+Materials:
+    931dd0368b371e4c66ff20bb08e77cb5:
+        Name: palette
+        MaterialInstance:
+            Material: 1f2d65b5-cdbf-4bc6-87c4-45bc385cda76:palette
+Skeleton: null
+~SourceHashes:
+    7f8c943fa2fa7eda8a98cf879ad7c53d~../../../../../../Installed Programs/MagicaVoxel-0.98.2/export/ADPodPair.obj: b9fe0efce332dc81322baf67916b27b1

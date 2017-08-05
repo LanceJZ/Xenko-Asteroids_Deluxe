@@ -1,0 +1,51 @@
+!PrefabAsset
+Id: bf6023ac-cf40-4d10-8d15-88fd49008183
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - 94c1ebe8-ab58-4351-ba98-0e747261d9a2
+    Parts:
+        -   Entity:
+                Id: 0e8f998e-0873-421e-8cae-c12a40d9200e
+                Name: UFO
+                Components:
+                    c0c6075fdd6fa606f9eb084f7d67b781: !TransformComponent
+                        Id: c3441f74-95e0-4bc9-a9bd-8cc42d3de07e
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.707106769, Y: 0.0, Z: 0.0, W: 0.707106769}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    5968c0982669f9243bd6893fdebd595f: !ModelComponent
+                        Id: 38ae7850-6d2a-4664-a38b-173a8dd61862
+                        Model: 3be118a3-f26a-4bc0-bb83-1185c308bc2f:AsteroidsUFO
+                        Materials: {}
+                        IsShadowCaster: false
+        -   Entity:
+                Id: 94c1ebe8-ab58-4351-ba98-0e747261d9a2
+                Name: UFO
+                Components:
+                    35a167d4a95d6fc5959e798e0e29974f: !TransformComponent
+                        Id: dae98b90-8678-42c9-868c-92652df22f97
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children:
+                            b1866aaa487dcacf7716a46f2ce93c49: ref!! c3441f74-95e0-4bc9-a9bd-8cc42d3de07e
+                    dba95fe1a7df78852edf596afa7bf3a4: !Asteroids_Deluxe.UFO,Asteroids_Deluxe.Game
+                        Id: 5c31179c-b328-4e09-bf5e-f5064ab4b5c4
+                        Model: null
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Deceleration: 0.0
+                        Hit: false
+                        Active: false
+                        Pause: false
+                        GameOver: false
+                        Radius: 0.0
+                        RandomGenerator: null
+                        Done: false
+                        ShotS: null
+                        PlayerRef: null

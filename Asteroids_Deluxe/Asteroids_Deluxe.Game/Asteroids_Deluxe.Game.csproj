@@ -225,11 +225,15 @@
     <Compile Include="AsteroidsGame.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PO.cs" />
+    <Compile Include="Pod.cs" />
+    <Compile Include="PodGroup.cs" />
+    <Compile Include="PodPair.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rock.cs" />
     <Compile Include="RockSizes.cs" />
     <Compile Include="Shot.cs" />
     <Compile Include="Timer.cs" />
+    <Compile Include="UFO.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="$(SiliconStudioPackageProps)" Condition="Exists('$(SiliconStudioPackageProps)')" />

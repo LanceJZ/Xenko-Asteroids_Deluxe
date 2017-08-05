@@ -1,0 +1,35 @@
+!PrefabAsset
+Id: 301cba05-8de1-4013-be09-f3d0948239c4
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - 1b869c2e-5d40-4835-a549-286a92b5bbe5
+    Parts:
+        -   Entity:
+                Id: 1b869c2e-5d40-4835-a549-286a92b5bbe5
+                Name: PodPair
+                Components:
+                    13a0d4dec5618e0c1bb8ca421bd446d4: !TransformComponent
+                        Id: 6c140875-a615-4c5f-b390-705ba49eba8b
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children:
+                            5ba0ab474cbc6f8172fabd15c4b8458f: ref!! 9d2720af-39a7-4b62-a1f2-cae3c5fd1650
+                    7341a4be19aff25c643b8b2a597b5eaf: !Asteroids_Deluxe.PodPair,Asteroids_Deluxe.Game
+                        Id: dd8c9bbc-3cac-40b4-9af8-803917e7b000
+        -   Entity:
+                Id: 1e5251a6-b15c-498d-933a-9aceea847470
+                Name: PodPair
+                Components:
+                    86f3fc7273eb1df68ec063f18f96848f: !TransformComponent
+                        Id: 9d2720af-39a7-4b62-a1f2-cae3c5fd1650
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.707106769, Y: 0.0, Z: 0.0, W: 0.707106769}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    383bcf325fb081b9ea973c1889da7047: !ModelComponent
+                        Id: 21fa821c-4c88-44a3-bd67-97f0a81ac46b
+                        Model: ff63aa78-fd1c-419e-a376-08989b875593:ADPodPair
+                        Materials: {}

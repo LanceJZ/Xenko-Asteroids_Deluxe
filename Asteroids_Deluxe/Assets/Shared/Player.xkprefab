@@ -62,6 +62,8 @@ Hierarchy:
                         Pause: false
                         GameOver: false
                         Radius: 0.0
+                        RandomGenerator: null
+                        ShotSs: null
         -   Entity:
                 Id: da8506d5-dd4e-4cae-821e-0063a6bd4538
                 Name: PlayerFlame

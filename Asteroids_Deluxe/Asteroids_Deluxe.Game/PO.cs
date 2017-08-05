@@ -51,20 +51,24 @@ namespace Asteroids_Deluxe
 
         public override void Update()
         {
-            //Calculate movement this frame according to velocity and acceleration.
-            float elapsed = (float)Game.UpdateTime.Elapsed.TotalSeconds;
-
-            if (Acceleration == Vector3.Zero)
+            if (Active)
             {
-                Acceleration = -Velocity * Deceleration;
+                //Calculate movement this frame according to velocity and acceleration.
+                float elapsed = (float)Game.UpdateTime.Elapsed.TotalSeconds;
+
+                if (Acceleration == Vector3.Zero)
+                {
+                    Acceleration = -Velocity * Deceleration;
+                }
+
+                Velocity += Acceleration;
+                Position += Velocity * elapsed;
+                Rotation += rotationVelocity * elapsed;
+
+                UpdatePR();
             }
 
-            Velocity += Acceleration;
-            Position += Velocity * elapsed;
-            Rotation += rotationVelocity * elapsed;
-
             UpdateActive();
-            UpdatePR();
         }
 
         public void UpdateActive()
@@ -132,9 +136,9 @@ namespace Asteroids_Deluxe
             return (float)random.NextDouble() * (float)(MathUtil.TwoPi);
         }
 
-        public float RandomHieght()
+        public float RandomHeight()
         {
-            return random.Next((int)-Edge.Y, (int)Edge.Y);
+            return random.Next((int)(-Edge.Y * 0.9f), (int)(Edge.Y * 0.9f));
         }
 
         /// <summary>
@@ -152,7 +156,7 @@ namespace Asteroids_Deluxe
         /// </summary>
         /// <param name="speedMax">Maximum speed.</param>
         /// <param name="speedMin">Minimum speed.</param>
-        public void SetRandomVelocity(float speedMax, float speedMin)
+        public void SetRandomVelocity(float speedMin, float speedMax)
         {
             float rad = RandomRadian();
             float amt = (float)random.NextDouble() * speedMax + (speedMin);
