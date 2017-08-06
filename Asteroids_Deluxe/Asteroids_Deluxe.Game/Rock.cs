@@ -11,6 +11,7 @@ namespace Asteroids_Deluxe
     public class Rock : PO
     {
         public Player PlayerRef;
+        public UFO UFORef;
 
         float Speed;
         RockSize Size;
@@ -48,10 +49,34 @@ namespace Asteroids_Deluxe
                     if (CirclesIntersect(PlayerRef.ShotSs[shot].Position, PlayerRef.ShotSs[shot].Radius))
                     {
                         PlayerRef.ShotSs[shot].Active = false;
-                        //SetScore();
+                        SetScore();
                         return true;
                     }
                 }
+            }
+
+            if (PlayerRef.Active)
+            {
+                if (CirclesIntersect(PlayerRef.Position, PlayerRef.Radius))
+                {
+                    PlayerRef.Hit = true;
+                    SetScore();
+                    return true;
+                }
+            }
+
+            if (UFORef.ShotS.Active)
+            {
+                if (CirclesIntersect(UFORef.ShotS.Position, UFORef.ShotS.Radius))
+                {
+                    UFORef.ShotS.Active = false;
+                    return true;
+                }
+            }
+
+            if (UFORef.Active)
+            {
+                return UFORef.Collide(this);
             }
 
             return false;
@@ -69,21 +94,21 @@ namespace Asteroids_Deluxe
                     Scale = new Vector3(1);
                     Position.Y = RandomHeight();
                     Position.X = Edge.X;
-                    Radius = 2.9f;
+                    Radius = 3.25f;
                     Points = 20;
                     Speed = 5;
                     break;
 
                 case RockSize.Medium:
                     Scale = new Vector3(0.5f);
-                    Radius = 1.45f;
+                    Radius = 1.625f;
                     Points = 50;
                     Speed = 8;
                     break;
 
                 case RockSize.Small:
                     Scale = new Vector3(0.25f);
-                    Radius = 0.725f;
+                    Radius = 0.8125f;
                     Points = 100;
                     Speed = 15;
                     break;
@@ -105,6 +130,11 @@ namespace Asteroids_Deluxe
             RotationVelocity = rotV;
             UpdatePR();
             UpdateScale();
+        }
+
+        void SetScore()
+        {
+
         }
     }
 }

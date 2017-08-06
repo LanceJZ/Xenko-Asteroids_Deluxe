@@ -128,6 +128,16 @@ namespace Asteroids_Deluxe
         }
 
         /// <summary>
+        /// Get a random float between min and max
+        /// </summary>
+        /// <param name="min">the minimum random value</param>
+        /// <param name="max">the maximum random value</param>
+        /// <returns>float</returns>
+        public float RandomMinMax(float min, float max)
+        {
+            return min + (float)RandomGenerator.NextDouble() * (max - min);
+        }
+        /// <summary>
         /// Returns random number from zero to Pi times two.
         /// </summary>
         /// <returns>float</returns>
@@ -146,9 +156,9 @@ namespace Asteroids_Deluxe
         /// </summary>
         /// <param name="speed">The velocity of object.</param>
         /// <param name="radian">The direction of object.</param>
-        public void SetVelocity(float speed, float radian)
+        public Vector3 SetVelocity(float speed, float radian)
         {
-            Velocity = new Vector3((float)Math.Cos(radian) * speed, (float)Math.Sin(radian) * speed, 0);
+            return new Vector3((float)Math.Cos(radian) * speed, (float)Math.Sin(radian) * speed, 0);
         }
 
         /// <summary>
@@ -161,6 +171,11 @@ namespace Asteroids_Deluxe
             float rad = RandomRadian();
             float amt = (float)random.NextDouble() * speedMax + (speedMin);
             Velocity = new Vector3((float)Math.Cos(rad) * amt, (float)Math.Sin(rad) * amt, 0);
+        }
+
+        public float AngleFromVectors(Vector3 origin, Vector3 target)
+        {
+            return (float)(Math.Atan2(target.Y - origin.Y, target.X - origin.X));
         }
     }
 }

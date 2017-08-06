@@ -16,6 +16,7 @@ namespace Asteroids_Deluxe
 {
     public class UFO : PO
     {
+        Vector3 RadiusOffset;
         int Points;
         float Speed = 5;
         public bool Done;
@@ -40,6 +41,12 @@ namespace Asteroids_Deluxe
             ShotTimer = shotTimerE.Get<Timer>();
             ShotTimer.Reset(2.75f);
 
+            Prefab shotP = Content.Load<Prefab>("Shot");
+            Entity ShotE = shotP.Instantiate().First();
+            SceneSystem.SceneInstance.RootScene.Entities.Add(ShotE);
+            ShotS = ShotE.Get<Shot>();
+            ShotS.Active = false;
+
             Model = this.Entity.GetChild(0).Get<ModelComponent>();
             Active = false;
             UpdateActive();
@@ -59,6 +66,17 @@ namespace Asteroids_Deluxe
 
                 if (ShotTimer.Expired)
                     FireShot();
+
+                if (PlayerCollide())
+                    SetScore();
+            }
+
+            if (ShotS.Active)
+            {
+                if (ShotCollide())
+                {
+
+                }
             }
 
             base.Update();
@@ -68,20 +86,22 @@ namespace Asteroids_Deluxe
         {
             float spawnPercent = (float)(Math.Pow(0.915, (SpawnCount * 2) / ((Wave * 2) + 1)));
 
-            // Size 0 is the large one.
             if (RandomGenerator.Next(0, 99) < spawnPercent * 100)
             {
                 Size = UFOsizes.Large;
                 Points = 200;
                 Scale = new Vector3(1);
-                Radius = 1.9f;
+                Radius = 1.3f;
+                RadiusOffset = new Vector3(0.9f, 0, 0);
+                //UFO is 2.6 in height (Radius 1.3). Use two circles offset on the horizontal for a 4.4 width (Radius 2.2).
             }
             else
             {
                 Size = UFOsizes.Small;
                 Points = 1000;
                 Scale = new Vector3(0.5f);
-                Radius = 0.95f;
+                Radius = 0.65f;
+                RadiusOffset = new Vector3(0.45f, 0, 0);
             }
 
             Position.Y = RandomHeight();
@@ -105,7 +125,106 @@ namespace Asteroids_Deluxe
             Hit = false;
         }
 
+        public bool Collide(PO target)
+        {
+            if (target.CirclesIntersect(Position, Radius * 2))
+            {
+                if (target.CirclesIntersect(Position - RadiusOffset, Radius) ||
+                    target.CirclesIntersect(Position + RadiusOffset, Radius))
+                {
+                    Hit = true;
+                    target.Hit = true;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        bool PlayerCollide()
+        {
+            if (PlayerRef.Active)
+            {
+                return Collide(PlayerRef);
+                //if (PlayerRef.CirclesIntersect(Position, Radius * 2))
+                //{
+                //    if (PlayerRef.CirclesIntersect(Position - RadiusOffset, Radius) ||
+                //        PlayerRef.CirclesIntersect(Position + RadiusOffset, Radius))
+                //    {
+                //        Hit = true;
+                //        PlayerRef.Hit = true;
+                //        return true;
+                //    }
+                //}
+            }
+
+            for (int shot = 0; shot < 4; shot++)
+            {
+                if (PlayerRef.ShotSs[shot].Active)
+                {
+                    if (Collide(PlayerRef.ShotSs[shot]))
+                    {
+                        PlayerRef.ShotSs[shot].Active = false;
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        bool ShotCollide()
+        {
+            if (PlayerRef.Active)
+            {
+                if (ShotS.CirclesIntersect(PlayerRef.Position, PlayerRef.Radius))
+                {
+                    ShotS.Active = false;
+                    PlayerRef.Hit = true;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         void FireShot()
+        {
+            //if (!m_Player.GameOver)
+            //    m_FireShot.Play(0.4f, 0, 0);
+
+            ShotTimer.Reset();
+            float speed = 30;
+            float rad = 0;
+
+            //Adjust accuracy according to score. By the time the score reaches 30,000, percent = 0.
+            float percent = 0.25f;// - (m_PlayerScore * 0.00001f);
+
+            if (percent < 0)
+                percent = 0;
+
+            switch (Size)
+            {
+                case UFOsizes.Large:
+                    if (RandomGenerator.Next(11) > 7)
+                    {
+                        rad = RandomRadian();
+                    }
+                    else
+                    {
+                        rad = AngleFromVectors(Position, PlayerRef.Position) + RandomMinMax(-percent, percent);
+                    }
+                    break;
+
+                case UFOsizes.Small:
+                    rad = AngleFromVectors(Position, PlayerRef.Position) + RandomMinMax(-percent, percent);
+                    break;
+            }
+
+            ShotS.Spawn(Position + SetVelocity(Radius, rad), SetVelocity(speed, rad) + Velocity * 0.25f, 1.15f);
+        }
+
+        void SetScore()
         {
 
         }
@@ -113,6 +232,7 @@ namespace Asteroids_Deluxe
         void ChangeVector()
         {
             VectorTimer.Reset();
+            ShotTimer.Reset();
             float vChange = RandomGenerator.Next(10);
 
             if (vChange < 5)

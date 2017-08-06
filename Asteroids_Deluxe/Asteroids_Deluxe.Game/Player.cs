@@ -22,7 +22,7 @@ namespace Asteroids_Deluxe
             base.Start();
 
             Active = true;
-            Radius = 1.15f;
+            Radius = 1.25f;
 
             ShotSs = new List<Shot>();
 
@@ -99,9 +99,9 @@ namespace Asteroids_Deluxe
                     //m_FireSoundInstance.Stop();
                     //m_FireSoundInstance.Play();
                     float speed = 35;
-                    Vector3 dir = new Vector3((float)Math.Cos(Rotation) * speed, (float)Math.Sin(Rotation) * speed, 0);
-                    Vector3 offset = new Vector3((float)Math.Cos(Rotation) * Radius, (float)Math.Sin(Rotation) * Radius, 0);
-                    ShotSs[shot].Spawn(Position + offset, dir + Velocity * 0.75f, 1.55f);
+
+                    ShotSs[shot].Spawn(Position + SetVelocity(Radius, Rotation), SetVelocity(speed, Rotation) + Velocity * 0.75f, 1.55f);
+
                     break;
                 }
             }

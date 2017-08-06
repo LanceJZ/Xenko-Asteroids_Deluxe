@@ -45,6 +45,7 @@ namespace Asteroids_Deluxe
             SceneSystem.SceneInstance.RootScene.Entities.Add(UFOE);
             UFOS = UFOE.Get<UFO>();
             UFOS.RandomGenerator = this.Random;
+            UFOS.PlayerRef = PlayerS;
         }
 
         public override void Update()
@@ -156,6 +157,7 @@ namespace Asteroids_Deluxe
                     Rocks.Add(rockE.Components.Get<Rock>());
                     Rocks[rockCount].RandomGenerator = this.Random;
                     Rocks[rockCount].PlayerRef = PlayerS;
+                    Rocks[rockCount].UFORef = UFOS;
                 }
 
                 Rocks[rockCount].Spawn(position, rockSize);
