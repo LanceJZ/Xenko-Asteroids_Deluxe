@@ -16,9 +16,9 @@ namespace Asteroids_Deluxe
             Entity lifeTimerE = new Entity { new Timer() };
             SceneSystem.SceneInstance.RootScene.Entities.Add(lifeTimerE);
             LifeTimer = lifeTimerE.Get<Timer>();
-            Model = this.Entity.Get<ModelComponent>();
+            LoadModel();
             Active = false;
-            Radius = 0.05f;
+            Radius = 0.25f;
             UpdateActive();
         }
 
@@ -26,7 +26,7 @@ namespace Asteroids_Deluxe
         {
             if (Active)
             {
-                if (LifeTimer.Expired)
+                if (LifeTimer.Expired || Hit)
                 {
                     Active = false;
                 }

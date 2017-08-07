@@ -47,7 +47,7 @@ namespace Asteroids_Deluxe
             ShotS = ShotE.Get<Shot>();
             ShotS.Active = false;
 
-            Model = this.Entity.GetChild(0).Get<ModelComponent>();
+            LoadModelChild();
             Active = false;
             UpdateActive();
         }
@@ -143,34 +143,22 @@ namespace Asteroids_Deluxe
 
         bool PlayerCollide()
         {
+            bool playerHit = false;
+
             if (PlayerRef.Active)
             {
-                return Collide(PlayerRef);
-                //if (PlayerRef.CirclesIntersect(Position, Radius * 2))
-                //{
-                //    if (PlayerRef.CirclesIntersect(Position - RadiusOffset, Radius) ||
-                //        PlayerRef.CirclesIntersect(Position + RadiusOffset, Radius))
-                //    {
-                //        Hit = true;
-                //        PlayerRef.Hit = true;
-                //        return true;
-                //    }
-                //}
+                playerHit = Collide(PlayerRef);
             }
 
             for (int shot = 0; shot < 4; shot++)
             {
                 if (PlayerRef.ShotSs[shot].Active)
                 {
-                    if (Collide(PlayerRef.ShotSs[shot]))
-                    {
-                        PlayerRef.ShotSs[shot].Active = false;
-                        return true;
-                    }
+                    playerHit = Collide(PlayerRef.ShotSs[shot]);
                 }
             }
 
-            return false;
+            return playerHit;
         }
 
         bool ShotCollide()
@@ -179,7 +167,7 @@ namespace Asteroids_Deluxe
             {
                 if (ShotS.CirclesIntersect(PlayerRef.Position, PlayerRef.Radius))
                 {
-                    ShotS.Active = false;
+                    ShotS.Hit = true;
                     PlayerRef.Hit = true;
                     return true;
                 }

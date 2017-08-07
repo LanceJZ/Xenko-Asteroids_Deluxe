@@ -71,6 +71,16 @@ namespace Asteroids_Deluxe
             UpdateActive();
         }
 
+        public void LoadModel()
+        {
+            Model = this.Entity.Get<ModelComponent>();
+        }
+
+        public void LoadModelChild()
+        {
+            Model = this.Entity.GetChild(0).Get<ModelComponent>();
+        }
+
         public void UpdateActive()
         {
             if (Model != null)
@@ -146,11 +156,6 @@ namespace Asteroids_Deluxe
             return (float)random.NextDouble() * (float)(MathUtil.TwoPi);
         }
 
-        public float RandomHeight()
-        {
-            return random.Next((int)(-Edge.Y * 0.9f), (int)(Edge.Y * 0.9f));
-        }
-
         /// <summary>
         /// Sets the velocity by direction in radian.
         /// </summary>
@@ -166,7 +171,7 @@ namespace Asteroids_Deluxe
         /// </summary>
         /// <param name="speedMax">Maximum speed.</param>
         /// <param name="speedMin">Minimum speed.</param>
-        public void SetRandomVelocity(float speedMin, float speedMax)
+        public void RandomVelocity(float speedMin, float speedMax)
         {
             float rad = RandomRadian();
             float amt = (float)random.NextDouble() * speedMax + (speedMin);
@@ -176,6 +181,27 @@ namespace Asteroids_Deluxe
         public float AngleFromVectors(Vector3 origin, Vector3 target)
         {
             return (float)(Math.Atan2(target.Y - origin.Y, target.X - origin.X));
+        }
+
+        public Vector3 VelocityFromAngle(float rotation, float magnitude)
+        {
+            return new Vector3((float)Math.Cos(rotation) * magnitude, (float)Math.Sin(rotation) * magnitude, 0);
+        }
+
+        public Vector3 VelocityFromAngle(float magnitude)
+        {
+            float ang = RandomRadian();
+            return new Vector3((float)Math.Cos(ang) * magnitude, (float)Math.Sin(ang) * magnitude, 0);
+        }
+
+        public float RandomHeight()
+        {
+            return RandomMinMax(-Edge.Y * 0.9f, Edge.Y * 0.9f);
+        }
+
+        public Vector3 RandomXEdge()
+        {
+            return new Vector3(Edge.X, RandomMinMax(-Edge.Y * 0.9f, Edge.Y * 0.9f), 0);
         }
     }
 }

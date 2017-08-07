@@ -1,9 +1,0 @@
-// Copyright (c) 2014-2017 Silicon Studio Corp. All rights reserved. (https://www.siliconstudio.co.jp)
-// See LICENSE.md for full license information.
-shader Global
-{
-    cbuffer PerFrame {
-        stage float Time;
-        stage float TimeStep;
-    };
-};

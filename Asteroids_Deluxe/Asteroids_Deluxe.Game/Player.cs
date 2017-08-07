@@ -38,6 +38,8 @@ namespace Asteroids_Deluxe
             }
 
             Deceleration = 0.01f;
+            LoadModelChild();
+            //Active = false;
 
             FlameM = this.Entity.FindChild("PlayerFlame").Get<ModelComponent>();
             ShieldM = this.Entity.FindChild("PlayerShield").Get<ModelComponent>();

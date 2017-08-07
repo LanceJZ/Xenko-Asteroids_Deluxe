@@ -17,6 +17,8 @@ namespace Asteroids_Deluxe
         RockSize Size;
         int Points;
 
+        public RockSize SizeofRock { get => Size; set => Size = value; }
+
         public override void Start()
         {
             base.Start();
@@ -48,7 +50,7 @@ namespace Asteroids_Deluxe
                 {
                     if (CirclesIntersect(PlayerRef.ShotSs[shot].Position, PlayerRef.ShotSs[shot].Radius))
                     {
-                        PlayerRef.ShotSs[shot].Active = false;
+                        PlayerRef.ShotSs[shot].Hit = true;
                         SetScore();
                         return true;
                     }
@@ -69,7 +71,7 @@ namespace Asteroids_Deluxe
             {
                 if (CirclesIntersect(UFORef.ShotS.Position, UFORef.ShotS.Radius))
                 {
-                    UFORef.ShotS.Active = false;
+                    UFORef.ShotS.Hit = true;
                     return true;
                 }
             }
@@ -92,8 +94,7 @@ namespace Asteroids_Deluxe
             {
                 case RockSize.Large:
                     Scale = new Vector3(1);
-                    Position.Y = RandomHeight();
-                    Position.X = Edge.X;
+                    Position = RandomXEdge();
                     Radius = 3.25f;
                     Points = 20;
                     Speed = 5;
@@ -114,7 +115,7 @@ namespace Asteroids_Deluxe
                     break;
             }
 
-            SetRandomVelocity(Speed * 0.25f, Speed);
+            RandomVelocity(Speed * 0.25f, Speed);
 
             float rotV = 0;
 

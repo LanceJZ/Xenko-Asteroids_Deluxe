@@ -9,18 +9,47 @@ using SiliconStudio.Xenko.Engine;
 
 namespace Asteroids_Deluxe
 {
-    public class PodGroup : SyncScript
+    public class PodGroup : PO
     {
-        // Declared public member fields and properties will show in the game studio
+        List<ModelComponent> Models = new List<ModelComponent>();
 
         public override void Start()
         {
-            // Initialization of the script.
+            for (int i = 0; i < 3; i++)
+            {
+                Models.Add(this.Entity.GetChild(i).Get<ModelComponent>());
+            }
+
+            Active = false;
+            Activate(Active);
+
+            base.Start();
         }
 
         public override void Update()
         {
-            // Do stuff every new frame
+            CheckForEdge();
+
+            base.Update();
         }
+
+        public void Activate(bool active)
+        {
+            foreach (ModelComponent model in Models)
+            {
+                model.Enabled = active;
+            }
+        }
+
+        public void Spawn()
+        {
+            Hit = false;
+            Active = true;
+            Activate(Active);
+
+            Velocity = VelocityFromAngle(6);
+            Position = RandomXEdge();
+        }
+
     }
 }

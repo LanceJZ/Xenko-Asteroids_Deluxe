@@ -9,18 +9,24 @@ using SiliconStudio.Xenko.Engine;
 
 namespace Asteroids_Deluxe
 {
-    public class PodPair : SyncScript
+    public class PodPair : PO
     {
-        // Declared public member fields and properties will show in the game studio
+
 
         public override void Start()
         {
-            // Initialization of the script.
+            LoadModelChild();
+            Active = false;
+            UpdateActive();
+
+            base.Start();
         }
 
         public override void Update()
         {
-            // Do stuff every new frame
+
+
+            base.Update();
         }
     }
 }
