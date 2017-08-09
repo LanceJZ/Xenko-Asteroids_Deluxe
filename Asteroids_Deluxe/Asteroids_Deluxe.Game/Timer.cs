@@ -5,7 +5,7 @@ using SiliconStudio.Xenko.Games.Time;
 
 namespace Asteroids_Deluxe
 {
-    class Timer : SyncScript
+    public class Timer : SyncScript
     {
         TimerTick timerTick = new TimerTick();
 

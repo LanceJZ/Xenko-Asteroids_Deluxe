@@ -47,12 +47,15 @@ namespace Asteroids_Deluxe
 
         public override void Update()
         {
+            if (Active)
+            {
+                GetInput();
+
+                if (CheckForEdge())
+                    UpdatePR();
+            }
+
             base.Update();
-
-            GetInput();
-
-            CheckForEdge();
-
         }
 
         void GetInput()
@@ -102,7 +105,7 @@ namespace Asteroids_Deluxe
                     //m_FireSoundInstance.Play();
                     float speed = 35;
 
-                    ShotSs[shot].Spawn(Position + SetVelocity(Radius, Rotation), SetVelocity(speed, Rotation) + Velocity * 0.75f, 1.55f);
+                    ShotSs[shot].Spawn(Position + VelocityFromRadian(Radius, Rotation), VelocityFromRadian(speed, Rotation) + Velocity * 0.75f, 1.55f);
 
                     break;
                 }

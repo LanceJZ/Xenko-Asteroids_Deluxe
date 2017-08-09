@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
@@ -16,16 +14,15 @@ namespace Asteroids_Deluxe
 {
     public class UFO : PO
     {
-        Vector3 RadiusOffset;
-        int Points;
-        float Speed = 5;
         public bool Done;
-        UFOsizes Size;
         public Shot ShotS;
         public Player PlayerRef;
 
+        float Speed = 5;
         Timer VectorTimer;
         Timer ShotTimer;
+        Vector3 RadiusOffset;
+        UFOsizes Size;
 
         public override void Start()
         {
@@ -48,8 +45,7 @@ namespace Asteroids_Deluxe
             ShotS.Active = false;
 
             LoadModelChild();
-            Active = false;
-            UpdateActive();
+            UpdateActive(false);
         }
 
         public override void Update()
@@ -59,7 +55,10 @@ namespace Asteroids_Deluxe
                 if (Position.X > Edge.X || Position.X < -Edge.X)
                     Done = true;
                 else
-                    CheckForEdge();
+                {
+                    if (CheckForEdge())
+                        UpdatePR();
+                }
 
                 if (VectorTimer.Expired)
                     ChangeVector();
@@ -118,11 +117,52 @@ namespace Asteroids_Deluxe
             }
 
             UpdatePR();
-            //ShotTimer.Reset();
+            ShotTimer.Reset();
             VectorTimer.Reset();
             Active = true;
             Done = false;
             Hit = false;
+        }
+
+        bool PlayerCollide()
+        {
+            if (PlayerRef.Active)
+            {
+                if (Collide(PlayerRef))
+                {
+                    PlayerRef.Hit = true;
+                    return true;
+                }
+            }
+
+            foreach (Shot shot in PlayerRef.ShotSs)
+            {
+                if (shot.Active)
+                {
+                    if (Collide(shot))
+                    {
+                        shot.Active = false;
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        bool ShotCollide()
+        {
+            if (PlayerRef.Active)
+            {
+                if (ShotS.CirclesIntersect(PlayerRef.Position, PlayerRef.Radius))
+                {
+                    ShotS.Hit = true;
+                    PlayerRef.Hit = true;
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public bool Collide(PO target)
@@ -134,41 +174,6 @@ namespace Asteroids_Deluxe
                 {
                     Hit = true;
                     target.Hit = true;
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        bool PlayerCollide()
-        {
-            bool playerHit = false;
-
-            if (PlayerRef.Active)
-            {
-                playerHit = Collide(PlayerRef);
-            }
-
-            for (int shot = 0; shot < 4; shot++)
-            {
-                if (PlayerRef.ShotSs[shot].Active)
-                {
-                    playerHit = Collide(PlayerRef.ShotSs[shot]);
-                }
-            }
-
-            return playerHit;
-        }
-
-        bool ShotCollide()
-        {
-            if (PlayerRef.Active)
-            {
-                if (ShotS.CirclesIntersect(PlayerRef.Position, PlayerRef.Radius))
-                {
-                    ShotS.Hit = true;
-                    PlayerRef.Hit = true;
                     return true;
                 }
             }
@@ -209,7 +214,7 @@ namespace Asteroids_Deluxe
                     break;
             }
 
-            ShotS.Spawn(Position + SetVelocity(Radius, rad), SetVelocity(speed, rad) + Velocity * 0.25f, 1.15f);
+            ShotS.Spawn(Position + VelocityFromRadian(Radius, rad), VelocityFromRadian(speed, rad) + Velocity * 0.25f, 1.15f);
         }
 
         void SetScore()

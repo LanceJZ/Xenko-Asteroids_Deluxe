@@ -17,9 +17,8 @@ namespace Asteroids_Deluxe
             SceneSystem.SceneInstance.RootScene.Entities.Add(lifeTimerE);
             LifeTimer = lifeTimerE.Get<Timer>();
             LoadModel();
-            Active = false;
             Radius = 0.25f;
-            UpdateActive();
+            UpdateActive(false);
         }
 
         public override void Update()
@@ -31,7 +30,8 @@ namespace Asteroids_Deluxe
                     Active = false;
                 }
 
-                CheckForEdge();
+                if (CheckForEdge())
+                    UpdatePR();
             }
 
             base.Update();

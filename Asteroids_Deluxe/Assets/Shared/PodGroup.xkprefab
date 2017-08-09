@@ -49,13 +49,28 @@ Hierarchy:
                             04e44096c84a578f2c09b65a4c5444a6: ref!! 46705d15-ea85-428b-a41f-e8e4342c1265
                     6c7de095298c14d994f35b7f1df861b1: !Asteroids_Deluxe.PodGroup,Asteroids_Deluxe.Game
                         Id: d9707051-ea66-4954-b347-53827fadca84
+                        Model: null
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Deceleration: 0.0
+                        Hit: false
+                        Active: false
+                        Pause: false
+                        GameOver: false
+                        Radius: 0.0
+                        RandomGenerator: null
+                        PlayerRef: null
+                        UFORef: null
+                        NewRockWave: false
         -   Entity:
                 Id: a177dd8c-e666-4db2-957d-ba3d8f30cbf6
                 Name: ADPodPair
                 Components:
                     ca9ccbad5ecc5a0a71839c8f5b9f136b: !TransformComponent
                         Id: 70e033d5-e070-493b-9248-230080c4532a
-                        Position: {X: 1.25581646, Y: -1.256, Z: 0.0}
+                        Position: {X: 1.256, Y: -1.256, Z: 0.0}
                         Rotation: {X: 0.61314714, Y: 0.3522081, Z: 0.3522081, W: 0.61314714}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: {}

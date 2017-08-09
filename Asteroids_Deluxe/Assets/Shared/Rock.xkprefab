@@ -46,3 +46,5 @@ Hierarchy:
                         Radius: 0.0
                         RandomGenerator: null
                         PlayerRef: null
+                        UFORef: null
+                        SizeofRock: Small

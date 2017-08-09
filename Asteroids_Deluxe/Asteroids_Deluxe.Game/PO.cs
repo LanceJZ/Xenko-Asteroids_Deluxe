@@ -10,9 +10,12 @@ namespace Asteroids_Deluxe
         public bool Active { get => active; set => active = value; }
         public bool Pause { get => pause; set => pause = value; }
         public bool GameOver { get => gameOver; set => gameOver = value; }
+        public int Points { get => points; set => points = value; }
         public float Radius { get => radius; set => radius = value; }
         public Random RandomGenerator { get => random; set => random = value; }
+
         protected float RotationVelocity { get => rotationVelocity; set => rotationVelocity = value; }
+
         protected float Rotation
         {
             get => rotation;
@@ -27,11 +30,15 @@ namespace Asteroids_Deluxe
             }
         }
 
-        private bool hit;
-        private bool active;
-        private bool pause;
-        private bool gameOver;
-        private float radius;
+        bool hit;
+        bool active;
+        bool pause;
+        bool gameOver;
+        int points;
+        float radius;
+        float rotation = 0;
+        float rotationVelocity = 0;
+        Random random;
 
         public ModelComponent Model;
         public Vector3 Position = Vector3.Zero;
@@ -40,9 +47,6 @@ namespace Asteroids_Deluxe
         public Vector3 Scale = Vector3.Zero;
         public float Deceleration = 0;
         protected Vector2 Edge = new Vector2(44, 32);
-        private Random random;
-        private float rotation = 0;
-        private float rotationVelocity = 0;
 
         public override void Start()
         {
@@ -68,7 +72,7 @@ namespace Asteroids_Deluxe
                 UpdatePR();
             }
 
-            UpdateActive();
+            UpdateActive(Active);
         }
 
         public void LoadModel()
@@ -81,8 +85,10 @@ namespace Asteroids_Deluxe
             Model = this.Entity.GetChild(0).Get<ModelComponent>();
         }
 
-        public void UpdateActive()
+        public void UpdateActive(bool active)
         {
+            Active = active;
+
             if (Model != null)
                 Model.Enabled = Active;
         }
@@ -110,31 +116,37 @@ namespace Asteroids_Deluxe
             return false;
         }
 
-        public void CheckForEdge()
+        public bool CheckForEdge()
         {
             if (Position.X > Edge.X)
             {
                 Position.X = -Edge.X;
                 UpdatePR();
+                return true;
             }
 
             if (Position.X < -Edge.X)
             {
                 Position.X = Edge.X;
                 UpdatePR();
+                return true;
             }
 
             if (Position.Y > Edge.Y)
             {
                 Position.Y = -Edge.Y;
                 UpdatePR();
+                return true;
             }
 
             if (Position.Y < -Edge.Y)
             {
                 Position.Y = Edge.Y;
                 UpdatePR();
+                return true;
             }
+
+            return false;
         }
 
         /// <summary>
@@ -157,11 +169,11 @@ namespace Asteroids_Deluxe
         }
 
         /// <summary>
-        /// Sets the velocity by direction in radian.
+        /// Returns the velocity by direction in radian.
         /// </summary>
         /// <param name="speed">The velocity of object.</param>
-        /// <param name="radian">The direction of object.</param>
-        public Vector3 SetVelocity(float speed, float radian)
+        /// <param name="radian">The direction of target object.</param>
+        public Vector3 VelocityFromRadian(float speed, float radian)
         {
             return new Vector3((float)Math.Cos(radian) * speed, (float)Math.Sin(radian) * speed, 0);
         }
@@ -176,6 +188,12 @@ namespace Asteroids_Deluxe
             float rad = RandomRadian();
             float amt = (float)random.NextDouble() * speedMax + (speedMin);
             Velocity = new Vector3((float)Math.Cos(rad) * amt, (float)Math.Sin(rad) * amt, 0);
+        }
+
+        public void RandomVelocity(float magnitude)
+        {
+            float rad = RandomRadian();
+            Velocity = new Vector3((float)Math.Cos(rad) * magnitude, (float)Math.Sin(rad) * magnitude, 0);
         }
 
         public float AngleFromVectors(Vector3 origin, Vector3 target)
@@ -202,6 +220,37 @@ namespace Asteroids_Deluxe
         public Vector3 RandomXEdge()
         {
             return new Vector3(Edge.X, RandomMinMax(-Edge.Y * 0.9f, Edge.Y * 0.9f), 0);
+        }
+
+        public float AimAtTarget(Vector3 origin, Vector3 target, float facingAngle, float magnitude)
+        {
+            float turnVelocity = 0;
+            float targetAngle = AngleFromVectors(origin, target);
+            float targetLessFacing = targetAngle - facingAngle;
+            float facingLessTarget = facingAngle - targetAngle;
+
+            if (Math.Abs(targetLessFacing) > Math.PI)
+            {
+                if (facingAngle > targetAngle)
+                {
+                    facingLessTarget = ((MathUtil.TwoPi - facingAngle) + targetAngle) * -1;
+                }
+                else
+                {
+                    facingLessTarget = (MathUtil.TwoPi - targetAngle) + facingAngle;
+                }
+            }
+
+            if (facingLessTarget > 0)
+            {
+                turnVelocity = -magnitude;
+            }
+            else
+            {
+                turnVelocity = magnitude;
+            }
+
+            return turnVelocity;
         }
     }
 }

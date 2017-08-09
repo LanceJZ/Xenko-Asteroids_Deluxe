@@ -228,6 +228,7 @@
     <Compile Include="Pod.cs" />
     <Compile Include="PodGroup.cs" />
     <Compile Include="PodPair.cs" />
+    <Compile Include="Pods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rock.cs" />
     <Compile Include="RockSizes.cs" />

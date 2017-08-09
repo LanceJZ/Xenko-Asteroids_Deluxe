@@ -19,6 +19,21 @@ Hierarchy:
                             d73aa4827df8a14d555425b2ae461e73: ref!! cac5ebf9-b2da-43ab-8c60-e90e84fdaf76
                     3b0bd289a6ffcab6e293f32ffd0ff52d: !Asteroids_Deluxe.Pod,Asteroids_Deluxe.Game
                         Id: 66f1554d-dcce-4c9e-9510-df20eed9733a
+                        Model: null
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Deceleration: 0.0
+                        Hit: false
+                        Active: false
+                        Pause: false
+                        GameOver: false
+                        Radius: 0.0
+                        RandomGenerator: null
+                        PlayerRef: null
+                        UFORef: null
+                        NewRockWave: false
         -   Entity:
                 Id: fb6cd9e8-c0fd-4afb-899c-6050e0642ca0
                 Name: Pod

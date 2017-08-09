@@ -17,8 +17,26 @@ Hierarchy:
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children:
                             5ba0ab474cbc6f8172fabd15c4b8458f: ref!! 9d2720af-39a7-4b62-a1f2-cae3c5fd1650
+                            03ef365af10bb2860d4e179c951dfe1e: ref!! f1881267-6456-4a5b-96ff-e18685430c49
+                            cd0a261c62acb0bc41a86207f8eb751a: ref!! 8b50d36f-7b74-4a2d-ad6b-a467185b26c2
                     7341a4be19aff25c643b8b2a597b5eaf: !Asteroids_Deluxe.PodPair,Asteroids_Deluxe.Game
                         Id: dd8c9bbc-3cac-40b4-9af8-803917e7b000
+                        Model: null
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Deceleration: 0.0
+                        Hit: false
+                        Active: false
+                        Pause: false
+                        GameOver: false
+                        Points: 0
+                        Radius: 0.0
+                        RandomGenerator: null
+                        PlayerRef: null
+                        UFORef: null
+                        NewRockWave: false
         -   Entity:
                 Id: 1e5251a6-b15c-498d-933a-9aceea847470
                 Name: PodPair
@@ -33,3 +51,24 @@ Hierarchy:
                         Id: 21fa821c-4c88-44a3-bd67-97f0a81ac46b
                         Model: ff63aa78-fd1c-419e-a376-08989b875593:ADPodPair
                         Materials: {}
+        -   Folder: null
+            Entity:
+                Id: 8144d624-4b86-4bf3-869b-c2b8566d390c
+                Name: PointTwo
+                Components:
+                    0feca5be0b2b4ef2f2e6584cfe51711b: !TransformComponent
+                        Id: 8b50d36f-7b74-4a2d-ad6b-a467185b26c2
+                        Position: {X: -1.2, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+        -   Entity:
+                Id: cf1f64be-95a5-4efe-b9fd-9d48faf9853b
+                Name: PointOne
+                Components:
+                    0feca5be0b2b4ef2f2e6584cfe51711b: !TransformComponent
+                        Id: f1881267-6456-4a5b-96ff-e18685430c49
+                        Position: {X: 1.2, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}

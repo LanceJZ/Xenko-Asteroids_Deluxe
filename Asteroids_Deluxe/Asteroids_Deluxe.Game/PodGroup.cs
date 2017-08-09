@@ -9,32 +9,39 @@ using SiliconStudio.Xenko.Engine;
 
 namespace Asteroids_Deluxe
 {
-    public class PodGroup : PO
+    public class PodGroup : Pods
     {
+
         List<ModelComponent> Models = new List<ModelComponent>();
 
         public override void Start()
         {
+            Radius = 2.568f;
+
             for (int i = 0; i < 3; i++)
             {
                 Models.Add(this.Entity.GetChild(i).Get<ModelComponent>());
             }
 
-            Active = false;
-            Activate(Active);
+            Activate(false);
 
             base.Start();
         }
 
         public override void Update()
         {
-            CheckForEdge();
+            if (Active)
+            {
+
+            }
 
             base.Update();
         }
 
         public void Activate(bool active)
         {
+            Active = active;
+
             foreach (ModelComponent model in Models)
             {
                 model.Enabled = active;
@@ -44,8 +51,8 @@ namespace Asteroids_Deluxe
         public void Spawn()
         {
             Hit = false;
-            Active = true;
-            Activate(Active);
+            NewRockWave = false;
+            Activate(true);
 
             Velocity = VelocityFromAngle(6);
             Position = RandomXEdge();

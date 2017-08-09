@@ -15,7 +15,6 @@ namespace Asteroids_Deluxe
 
         float Speed;
         RockSize Size;
-        int Points;
 
         public RockSize SizeofRock { get => Size; set => Size = value; }
 
@@ -36,7 +35,8 @@ namespace Asteroids_Deluxe
                     Hit = true;
                 }
 
-                CheckForEdge();
+                if (CheckForEdge())
+                    UpdatePR();
             }
 
             base.Update();
@@ -44,13 +44,13 @@ namespace Asteroids_Deluxe
 
         public bool Collide()
         {
-            for (int shot = 0; shot < 4; shot++)
+            foreach (Shot shot in PlayerRef.ShotSs)
             {
-                if (PlayerRef.ShotSs[shot].Active)
+                if (shot.Active)
                 {
-                    if (CirclesIntersect(PlayerRef.ShotSs[shot].Position, PlayerRef.ShotSs[shot].Radius))
+                    if (CirclesIntersect(shot.Position, shot.Radius))
                     {
-                        PlayerRef.ShotSs[shot].Hit = true;
+                        shot.Active = false;
                         SetScore();
                         return true;
                     }
@@ -89,6 +89,7 @@ namespace Asteroids_Deluxe
             Size = size;
             Position = position;
             Active = true;
+            Hit = false;
 
             switch (Size)
             {
