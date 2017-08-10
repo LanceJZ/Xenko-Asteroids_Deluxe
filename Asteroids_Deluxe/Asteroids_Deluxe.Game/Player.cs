@@ -12,10 +12,15 @@ namespace Asteroids_Deluxe
 {
     public class Player : PO
     {
+        public Numbers ScoreRef;
         ModelComponent FlameM;
         ModelComponent ShieldM;
 
         public List<Shot> ShotSs;
+
+        int score = 0;
+
+        public int Score { get => score; }
 
         public override void Start()
         {
@@ -56,6 +61,16 @@ namespace Asteroids_Deluxe
             }
 
             base.Update();
+        }
+
+        /// <summary>
+        /// Add points to the current score.
+        /// </summary>
+        /// <param name="number">Number of points to add.</param>
+        public void SetScore(int number)
+        {
+            score += number;
+            ScoreRef.ProcessNumber(score, new Vector3(-23, 31, 0), 1);
         }
 
         void GetInput()

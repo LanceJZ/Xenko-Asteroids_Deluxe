@@ -28,8 +28,6 @@ namespace Asteroids_Deluxe
         {
             if (Active)
             {
-                CheckEdges();
-
                 if (PlayerHit())
                 {
                     Hit = true;
@@ -50,7 +48,7 @@ namespace Asteroids_Deluxe
 
         protected void SetScore()
         {
-
+            PlayerRef.SetScore(Points);
         }
 
         public void Spawn(Vector3 position, float rotation)
@@ -129,7 +127,7 @@ namespace Asteroids_Deluxe
 
             if (DirectionTimer.Expired)
             {
-                DirectionTimer.Reset(RandomMinMax(2, 4));
+                DirectionTimer.Reset(RandomMinMax(2, 6));
                 RandomDirection = RandomMinMax(-0.5f, 0.5f);
             }
         }

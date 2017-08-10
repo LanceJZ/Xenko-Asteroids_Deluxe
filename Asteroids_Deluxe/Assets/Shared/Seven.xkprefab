@@ -1,0 +1,22 @@
+!PrefabAsset
+Id: 33dfc020-76de-4ea1-b495-fe2647999323
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - 5613c587-70b9-4b52-98cc-a53f3062062c
+    Parts:
+        -   Entity:
+                Id: 5613c587-70b9-4b52-98cc-a53f3062062c
+                Name: Seven
+                Components:
+                    a76d825c86aed88047fefb7087354841: !TransformComponent
+                        Id: b8973802-525e-4db1-952a-331f96d52573
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    77665b4e406b5a5f3995ef079f2a4384: !ModelComponent
+                        Id: b5d70cc9-6c9c-489e-ad2e-f9f2b32d239b
+                        Model: 253238bd-459b-44fa-a105-da7808c7e420:SevenM
+                        Materials: {}

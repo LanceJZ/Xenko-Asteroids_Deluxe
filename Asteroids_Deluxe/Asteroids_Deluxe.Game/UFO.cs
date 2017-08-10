@@ -83,9 +83,9 @@ namespace Asteroids_Deluxe
 
         public void Spawn(int SpawnCount, int Wave)
         {
-            float spawnPercent = (float)(Math.Pow(0.915, (SpawnCount * 2) / ((Wave * 2) + 1)));
+            float spawnPercent = (float)(Math.Pow(0.915, SpawnCount / (Wave + 1)));
 
-            if (RandomGenerator.Next(0, 99) < spawnPercent * 100)
+            if (RandomMinMax(0, 99) < (spawnPercent * 100) - (PlayerRef.Score / 800))
             {
                 Size = UFOsizes.Large;
                 Points = 200;
@@ -98,8 +98,8 @@ namespace Asteroids_Deluxe
             {
                 Size = UFOsizes.Small;
                 Points = 1000;
-                Scale = new Vector3(0.5f);
-                Radius = 0.65f;
+                Scale = new Vector3(0.65f);
+                Radius = 0.7f;
                 RadiusOffset = new Vector3(0.45f, 0, 0);
             }
 
@@ -117,6 +117,7 @@ namespace Asteroids_Deluxe
             }
 
             UpdatePR();
+            UpdateScale();
             ShotTimer.Reset();
             VectorTimer.Reset();
             Active = true;
@@ -219,7 +220,7 @@ namespace Asteroids_Deluxe
 
         void SetScore()
         {
-
+            PlayerRef.SetScore(Points);
         }
 
         void ChangeVector()

@@ -1,0 +1,22 @@
+!PrefabAsset
+Id: 4b595784-815a-4807-802e-a3879b8e6ce7
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - f14fb128-4655-43ee-86b5-ffc36ab927c0
+    Parts:
+        -   Entity:
+                Id: f14fb128-4655-43ee-86b5-ffc36ab927c0
+                Name: Three
+                Components:
+                    07b4c4b8113f22dc4056d4efc6a5c4d3: !TransformComponent
+                        Id: 7aa12247-30ac-4c5b-ac12-87046e2623a9
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    1ed192e2d222ba6f1baeee741d6c8a03: !ModelComponent
+                        Id: 9d7f9b4b-5204-4aad-998f-56dd3efa5fe9
+                        Model: 4900c575-cf87-41fb-93aa-100e03a2acb8:ThreeM
+                        Materials: {}

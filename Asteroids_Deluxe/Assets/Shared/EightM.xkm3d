@@ -1,0 +1,15 @@
+!Model
+Id: 6ab52f72-f222-44f6-a5c0-be0cd6bccfaa
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../../../../../Installed Programs/MagicaVoxel-0.98.2/export/FontEight.obj
+PivotPosition: {X: 0.0, Y: 6.5, Z: 0.0}
+ScaleImport: 0.18
+Materials:
+    81bb19c1afeef645740c0cb8104fe61d:
+        Name: palette
+        MaterialInstance:
+            Material: 1f2d65b5-cdbf-4bc6-87c4-45bc385cda76:palette
+Skeleton: null
+~SourceHashes:
+    d4bfd2cb7e68de57fb32bcf9eea1159d~../../../../../../Installed Programs/MagicaVoxel-0.98.2/export/FontEight.obj: 9ebe1a706a635749bf6b3594624883f5

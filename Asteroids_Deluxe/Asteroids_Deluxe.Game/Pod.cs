@@ -14,8 +14,11 @@ namespace Asteroids_Deluxe
 
         public override void Start()
         {
+            Initalize();
             LoadModelChild();
             UpdateActive(false);
+            Radius = 1.29f;
+            Points = 200;
 
             base.Start();
         }
@@ -24,12 +27,18 @@ namespace Asteroids_Deluxe
         {
             if (Active)
             {
+                UpdateDirection();
                 CheckEdges();
 
-
+                if (PlayerHit())
+                {
+                    SetScore();
+                    Hit = true;
+                }
             }
 
             base.Update();
         }
+
     }
 }

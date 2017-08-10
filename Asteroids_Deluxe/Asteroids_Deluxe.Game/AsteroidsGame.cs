@@ -14,18 +14,22 @@ namespace Asteroids_Deluxe
         Timer UFOSpawnTimer;
         Timer PodSpawnTimer;
         readonly float UFOTimerAmount = 10.15f;
-        readonly float PodTimerAmount = 5.25f; //30.25
+        readonly float PodTimerAmount = 20.25f; //30.25
         Random Random;
         Prefab RockPF;
         Player PlayerS;
         UFO UFOS;
         PodGroup PodGroupS;
+        Numbers ScoreS;
+
         List<Rock> RockSs = new List<Rock>();
         List<PodPair> PodPairSs = new List<PodPair>();
         List<Pod> PodSs = new List<Pod>();
 
         int LargeRockAmount = 4;
         int RockCount = 0;
+        int Wave = 0;
+        int UFOSpawnCount = 0;
         bool PodTimerStarted;
         //bool GameOver;
 
@@ -86,6 +90,13 @@ namespace Asteroids_Deluxe
                 PodSs[i].PlayerRef = PlayerS;
                 PodSs[i].UFORef = UFOS;
             }
+
+            Entity scoreE = new Entity { new Numbers() };
+            SceneSystem.SceneInstance.RootScene.Entities.Add(scoreE);
+            ScoreS = scoreE.Get<Numbers>();
+            ScoreS.Initialize();
+            PlayerS.ScoreRef = ScoreS;
+            PlayerS.SetScore(0);
         }
 
         public override void Update()
@@ -97,7 +108,7 @@ namespace Asteroids_Deluxe
 
         void PodController()
         {
-            if (RockCount < 4 && ArePodsDone())
+            if (RockCount < 4 && ArePodsDone()) //TODO: Should be 4.
             {
                 if (!PodTimerStarted)
                 {
@@ -116,16 +127,13 @@ namespace Asteroids_Deluxe
                 PodTimerStarted = false;
             }
 
-            if (PodGroupS.Active)
+            if (PodGroupS.Active && PodGroupS.Hit)
             {
-                if (PodGroupS.Hit)
-                {
-                    PodGroupS.Activate(false);
+                PodGroupS.Activate(false);
 
-                    PodPairSs[0].Spawn(PodGroupS.Position + new Vector3(0, 0.9f, 0), 0);
-                    PodPairSs[1].Spawn(PodGroupS.Position + new Vector3(1.256f, -1.256f, 0), MathUtil.Pi * 0.33333f);
-                    PodPairSs[2].Spawn(PodGroupS.Position + new Vector3(-1.256f, -1.256f, 0), -MathUtil.Pi * 0.33333f);
-                }
+                PodPairSs[0].Spawn(PodGroupS.Position + new Vector3(0, 0.9f, 0), 0);
+                PodPairSs[1].Spawn(PodGroupS.Position + new Vector3(1.256f, -1.256f, 0), MathUtil.Pi * 0.33333f);
+                PodPairSs[2].Spawn(PodGroupS.Position + new Vector3(-1.256f, -1.256f, 0), -MathUtil.Pi * 0.33333f);
             }
 
             foreach (PodPair pair in PodPairSs)
@@ -133,7 +141,31 @@ namespace Asteroids_Deluxe
                 if (pair.Active && pair.Hit)
                 {
                     pair.Active = false;
-                    pair.Hit = false;
+
+                    for (int ipair = 0; ipair < 2; ipair++)
+                    {
+                        for (int i = 0; i < 6; i++)
+                        {
+                            if (!PodSs[i].Active)
+                            {
+                                Vector3 pos = Vector3.TransformCoordinate(pair.PodCenterVects[ipair],
+                                    Matrix.Invert(pair.CenterPodTrans[ipair].WorldMatrix));
+
+                                PodSs[i].Spawn(pos, pair.Rotation + (MathUtil.Pi * ipair));
+                                break;
+                            }
+                        }
+                    }
+
+                    break;
+                }
+            }
+
+            foreach (Pod pod in PodSs)
+            {
+                if (pod.Active && pod.Hit)
+                {
+                    pod.Active = false;
                 }
             }
         }
@@ -169,13 +201,14 @@ namespace Asteroids_Deluxe
         {
             if (UFOSpawnTimer.Expired && !UFOS.Active)
             {
-                UFOS.Spawn(1, 1);
+                UFOS.Spawn(UFOSpawnCount++, Wave);
             }
 
             if (UFOS.Done || UFOS.Hit)
             {
                 UFOSpawnTimer.Reset();
                 UFOS.Active = false;
+                UFOS.Hit = false;
                 UFOS.Done = false;
             }
         }
@@ -190,8 +223,6 @@ namespace Asteroids_Deluxe
                 {
                     rock.Active = false;
 
-                    RockSize size = rock.SizeofRock;
-
                     switch (rock.SizeofRock)
                     {
                         case RockSize.Large:
@@ -201,13 +232,15 @@ namespace Asteroids_Deluxe
                         case RockSize.Medium:
                             SpawnRocks(RockSs, rock.Position, RockSize.Small, 2);
                             return;
+
+                        case RockSize.Small:
+                            return;
                     }
                 }
 
                 if (rock.Active)
                 {
                     RockCount++;
-                    //lgrockCount++;
                 }
             }
 
@@ -218,12 +251,19 @@ namespace Asteroids_Deluxe
                 if (LargeRockAmount < 12)
                     LargeRockAmount += 2;
 
+                Wave++;
+
                 PodTimerStarted = false;
                 PodGroupS.NewRockWave = true;
 
-                for (int i = 0; i < 3; i++)
+                foreach (PodPair pair in PodPairSs)
                 {
-                    PodPairSs[i].NewRockWave = true;
+                    pair.NewRockWave = true;
+                }
+
+                foreach (Pod pod in PodSs)
+                {
+                    pod.NewRockWave = true;
                 }
             }
 

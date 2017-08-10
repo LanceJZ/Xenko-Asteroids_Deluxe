@@ -1,0 +1,22 @@
+!PrefabAsset
+Id: 58ec15cd-6622-48f1-8750-b7a0cdf3e86a
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - bce0f380-1edd-46cf-80ac-58860b998fad
+    Parts:
+        -   Entity:
+                Id: bce0f380-1edd-46cf-80ac-58860b998fad
+                Name: Four
+                Components:
+                    17f20be0db7fe980ec2485aa5f8122e1: !TransformComponent
+                        Id: 0d12b362-daa9-4148-b720-6fdbc277cf2c
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    c78112b7046c2a1c09add8f6ceb4cfa5: !ModelComponent
+                        Id: e652dac6-f8c2-4060-9331-3fe96266ac96
+                        Model: 0fbc8ebb-98fa-4a3f-a421-c68ae078833a:FourM
+                        Materials: {}

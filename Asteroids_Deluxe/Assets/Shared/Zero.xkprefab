@@ -1,0 +1,22 @@
+!PrefabAsset
+Id: ee17b754-77ab-41e4-9c60-4875f9ce0002
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - 7098ae89-c8d4-4b51-a9ae-7ad136989911
+    Parts:
+        -   Entity:
+                Id: 7098ae89-c8d4-4b51-a9ae-7ad136989911
+                Name: Zero
+                Components:
+                    9e6b95929b859318890c422459c0f857: !TransformComponent
+                        Id: ee641088-e3d7-4397-960c-bfb927ec3c37
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    654c329ff30553870149408f1731efd6: !ModelComponent
+                        Id: 8ca2473f-546b-41a9-ad9c-1af2f9ec98b9
+                        Model: 49ef91e9-13fd-4178-af7d-99dbabb823d7:ZeroM
+                        Materials: {}

@@ -11,12 +11,13 @@ namespace Asteroids_Deluxe
 {
     public class PodGroup : Pods
     {
-
+        bool Visable;
         List<ModelComponent> Models = new List<ModelComponent>();
 
         public override void Start()
         {
             Radius = 2.568f;
+            Points = 50;
 
             for (int i = 0; i < 3; i++)
             {
@@ -32,10 +33,15 @@ namespace Asteroids_Deluxe
         {
             if (Active)
             {
+                base.Update();
 
+                CheckEdges();
             }
-
-            base.Update();
+            else if (NewRockWave && Visable)
+            {
+                Activate(false);
+                Visable = false;
+            }
         }
 
         public void Activate(bool active)
@@ -51,11 +57,18 @@ namespace Asteroids_Deluxe
         public void Spawn()
         {
             Hit = false;
+            Visable = true;
             NewRockWave = false;
             Activate(true);
 
             Velocity = VelocityFromAngle(6);
-            Position = RandomXEdge();
+
+            Position.Y = RandomHeight();
+
+            if (Velocity.X > 0)
+                Position.X = Edge.X;
+            else
+                Position.X = -Edge.X;
         }
 
     }

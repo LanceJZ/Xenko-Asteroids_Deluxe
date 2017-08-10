@@ -10,17 +10,24 @@ namespace Asteroids_Deluxe
 {
     public class PodPair : Pods
     {
-        public List<TransformComponent> CenterPodPoints = new List<TransformComponent>();
+        public List<TransformComponent> CenterPodTrans = new List<TransformComponent>();
+        public List<Vector3> PodCenterVects = new List<Vector3>();
 
         public override void Start()
         {
             Initalize();
             LoadModelChild();
             UpdateActive(false);
-            Radius = 2.9f;
+            Radius = 1.29f;
+            Points = 100;
 
-            CenterPodPoints.Add(this.Entity.FindChild("PointOne").Get<TransformComponent>());
-            CenterPodPoints.Add(this.Entity.FindChild("PointTwo").Get<TransformComponent>());
+            CenterPodTrans.Add(this.Entity.FindChild("PointOne").Get<TransformComponent>());
+            CenterPodTrans.Add(this.Entity.FindChild("PointTwo").Get<TransformComponent>());
+
+            for (int i = 0; i < 2; i++)
+            {
+                PodCenterVects.Add(Vector3.Zero);
+            }
 
             base.Start();
         }
@@ -29,7 +36,13 @@ namespace Asteroids_Deluxe
         {
             if (Active)
             {
+                for (int i = 0; i < 2; i++)
+                {
+                    PodCenterVects[i] = Vector3.TransformCoordinate(Position, CenterPodTrans[i].WorldMatrix);
+                }
+
                 UpdateDirection();
+                CheckEdges();
 
                 if (PlayerCollide())
                 {
@@ -69,9 +82,12 @@ namespace Asteroids_Deluxe
 
         public bool Collide(PO target)
         {
-            foreach (TransformComponent point in CenterPodPoints)
+            for (int i = 0; i < 2; i++)
             {
-                if (target.CirclesIntersect(point.Position, Radius))
+                Vector3 center = Vector3.TransformCoordinate(PodCenterVects[i],
+                        Matrix.Invert(CenterPodTrans[i].WorldMatrix));
+
+                if (target.CirclesIntersect(center, Radius))
                     return true;
             }
 

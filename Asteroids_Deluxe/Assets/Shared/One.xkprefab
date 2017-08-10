@@ -1,0 +1,22 @@
+!PrefabAsset
+Id: fff1605d-88bc-4486-9fed-245b30baddf1
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - c91ebc9f-8e6b-42ed-b3f4-d182013321e5
+    Parts:
+        -   Entity:
+                Id: c91ebc9f-8e6b-42ed-b3f4-d182013321e5
+                Name: One
+                Components:
+                    adb9a18f70657f0986b9a790586a4b24: !TransformComponent
+                        Id: 5985fbf7-7548-46d5-8894-9130e4c4715a
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    9462ddd8ad43c6557c0d12dbeaf1cd7e: !ModelComponent
+                        Id: a81c076c-b078-4c21-ac15-25de1f7d0476
+                        Model: 704a973d-bbf7-4aca-b3b1-d9a08bbaeb7b:OneM
+                        Materials: {}

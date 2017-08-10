@@ -12,23 +12,23 @@ namespace Asteroids_Deluxe
         public bool GameOver { get => gameOver; set => gameOver = value; }
         public int Points { get => points; set => points = value; }
         public float Radius { get => radius; set => radius = value; }
-        public Random RandomGenerator { get => random; set => random = value; }
+        public float RotationVelocity { get => rotationVelocity; set => rotationVelocity = value; }
 
-        protected float RotationVelocity { get => rotationVelocity; set => rotationVelocity = value; }
-
-        protected float Rotation
+        public float Rotation
         {
             get => rotation;
             set
             {
                 if (value < 0)
-                    value = MathUtil.TwoPi;
+                    value += MathUtil.TwoPi;
                 if (value > MathUtil.TwoPi)
-                    value = 0;
+                    value -= MathUtil.TwoPi;
 
                 rotation = value;
             }
         }
+
+        public Random RandomGenerator { get => random; set => random = value; }
 
         bool hit;
         bool active;
@@ -121,28 +121,24 @@ namespace Asteroids_Deluxe
             if (Position.X > Edge.X)
             {
                 Position.X = -Edge.X;
-                UpdatePR();
                 return true;
             }
 
             if (Position.X < -Edge.X)
             {
                 Position.X = Edge.X;
-                UpdatePR();
                 return true;
             }
 
             if (Position.Y > Edge.Y)
             {
                 Position.Y = -Edge.Y;
-                UpdatePR();
                 return true;
             }
 
             if (Position.Y < -Edge.Y)
             {
                 Position.Y = Edge.Y;
-                UpdatePR();
                 return true;
             }
 
@@ -165,7 +161,7 @@ namespace Asteroids_Deluxe
         /// <returns>float</returns>
         public float RandomRadian()
         {
-            return (float)random.NextDouble() * (float)(MathUtil.TwoPi);
+            return RandomMinMax(0, MathUtil.TwoPi);
         }
 
         /// <summary>
@@ -179,21 +175,25 @@ namespace Asteroids_Deluxe
         }
 
         /// <summary>
-        /// Sets the velocity in a random direction with a random speed.
+        /// Returns a velocity in a random direction with a random speed.
         /// </summary>
         /// <param name="speedMax">Maximum speed.</param>
         /// <param name="speedMin">Minimum speed.</param>
-        public void RandomVelocity(float speedMin, float speedMax)
+        public Vector3 RandomVelocity(float speedMin, float speedMax)
         {
             float rad = RandomRadian();
-            float amt = (float)random.NextDouble() * speedMax + (speedMin);
-            Velocity = new Vector3((float)Math.Cos(rad) * amt, (float)Math.Sin(rad) * amt, 0);
+            float amt = RandomMinMax(speedMin, speedMax);
+            return new Vector3((float)Math.Cos(rad) * amt, (float)Math.Sin(rad) * amt, 0);
         }
 
-        public void RandomVelocity(float magnitude)
+        /// <summary>
+        /// Returns a velocity of magnitude in a random direction.
+        /// </summary>
+        /// <param name="magnitude">Units per second.</param>
+        public Vector3 RandomVelocity(float magnitude)
         {
             float rad = RandomRadian();
-            Velocity = new Vector3((float)Math.Cos(rad) * magnitude, (float)Math.Sin(rad) * magnitude, 0);
+            return new Vector3((float)Math.Cos(rad) * magnitude, (float)Math.Sin(rad) * magnitude, 0);
         }
 
         public float AngleFromVectors(Vector3 origin, Vector3 target)
@@ -201,6 +201,12 @@ namespace Asteroids_Deluxe
             return (float)(Math.Atan2(target.Y - origin.Y, target.X - origin.X));
         }
 
+        /// <summary>
+        /// Returns a velocity using rotation as direction, at magnitude.
+        /// </summary>
+        /// <param name="rotation">Direction in radians.</param>
+        /// <param name="magnitude">Speed in units per second.</param>
+        /// <returns></returns>
         public Vector3 VelocityFromAngle(float rotation, float magnitude)
         {
             return new Vector3((float)Math.Cos(rotation) * magnitude, (float)Math.Sin(rotation) * magnitude, 0);

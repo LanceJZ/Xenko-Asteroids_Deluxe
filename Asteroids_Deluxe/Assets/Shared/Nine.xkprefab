@@ -1,0 +1,22 @@
+!PrefabAsset
+Id: 57fb9406-ce9d-4f80-8915-ddf60bb0d768
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - e5da9bef-52d8-4414-a859-d893198c8246
+    Parts:
+        -   Entity:
+                Id: e5da9bef-52d8-4414-a859-d893198c8246
+                Name: Nine
+                Components:
+                    db0d8a37584e8264de1150c8d3e8b37b: !TransformComponent
+                        Id: e60d50aa-63c7-4862-b2a5-9eac7880609a
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    b3b43b46eae88999e2a6bdafc42d82bd: !ModelComponent
+                        Id: be9027f0-3bb1-4579-a122-89c4a8f9c569
+                        Model: a464b471-1267-4213-ab6a-bb580ee74281:NineM
+                        Materials: {}

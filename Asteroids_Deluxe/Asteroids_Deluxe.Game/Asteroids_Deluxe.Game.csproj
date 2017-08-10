@@ -223,6 +223,7 @@
   <ItemGroup>
     <Compile Include="BasicCameraController.cs" />
     <Compile Include="AsteroidsGame.cs" />
+    <Compile Include="Numbers.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PO.cs" />
     <Compile Include="Pod.cs" />
@@ -235,6 +236,7 @@
     <Compile Include="Shot.cs" />
     <Compile Include="Timer.cs" />
     <Compile Include="UFO.cs" />
+    <Compile Include="UI.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="$(SiliconStudioPackageProps)" Condition="Exists('$(SiliconStudioPackageProps)')" />

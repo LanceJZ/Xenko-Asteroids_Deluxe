@@ -33,10 +33,14 @@ Hierarchy:
                         GameOver: false
                         Points: 0
                         Radius: 0.0
+                        RotationVelocity: 0.0
+                        Rotation: 0.0
                         RandomGenerator: null
                         PlayerRef: null
                         UFORef: null
                         NewRockWave: false
+                        CenterPodTrans: {}
+                        PodCenterVects: {}
         -   Entity:
                 Id: 1e5251a6-b15c-498d-933a-9aceea847470
                 Name: PodPair

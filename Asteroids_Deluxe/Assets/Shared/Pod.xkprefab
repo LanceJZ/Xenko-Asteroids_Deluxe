@@ -29,7 +29,10 @@ Hierarchy:
                         Active: false
                         Pause: false
                         GameOver: false
+                        Points: 0
                         Radius: 0.0
+                        RotationVelocity: 0.0
+                        Rotation: 0.0
                         RandomGenerator: null
                         PlayerRef: null
                         UFORef: null

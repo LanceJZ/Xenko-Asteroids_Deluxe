@@ -95,7 +95,6 @@ namespace Asteroids_Deluxe
             {
                 case RockSize.Large:
                     Scale = new Vector3(1);
-                    Position = RandomXEdge();
                     Radius = 3.25f;
                     Points = 20;
                     Speed = 5;
@@ -116,8 +115,6 @@ namespace Asteroids_Deluxe
                     break;
             }
 
-            RandomVelocity(Speed * 0.25f, Speed);
-
             float rotV = 0;
 
             if (RandomGenerator.Next(10) > 5)
@@ -130,13 +127,25 @@ namespace Asteroids_Deluxe
             }
 
             RotationVelocity = rotV;
+            Velocity = RandomVelocity(Speed * 0.25f, Speed);
+
+            if (Size == RockSize.Large)
+            {
+                Position.Y = RandomHeight();
+
+                if (Velocity.X > 0)
+                    Position.X = Edge.X;
+                else
+                    Position.X = -Edge.X;
+            }
+
             UpdatePR();
             UpdateScale();
         }
 
         void SetScore()
         {
-
+            PlayerRef.SetScore(Points);
         }
     }
 }
