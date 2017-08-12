@@ -59,6 +59,7 @@ Hierarchy:
                         Deceleration: 0.0
                         Hit: false
                         Active: false
+                        Moveable: true
                         Pause: false
                         GameOver: false
                         Points: 0
@@ -66,7 +67,9 @@ Hierarchy:
                         RotationVelocity: 0.0
                         Rotation: 0.0
                         RandomGenerator: null
+                        ScoreRef: null
                         ShotSs: null
+                        NewShip: false
         -   Entity:
                 Id: da8506d5-dd4e-4cae-821e-0063a6bd4538
                 Name: PlayerFlame

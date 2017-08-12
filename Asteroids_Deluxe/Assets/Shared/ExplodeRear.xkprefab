@@ -1,0 +1,24 @@
+!PrefabAsset
+Id: 00e93945-7dbb-4651-8d99-36a0ce45f8fe
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - c4a9d9d4-05ce-443b-b8e4-4214d1907140
+    Parts:
+        -   Entity:
+                Id: c4a9d9d4-05ce-443b-b8e4-4214d1907140
+                Name: ExplodeRear
+                Components:
+                    3b77c78e5d2bb19be6058726745d4b74: !TransformComponent
+                        Id: 24e3c5bf-67e1-48e5-b1c2-5d7e997938ea
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    8a0ce36063b6530057e5e4e49ae83bce: !ModelComponent
+                        Id: 10df8c77-6e46-4777-8404-236c12b434e8
+                        Model: eb592ebf-afbc-49be-be47-28ec479f9ad2:ADPlayerExplodeRear
+                        Materials: {}
+                    0179ee954f9df5204b8f011e7da0b36c: !Asteroids_Deluxe.PlayerExplode,Asteroids_Deluxe.Game
+                        Id: c739ce66-5aac-406b-a057-0034ab46d3e3

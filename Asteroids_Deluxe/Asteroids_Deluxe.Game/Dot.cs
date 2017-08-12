@@ -5,7 +5,7 @@ using SiliconStudio.Xenko.Engine;
 
 namespace Asteroids_Deluxe
 {
-    public class Shot : PO
+    public class Dot : PO
     {
         Timer LifeTimer;
 
@@ -17,40 +17,30 @@ namespace Asteroids_Deluxe
             SceneSystem.SceneInstance.RootScene.Entities.Add(lifeTimerE);
             LifeTimer = lifeTimerE.Get<Timer>();
             LoadModel();
-            Radius = 0.25f;
             UpdateActive(false);
         }
 
         public override void Update()
         {
-            if (Active && !Paused)
+            if (Active)
             {
-                if (LifeTimer.Expired || Hit)
+                if (LifeTimer.Expired)
                 {
                     Active = false;
                 }
-
-                if (CheckForEdge())
-                    UpdatePR();
             }
 
             base.Update();
         }
 
-        public void Spawn(Vector3 position, Vector3 velocity, float timer)
+        public void Spawn(Vector3 position, Vector3 velocity, float rotationV, float life)
         {
+            LifeTimer.Reset(life);
+            Active = true;
             Position = position;
             Velocity = velocity;
-            LifeTimer.Reset(timer);
-            Active = true;
-            Hit = false;
+            RotationVelocity = rotationV;
             UpdatePR();
-        }
-
-        public void SetPause(bool pause)
-        {
-            Paused = pause;
-            LifeTimer.SetPause(pause);
         }
     }
 }

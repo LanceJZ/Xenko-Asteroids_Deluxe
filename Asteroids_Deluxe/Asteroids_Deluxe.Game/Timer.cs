@@ -10,7 +10,7 @@ namespace Asteroids_Deluxe
         TimerTick timerTick = new TimerTick();
 
         float amount = 0;
-        bool Paused = false;
+        bool paused;
 
         public Timer(float amount)
         {
@@ -45,17 +45,19 @@ namespace Asteroids_Deluxe
             }
         }
 
+        public bool Paused { get => paused; }
+
         public override void Update()
         {
-            if (!Paused)
+            if (!paused)
                 timerTick.Tick();
         }
 
-        public void Pause(bool pause)
+        public void SetPause(bool pause)
         {
-            Paused = pause;
+            paused = pause;
 
-            if (Paused)
+            if (paused)
             {
                 timerTick.Pause();
             }

@@ -29,6 +29,7 @@ Hierarchy:
                         Deceleration: 0.0
                         Hit: false
                         Active: false
+                        Moveable: true
                         Pause: false
                         GameOver: false
                         Points: 0

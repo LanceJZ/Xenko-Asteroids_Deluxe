@@ -1,0 +1,15 @@
+!Model
+Id: ab573dac-fafa-4afd-b1ac-8d7750603ad8
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../../../../../Installed Programs/MagicaVoxel-0.98.2/export/ADPlayerExplode1.obj
+PivotPosition: {X: 0.0, Y: 0.0, Z: 0.0}
+ScaleImport: 0.1
+Materials:
+    a62bf187a89c582d0ba6759d49618c17:
+        Name: palette
+        MaterialInstance:
+            Material: 1f2d65b5-cdbf-4bc6-87c4-45bc385cda76:palette
+Skeleton: null
+~SourceHashes:
+    aa30cf84977528eed2f84390db44d09e~../../../../../../Installed Programs/MagicaVoxel-0.98.2/export/ADPlayerExplode1.obj: df7bdc9c16a300d1dc3efe2c66ee601b

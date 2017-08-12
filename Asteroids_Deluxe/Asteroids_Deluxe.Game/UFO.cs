@@ -17,6 +17,8 @@ namespace Asteroids_Deluxe
         public bool Done;
         public Shot ShotS;
         public Player PlayerRef;
+        public PodGroup PodGroupRef;
+        public Explode ExplodeRef;
 
         float Speed = 5;
         Timer VectorTimer;
@@ -50,7 +52,7 @@ namespace Asteroids_Deluxe
 
         public override void Update()
         {
-            if (Active)
+            if (Active && !Paused)
             {
                 if (Position.X > Edge.X || Position.X < -Edge.X)
                     Done = true;
@@ -67,18 +69,28 @@ namespace Asteroids_Deluxe
                     FireShot();
 
                 if (PlayerCollide())
+                {
                     SetScore();
+                }
             }
 
-            if (ShotS.Active)
+            if (ShotS.Active && !Paused)
             {
                 if (ShotCollide())
                 {
-
+                    ShotS.Hit = true;
                 }
             }
 
             base.Update();
+        }
+
+        public void SetPause(bool pause)
+        {
+            Paused = pause;
+            VectorTimer.SetPause(pause);
+            ShotTimer.SetPause(pause);
+            ShotS.SetPause(pause);
         }
 
         public void Spawn(int SpawnCount, int Wave)
@@ -157,8 +169,16 @@ namespace Asteroids_Deluxe
             {
                 if (ShotS.CirclesIntersect(PlayerRef.Position, PlayerRef.Radius))
                 {
-                    ShotS.Hit = true;
                     PlayerRef.Hit = true;
+                    return true;
+                }
+            }
+
+            if (PodGroupRef.Active)
+            {
+                if (ShotS.CirclesIntersect(PodGroupRef.Position, PodGroupRef.Radius))
+                {
+                    PodGroupRef.Hit = true;
                     return true;
                 }
             }
@@ -197,6 +217,18 @@ namespace Asteroids_Deluxe
             if (percent < 0)
                 percent = 0;
 
+            PO target = new PO();
+            target.Position = new Vector3(RandomMinMax(-Edge.X, Edge.X), RandomMinMax(-Edge.Y, Edge.Y), 0);
+
+            if (PlayerRef.Active)
+            {
+                target = PlayerRef;
+            }
+            else if (PodGroupRef.Active)
+            {
+                target = PodGroupRef;
+            }
+
             switch (Size)
             {
                 case UFOsizes.Large:
@@ -206,12 +238,12 @@ namespace Asteroids_Deluxe
                     }
                     else
                     {
-                        rad = AngleFromVectors(Position, PlayerRef.Position) + RandomMinMax(-percent, percent);
+                        rad = AngleFromVectors(Position, target.Position) + RandomMinMax(-percent, percent);
                     }
                     break;
 
                 case UFOsizes.Small:
-                    rad = AngleFromVectors(Position, PlayerRef.Position) + RandomMinMax(-percent, percent);
+                    rad = AngleFromVectors(Position, target.Position) + RandomMinMax(-percent, percent);
                     break;
             }
 

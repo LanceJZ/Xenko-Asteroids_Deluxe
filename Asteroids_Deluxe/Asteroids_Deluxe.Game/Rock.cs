@@ -12,6 +12,7 @@ namespace Asteroids_Deluxe
     {
         public Player PlayerRef;
         public UFO UFORef;
+        public Explode ExplodeRef;
 
         float Speed;
         RockSize Size;
@@ -22,13 +23,13 @@ namespace Asteroids_Deluxe
         {
             base.Start();
 
-            Model = this.Entity.GetChild(0).Get<ModelComponent>();
-
+            //Model = this.Entity.GetChild(0).Get<ModelComponent>();
+            LoadModelChild();
         }
 
         public override void Update()
         {
-            if (Active)
+            if (Active && !Paused)
             {
                 if (Collide())
                 {
@@ -59,7 +60,14 @@ namespace Asteroids_Deluxe
 
             if (PlayerRef.Active)
             {
-                if (CirclesIntersect(PlayerRef.Position, PlayerRef.Radius))
+                if (PlayerRef.ShieldOn)
+                {
+                    if (CirclesIntersect(PlayerRef.Position, PlayerRef.ShieldRadius))
+                    {
+                        PlayerRef.ShieldHit(Position, Velocity);
+                    }
+                }
+                else if (CirclesIntersect(PlayerRef.Position, PlayerRef.Radius))
                 {
                     PlayerRef.Hit = true;
                     SetScore();

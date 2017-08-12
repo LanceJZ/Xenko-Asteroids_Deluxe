@@ -1,0 +1,33 @@
+!PrefabAsset
+Id: e4d06ab9-2547-4832-8cac-769385b18e32
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - 24d4d984-c275-40cd-8598-70ee4c4ef684
+    Parts:
+        -   Entity:
+                Id: 24d4d984-c275-40cd-8598-70ee4c4ef684
+                Name: PlayerShip
+                Components:
+                    ff44f6b363cc5b9a3cfc14edd707c665: !TransformComponent
+                        Id: ad0fd2e4-46ae-4b73-a6eb-0478dc44ef9f
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children:
+                            ef57a2a9f806ab42f718d5466b3c7db8: ref!! 4358f873-2619-4d7a-afb6-fc4f47b23e9d
+        -   Entity:
+                Id: 5f1ffea6-475c-40e9-8906-fad08916cc43
+                Name: Ship
+                Components:
+                    59918690401ee3c602241e6288281891: !TransformComponent
+                        Id: 4358f873-2619-4d7a-afb6-fc4f47b23e9d
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.495617658, Y: -0.504344165, Z: -0.504344165, W: 0.495617658}
+                        Scale: {X: 0.75, Y: 0.75, Z: 0.75}
+                        Children: {}
+                    b62a377d86eed75453271b027cc7be24: !ModelComponent
+                        Id: 895434a2-30da-44a3-a9b6-d1c9372e7d7f
+                        Model: 24dd62d9-4b53-4cfc-abdf-6d68eaf5e228:PlayerShip
+                        Materials: {}

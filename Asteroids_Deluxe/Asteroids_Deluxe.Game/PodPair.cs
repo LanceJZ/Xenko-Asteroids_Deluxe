@@ -34,7 +34,7 @@ namespace Asteroids_Deluxe
 
         public override void Update()
         {
-            if (Active)
+            if (Active && !Paused)
             {
                 for (int i = 0; i < 2; i++)
                 {

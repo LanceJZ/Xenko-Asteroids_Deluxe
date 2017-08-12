@@ -1,27 +1,27 @@
 !PrefabAsset
-Id: 281818f4-3259-4e9f-b0c2-104e21dd7f4a
+Id: 8222a7ee-4d72-48c8-b739-c8bf94c086e8
 SerializedVersion: {Xenko: 2.0.0.0}
 Tags: []
 Hierarchy:
     RootPartIds:
-        - 913093be-996b-402b-baf9-a36ec38b6c83
+        - 46cacf7e-5a43-4714-8e61-cf17dca575e4
     Parts:
         -   Entity:
-                Id: 913093be-996b-402b-baf9-a36ec38b6c83
-                Name: Shot
+                Id: 46cacf7e-5a43-4714-8e61-cf17dca575e4
+                Name: Particle
                 Components:
-                    e14ee5d6a0d4d515db67fb31c9e11f2a: !TransformComponent
-                        Id: c6baf28a-57e3-41bd-a893-f30abbae5bb6
+                    b97721514a1dddee1edff54c5f276806: !TransformComponent
+                        Id: 12e8ce5c-aba2-4bdc-a354-d1bc89c0dfd2
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: {}
-                    e4c962f674459eddda82dc79bdbd6672: !ModelComponent
-                        Id: 9a358fbc-52b9-45db-a7ab-4835ebbbccbb
-                        Model: d05e1812-eac8-4073-a15e-607082c81c32:ShotVoxel
+                    12b5abc53b9882a48c3b23e0dcd3fb25: !ModelComponent
+                        Id: a52bbb8b-b358-4995-b8aa-cedd598c9ccc
+                        Model: cf2c7e88-1626-4049-b482-ba2444f93151:ParticleVoxel
                         Materials: {}
-                    be282e4a93befff34ae4aed1b764c9d1: !Asteroids_Deluxe.Shot,Asteroids_Deluxe.Game
-                        Id: b4ce5bc6-b736-426b-b620-df454b9e9cd9
+                    3227747bb37083830b2400c4a68c2f6f: !Asteroids_Deluxe.Dot,Asteroids_Deluxe.Game
+                        Id: ab6b7bfe-8c41-419f-b69b-ccf99bcf8142
                         Model: null
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Velocity: {X: 0.0, Y: 0.0, Z: 0.0}

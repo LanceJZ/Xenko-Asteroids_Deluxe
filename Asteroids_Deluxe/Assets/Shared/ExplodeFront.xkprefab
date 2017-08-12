@@ -1,0 +1,24 @@
+!PrefabAsset
+Id: 40d1a0fa-499e-4f2c-868c-52e25d9e9c52
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - 5035710e-32b7-49a0-92c6-7d31867d1df1
+    Parts:
+        -   Entity:
+                Id: 5035710e-32b7-49a0-92c6-7d31867d1df1
+                Name: ExplodeFront
+                Components:
+                    f40592fd63f109063bd2721383371e83: !TransformComponent
+                        Id: b63b8614-e829-4884-998b-6c7255e15d91
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    84f43a4dc89af87cb46185995ed52d11: !ModelComponent
+                        Id: 100c0ac0-1ee7-42b4-a392-ffce6b3f8fda
+                        Model: f2f5fb0e-c407-446f-8a5e-113f168200a7:ADPlayerExplodeFront
+                        Materials: {}
+                    e5da0249905feff1ef410d4d5e9f81a0: !Asteroids_Deluxe.PlayerExplode,Asteroids_Deluxe.Game
+                        Id: 0af60fc1-061a-48ca-a692-3a24981b17b1

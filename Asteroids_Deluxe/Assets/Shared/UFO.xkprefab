@@ -42,6 +42,7 @@ Hierarchy:
                         Deceleration: 0.0
                         Hit: false
                         Active: false
+                        Moveable: true
                         Pause: false
                         GameOver: false
                         Points: 0
@@ -52,3 +53,23 @@ Hierarchy:
                         Done: false
                         ShotS: null
                         PlayerRef: null
+                        PodGroupRef: null
+                        ExplodeRef: null
+                    7dd954b590f353a3bbd73e6352b4fa70: !Asteroids_Deluxe.Explode,Asteroids_Deluxe.Game
+                        Id: e5656a0f-a53f-48b4-bc6d-3a8e490d121a
+                        Model: null
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Deceleration: 0.0
+                        Hit: false
+                        Active: false
+                        Moveable: true
+                        Pause: false
+                        GameOver: false
+                        Points: 0
+                        Radius: 0.0
+                        RotationVelocity: 0.0
+                        Rotation: 0.0
+                        RandomGenerator: null

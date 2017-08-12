@@ -1,0 +1,24 @@
+!PrefabAsset
+Id: 0732f8c6-7a6a-4cbb-9f2b-8746f6049dae
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - 47d9e22d-486f-4a31-87f0-e03ba8b5dca4
+    Parts:
+        -   Entity:
+                Id: 47d9e22d-486f-4a31-87f0-e03ba8b5dca4
+                Name: PlayerExplodeWing
+                Components:
+                    3318b700cdab64e7c52d924307449491: !TransformComponent
+                        Id: 827e5803-fa3a-44da-9a4b-a05242f77f51
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    1a981c0a9a4e92104b03e28cde0849dc: !ModelComponent
+                        Id: ac41087d-b024-4487-8fc9-4b7b7d5eb743
+                        Model: ab573dac-fafa-4afd-b1ac-8d7750603ad8:ADPlayerExplodeWing
+                        Materials: {}
+                    fbf61c8b853ce64aa14585fe85e167a4: !Asteroids_Deluxe.PlayerExplode,Asteroids_Deluxe.Game
+                        Id: d1c4519b-968d-415b-954a-aad58fdcb50b

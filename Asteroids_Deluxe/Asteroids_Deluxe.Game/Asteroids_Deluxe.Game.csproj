@@ -223,8 +223,14 @@
   <ItemGroup>
     <Compile Include="BasicCameraController.cs" />
     <Compile Include="AsteroidsGame.cs" />
+    <Compile Include="ClearToSpawn.cs" />
+    <Compile Include="Dot.cs" />
+    <Compile Include="Explode.cs" />
     <Compile Include="Numbers.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="PlayerExplode.cs" />
+    <Compile Include="PlayerExplodeControl.cs" />
+    <Compile Include="PlayerShip.cs" />
     <Compile Include="PO.cs" />
     <Compile Include="Pod.cs" />
     <Compile Include="PodGroup.cs" />

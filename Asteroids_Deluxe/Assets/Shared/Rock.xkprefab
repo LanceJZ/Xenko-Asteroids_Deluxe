@@ -41,6 +41,7 @@ Hierarchy:
                         Deceleration: 0.0
                         Hit: false
                         Active: false
+                        Moveable: true
                         Pause: false
                         GameOver: false
                         Points: 0
@@ -50,4 +51,23 @@ Hierarchy:
                         RandomGenerator: null
                         PlayerRef: null
                         UFORef: null
+                        ExplodeRef: null
                         SizeofRock: Small
+                    ae831c7d59066c42be35210c25f2fd1f: !Asteroids_Deluxe.Explode,Asteroids_Deluxe.Game
+                        Id: e5efb332-1493-4546-b840-4943349b33e4
+                        Model: null
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Deceleration: 0.0
+                        Hit: false
+                        Active: false
+                        Moveable: true
+                        Pause: false
+                        GameOver: false
+                        Points: 0
+                        Radius: 0.0
+                        RotationVelocity: 0.0
+                        Rotation: 0.0
+                        RandomGenerator: null

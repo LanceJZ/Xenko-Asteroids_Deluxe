@@ -26,12 +26,18 @@ namespace Asteroids_Deluxe
 
         public override void Update()
         {
-            if (Active)
+            if (Active && !Paused)
             {
                 if (PlayerHit())
                 {
                     Hit = true;
                     SetScore();
+
+                }
+
+                if (UFOHit())
+                {
+                    Hit = true;
                 }
             }
 
@@ -49,6 +55,12 @@ namespace Asteroids_Deluxe
         protected void SetScore()
         {
             PlayerRef.SetScore(Points);
+        }
+
+        public void SetPause(bool pause)
+        {
+            Paused = pause;
+            DirectionTimer.SetPause(pause);
         }
 
         public void Spawn(Vector3 position, float rotation)
@@ -91,6 +103,29 @@ namespace Asteroids_Deluxe
             return false;
         }
 
+        protected bool UFOHit()
+        {
+            if (UFORef.Active)
+            {
+                if (CirclesIntersect(UFORef.Position, UFORef.Radius))
+                {
+                    UFORef.Hit = true;
+                    return true;
+                }
+            }
+
+            if (UFORef.ShotS.Active)
+            {
+                if (CirclesIntersect(UFORef.ShotS.Position, UFORef.ShotS.Radius))
+                {
+                    UFORef.ShotS.Hit = true;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         protected void CheckEdges()
         {
             if (CheckForEdge())
@@ -112,7 +147,7 @@ namespace Asteroids_Deluxe
 
             if (!NewRockWave)
             {
-                if (PlayerRef.Active)// && !PlayerRef.Hit)
+                if (PlayerRef.Active && !PlayerRef.Hit)
                     ChaseObject(PlayerRef.Position);
                 else if (UFORef.Active)
                     ChaseObject(UFORef.Position);

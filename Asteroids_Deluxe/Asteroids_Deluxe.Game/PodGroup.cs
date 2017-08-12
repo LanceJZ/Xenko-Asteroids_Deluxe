@@ -31,10 +31,8 @@ namespace Asteroids_Deluxe
 
         public override void Update()
         {
-            if (Active)
+            if (Active && !Paused)
             {
-                base.Update();
-
                 CheckEdges();
             }
             else if (NewRockWave && Visable)
@@ -42,6 +40,8 @@ namespace Asteroids_Deluxe
                 Activate(false);
                 Visable = false;
             }
+
+            base.Update();
         }
 
         public void Activate(bool active)

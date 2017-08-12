@@ -8,7 +8,8 @@ namespace Asteroids_Deluxe
     {
         public bool Hit { get => hit; set => hit = value; }
         public bool Active { get => active; set => active = value; }
-        public bool Pause { get => pause; set => pause = value; }
+        public bool Moveable { get => moveable; set => moveable = value; }
+        public bool Paused { get => pause; set => pause = value; }
         public bool GameOver { get => gameOver; set => gameOver = value; }
         public int Points { get => points; set => points = value; }
         public float Radius { get => radius; set => radius = value; }
@@ -32,6 +33,7 @@ namespace Asteroids_Deluxe
 
         bool hit;
         bool active;
+        bool moveable = true;
         bool pause;
         bool gameOver;
         int points;
@@ -55,24 +57,27 @@ namespace Asteroids_Deluxe
 
         public override void Update()
         {
-            if (Active)
+            if (!Paused)
             {
-                //Calculate movement this frame according to velocity and acceleration.
-                float elapsed = (float)Game.UpdateTime.Elapsed.TotalSeconds;
-
-                if (Acceleration == Vector3.Zero)
+                if (Active && Moveable)
                 {
-                    Acceleration = -Velocity * Deceleration;
+                    //Calculate movement this frame according to velocity and acceleration.
+                    float elapsed = (float)Game.UpdateTime.Elapsed.TotalSeconds;
+
+                    if (Acceleration == Vector3.Zero)
+                    {
+                        Acceleration = -Velocity * Deceleration;
+                    }
+
+                    Velocity += Acceleration;
+                    Position += Velocity * elapsed;
+                    Rotation += rotationVelocity * elapsed;
+
+                    UpdatePR();
                 }
 
-                Velocity += Acceleration;
-                Position += Velocity * elapsed;
-                Rotation += rotationVelocity * elapsed;
-
-                UpdatePR();
+                UpdateActive(Active);
             }
-
-            UpdateActive(Active);
         }
 
         public void LoadModel()
