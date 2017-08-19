@@ -1,0 +1,8 @@
+!Sound
+Id: 33b8aa05-a014-45cf-8679-86feabd585f8
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../../Audio/AsteroidsDeluxePodExplosion.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

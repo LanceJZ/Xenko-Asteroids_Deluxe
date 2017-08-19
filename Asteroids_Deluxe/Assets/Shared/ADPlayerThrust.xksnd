@@ -1,0 +1,8 @@
+!Sound
+Id: ca80e606-7f64-44c3-9cb3-15f9bdf415e3
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../../Audio/AsteroidsDeluxePlayerThrust.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

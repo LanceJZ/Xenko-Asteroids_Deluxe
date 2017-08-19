@@ -1,0 +1,8 @@
+!Sound
+Id: d3ddac7e-aad2-4a2d-9924-1a799f560daf
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../../Audio/AsteroidsDeluxeShield.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

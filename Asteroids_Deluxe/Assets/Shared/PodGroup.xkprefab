@@ -58,7 +58,7 @@ Hierarchy:
                         Hit: false
                         Active: false
                         Moveable: true
-                        Pause: false
+                        Paused: false
                         GameOver: false
                         Points: 0
                         Radius: 0.0

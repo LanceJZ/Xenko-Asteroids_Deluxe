@@ -1,0 +1,8 @@
+!Sound
+Id: 069da017-a2ec-42a7-9a65-659e6bb76c44
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../../Audio/AsteroidsDeluxeBackground.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

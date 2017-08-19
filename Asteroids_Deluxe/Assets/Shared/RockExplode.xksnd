@@ -1,0 +1,8 @@
+!Sound
+Id: 6a32bc05-07c5-47e7-9395-90165d4600a5
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../../Audio/AsteroidsRockExplosion.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

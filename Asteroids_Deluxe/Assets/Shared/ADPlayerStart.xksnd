@@ -1,0 +1,8 @@
+!Sound
+Id: 1372efba-78aa-4897-a87d-5bf44887beaf
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../../Audio/AsteroidsDeluxePlayerStart.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

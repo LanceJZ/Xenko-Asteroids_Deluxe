@@ -1,0 +1,8 @@
+!Sound
+Id: 8638a516-5937-4905-874f-f7836f1ace9a
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../../Audio/AsteroidsPlayerExplosion.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

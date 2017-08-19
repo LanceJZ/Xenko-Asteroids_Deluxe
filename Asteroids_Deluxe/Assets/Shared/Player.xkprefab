@@ -60,14 +60,16 @@ Hierarchy:
                         Hit: false
                         Active: false
                         Moveable: true
-                        Pause: false
+                        Paused: false
                         GameOver: false
                         Points: 0
                         Radius: 0.0
                         RotationVelocity: 0.0
                         Rotation: 0.0
                         RandomGenerator: null
+                        ExplodeS: null
                         ScoreRef: null
+                        HighScoreRef: null
                         ShotSs: null
                         NewShip: false
         -   Entity:

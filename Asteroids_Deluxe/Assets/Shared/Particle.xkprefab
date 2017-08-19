@@ -18,8 +18,10 @@ Hierarchy:
                         Children: {}
                     12b5abc53b9882a48c3b23e0dcd3fb25: !ModelComponent
                         Id: a52bbb8b-b358-4995-b8aa-cedd598c9ccc
+                        Enabled: false
                         Model: cf2c7e88-1626-4049-b482-ba2444f93151:ParticleVoxel
                         Materials: {}
+                        IsShadowCaster: false
                     3227747bb37083830b2400c4a68c2f6f: !Asteroids_Deluxe.Dot,Asteroids_Deluxe.Game
                         Id: ab6b7bfe-8c41-419f-b69b-ccf99bcf8142
                         Model: null
@@ -31,7 +33,7 @@ Hierarchy:
                         Hit: false
                         Active: false
                         Moveable: true
-                        Pause: false
+                        Paused: false
                         GameOver: false
                         Points: 0
                         Radius: 0.0

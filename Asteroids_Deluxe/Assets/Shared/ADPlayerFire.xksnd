@@ -1,0 +1,8 @@
+!Sound
+Id: 0fa0de49-31d8-4ba3-937e-a4e7e80e785e
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../../Audio/AsteroidsDeluxePlayerFire.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

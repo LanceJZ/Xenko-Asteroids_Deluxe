@@ -42,7 +42,7 @@ Hierarchy:
                         Hit: false
                         Active: false
                         Moveable: true
-                        Pause: false
+                        Paused: false
                         GameOver: false
                         Points: 0
                         Radius: 0.0
@@ -51,7 +51,6 @@ Hierarchy:
                         RandomGenerator: null
                         PlayerRef: null
                         UFORef: null
-                        ExplodeRef: null
                         SizeofRock: Small
                     ae831c7d59066c42be35210c25f2fd1f: !Asteroids_Deluxe.Explode,Asteroids_Deluxe.Game
                         Id: e5efb332-1493-4546-b840-4943349b33e4
@@ -64,7 +63,7 @@ Hierarchy:
                         Hit: false
                         Active: false
                         Moveable: true
-                        Pause: false
+                        Paused: false
                         GameOver: false
                         Points: 0
                         Radius: 0.0

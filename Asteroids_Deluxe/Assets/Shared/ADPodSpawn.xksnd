@@ -1,0 +1,8 @@
+!Sound
+Id: 4153f1a2-0faa-4c8b-ab5d-f7f30a17b7b9
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../../Audio/AsteroidsDeluxePodSpawn.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

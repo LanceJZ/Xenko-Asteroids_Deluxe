@@ -1,0 +1,8 @@
+!Sound
+Id: 12f8985c-3acc-4230-b3fd-611ca4f52a68
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../../Audio/AsteroidsUFOExplosion.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

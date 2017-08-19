@@ -1,0 +1,8 @@
+!Sound
+Id: 8f190a99-b24e-4e22-8254-c52f4f0a453c
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../../Audio/AsteroidsDeluxeBonusShip.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

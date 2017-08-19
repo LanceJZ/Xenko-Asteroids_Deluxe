@@ -1,0 +1,8 @@
+!Sound
+Id: f901cfa5-33f7-4517-b0bd-f3f244846c6c
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../../Audio/AsteroidsUFOShot.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

@@ -1,0 +1,8 @@
+!Sound
+Id: c8af1b5e-9455-47e7-a9af-b92984dc2700
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../../Audio/AsteroidsUFOSmall.wav
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

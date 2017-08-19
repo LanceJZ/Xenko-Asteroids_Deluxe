@@ -18,7 +18,25 @@ Hierarchy:
                         Children: {}
                     8a0ce36063b6530057e5e4e49ae83bce: !ModelComponent
                         Id: 10df8c77-6e46-4777-8404-236c12b434e8
+                        Enabled: false
                         Model: eb592ebf-afbc-49be-be47-28ec479f9ad2:ADPlayerExplodeRear
                         Materials: {}
+                        IsShadowCaster: false
                     0179ee954f9df5204b8f011e7da0b36c: !Asteroids_Deluxe.PlayerExplode,Asteroids_Deluxe.Game
                         Id: c739ce66-5aac-406b-a057-0034ab46d3e3
+                        Model: null
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Velocity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Acceleration: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Deceleration: 0.0
+                        Hit: false
+                        Active: false
+                        Moveable: true
+                        Paused: false
+                        GameOver: false
+                        Points: 0
+                        Radius: 0.0
+                        RotationVelocity: 0.0
+                        Rotation: 0.0
+                        RandomGenerator: null
