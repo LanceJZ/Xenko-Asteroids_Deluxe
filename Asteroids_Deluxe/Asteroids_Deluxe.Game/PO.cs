@@ -83,11 +83,13 @@ namespace Asteroids_Deluxe
         public void LoadModel()
         {
             Model = this.Entity.Get<ModelComponent>();
+            Model.Enabled = false;
         }
 
         public void LoadModelChild()
         {
             Model = this.Entity.GetChild(0).Get<ModelComponent>();
+            Model.Enabled = false;
         }
 
         public void UpdateActive(bool active)

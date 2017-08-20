@@ -23,6 +23,10 @@ namespace Asteroids_Deluxe
         PodGroup PodGroupS;
         Explode UFOExplodeS;
         Numbers ScoreS;
+        Numbers HighScoreS;
+        Sound RockExplodeSound;
+        SoundInstance PlayerStartSI;
+        SoundInstance PodSpawnSI;
 
         List<PlayerShip> PlayerLifeSs = new List<PlayerShip>();
         List<Rock> RockSs = new List<Rock>();
@@ -60,21 +64,27 @@ namespace Asteroids_Deluxe
             Prefab podPairPF = Content.Load<Prefab>("PodPair");
             Prefab podPF = Content.Load<Prefab>("Pod");
             RockPF = Content.Load<Prefab>("Rock");
+            RockExplodeSound = Content.Load<Sound>("RockExplode");
 
             Entity playerE = playerPF.Instantiate().First();
             SceneSystem.SceneInstance.RootScene.Entities.Add(playerE);
             PlayerS = playerE.Get<Player>();
-            //PlayerS.Active = false;
+            PlayerS.RandomGenerator = this.Random;
             ClearToSpawnS.Start();
+            PlayerStartSI = Content.Load<Sound>("ADPlayerStart").CreateInstance();
+            PlayerStartSI.Volume = 0.15f;
 
             Entity UFOE = UFOPF.Instantiate().First();
             SceneSystem.SceneInstance.RootScene.Entities.Add(UFOE);
             UFOS = UFOE.Get<UFO>();
             UFOS.RandomGenerator = this.Random;
             UFOS.PlayerRef = PlayerS;
+            UFOS.GameOver = true;
             UFOExplodeS = UFOE.Get<Explode>();
             UFOExplodeS.RandomGenerator = this.Random;
-
+            UFOExplodeS.ExplodeSI = Content.Load<Sound>("UFOExplode").CreateInstance();
+            UFOExplodeS.ExplodeSI.Volume = 0.25f;
+            UFOExplodeS.GameOver = true;
 
             Entity podGroupE = podGroupPF.Instantiate().First();
             SceneSystem.SceneInstance.RootScene.Entities.Add(podGroupE);
@@ -83,6 +93,10 @@ namespace Asteroids_Deluxe
             PodGroupS.PlayerRef = PlayerS;
             PodGroupS.UFORef = UFOS;
             UFOS.PodGroupRef = PodGroupS;
+            PodSpawnSI = Content.Load<Sound>("ADPodSpawn").CreateInstance();
+            PodSpawnSI.Volume = 0.25f;
+
+            InitializeAudio();
 
             for (int i = 0; i < 3; i++)
             {
@@ -104,13 +118,21 @@ namespace Asteroids_Deluxe
                 PodSs[i].UFORef = UFOS;
                 PodExplodeSs.Add(podE.Get<Explode>());
                 PodExplodeSs.Last().RandomGenerator = this.Random;
+                PodExplodeSs.Last().ExplodeSI = Content.Load<Sound>("ADPodExplode").CreateInstance();
             }
 
             Entity scoreE = new Entity { new Numbers() };
             SceneSystem.SceneInstance.RootScene.Entities.Add(scoreE);
             ScoreS = scoreE.Get<Numbers>();
             ScoreS.Initialize();
+
+            Entity highScoreE = new Entity { new Numbers() };
+            SceneSystem.SceneInstance.RootScene.Entities.Add(highScoreE);
+            HighScoreS = highScoreE.Get<Numbers>();
+            HighScoreS.Initialize();
+
             PlayerS.ScoreRef = ScoreS;
+            PlayerS.HighScoreRef = HighScoreS;
             PlayerS.SetScore(0);
         }
 
@@ -188,19 +210,25 @@ namespace Asteroids_Deluxe
             }
 
             PodGroupS.Activate(false);
+            PodSpawnTimer.Reset();
 
             UFOS.Active = false;
+            UFOS.GameOver = false;
             UFOS.ShotS.Active = false;
+            UFOExplodeS.GameOver = false;
             UFOSpawnTimer.Reset();
 
+            foreach (Explode rock in RockExplodeSs)
+            {
+                rock.GameOver = false;
+            }
+
             LargeRockAmount = 4;
-            RockCount = 0;
             Wave = 0;
             UFOSpawnCount = 0;
             PlayerLives = 4;
             GameOver = false;
-            PlayerS.Active = true;
-
+            PlayerController();
             PlayerLifeDisplay();
         }
 
@@ -244,6 +272,7 @@ namespace Asteroids_Deluxe
 
             if (PlayerS.Active && PlayerS.Hit)
             {
+                PlayerS.ExplodeS.Spawn(PlayerS.Position, PlayerS.Velocity * 0.05f, PlayerS.Rotation, PlayerS.Radius);
                 PlayerS.Disable();
 
                 if (PlayerLives > 0)
@@ -254,12 +283,20 @@ namespace Asteroids_Deluxe
                     if (PlayerLives < 1)
                     {
                         GameOver = true;
+                        UFOExplodeS.GameOver = true;
+                        UFOS.GameOver = true;
+
+                        foreach (Explode rock in RockExplodeSs)
+                        {
+                            rock.GameOver = true;
+                        }
+
                         return;
                     }
                 }
             }
 
-            if (!PlayerS.Active)
+            if (!PlayerS.Active && !PlayerS.ExplodeS.Active)
             {
                 foreach (Rock rock in RockSs)
                 {
@@ -316,23 +353,34 @@ namespace Asteroids_Deluxe
                 }
 
                 PlayerS.Active = true;
+                PlayerStartSI.Play();
             }
         }
 
-        void PodController()
+        void PodController() //TODO: Add pod sound effects.
         {
-            if (RockCount < 4 && ArePodsDone()) //TODO: Should be 4.
+            if (RockCount < LargeRockAmount) //Split to optimize code. Default is LargeRockAmount.
             {
-                if (!PodTimerStarted)
+                if (ArePodsDone())
                 {
-                    PodSpawnTimer.Reset();
-                    PodTimerStarted = true;
-                }
+                    if (!PodTimerStarted)
+                    {
+                        PodSpawnTimer.Reset();
+                        PodTimerStarted = true;
+                    }
 
-                if (PodSpawnTimer.Expired)
+                    if (PodSpawnTimer.Expired)
+                    {
+                        if (!GameOver)
+                            PodSpawnSI.Play();
+
+                        PodSpawnTimer.Reset();
+                        PodGroupS.Spawn();
+                    }
+                }
+                else
                 {
-                    PodSpawnTimer.Reset();
-                    PodGroupS.Spawn();
+                    PodTimerStarted = false;
                 }
             }
             else
@@ -349,28 +397,21 @@ namespace Asteroids_Deluxe
                 PodPairSs[2].Spawn(PodGroupS.Position + new Vector3(-1.256f, -1.256f, 0), -MathUtil.Pi * 0.33333f);
             }
 
-            foreach (PodPair pair in PodPairSs)
+            for (int ipair = 0; ipair < PodPairSs.Count; ipair++)
             {
-                if (pair.Active && pair.Hit)
+                if (PodPairSs[ipair].Active && PodPairSs[ipair].Hit)
                 {
-                    pair.Active = false;
+                    PodPairSs[ipair].Active = false;
 
-                    for (int ipair = 0; ipair < 2; ipair++)
+                    for (int ipod = (ipair * 2); ipod < (ipair * 2) + 2; ipod++)
                     {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            if (!PodSs[i].Active)
-                            {
-                                Vector3 pos = Vector3.TransformCoordinate(pair.PodCenterVects[ipair],
-                                    Matrix.Invert(pair.CenterPodTrans[ipair].WorldMatrix));
+                        Vector3 pos = new Vector3(PodPairSs[ipair].CenterPodTrans[ipod - (ipair * 2)].WorldMatrix.M41,
+                            PodPairSs[ipair].CenterPodTrans[ipod - (ipair * 2)].WorldMatrix.M42, 0);
 
-                                PodSs[i].Spawn(pos, pair.Rotation + (MathUtil.Pi * ipair));
-                                RockExplodeSs[i].Initilize((int)(PodSs[i].Radius * 2) * 5,
-                                    (int)(PodSs[i].Radius * 2) * 10);
-
-                                break;
-                            }
-                        }
+                        PodSs[ipod].Spawn(pos, PodPairSs[ipair].Rotation + (MathUtil.Pi * (ipod - ipair)));
+                        PodExplodeSs[ipod].Initilize((int)(PodSs[ipod].Radius * 2) * 5,
+                            (int)(PodSs[ipod].Radius * 2) * 10);
+                        PodExplodeSs[ipod].ExplodeSI.Volume = 0.25f;
                     }
 
                     break;
@@ -382,6 +423,7 @@ namespace Asteroids_Deluxe
                 if (PodSs[i].Active && PodSs[i].Hit)
                 {
                     PodSs[i].Active = false;
+                    PodExplodeSs[i].GameOver = GameOver;
                     PodExplodeSs[i].Spawn(PodSs[i].Radius * 0.5f);
                 }
             }
@@ -424,8 +466,10 @@ namespace Asteroids_Deluxe
 
             if (UFOS.Done || UFOS.Hit)
             {
+                if (UFOS.Hit)
+                    UFOExplodeS.Spawn(UFOS.Radius * 0.5f);
+
                 UFOSpawnTimer.Reset();
-                UFOExplodeS.Spawn(UFOS.Radius * 0.5f);
                 UFOS.Active = false;
                 UFOS.Hit = false;
                 UFOS.Done = false;
@@ -513,6 +557,9 @@ namespace Asteroids_Deluxe
                     Rocks.Add(rockE.Components.Get<Rock>());
                     RockExplodeSs.Add(rockE.Components.Get<Explode>());
                     RockExplodeSs.Last().RandomGenerator = this.Random;
+                    RockExplodeSs.Last().ExplodeSI = RockExplodeSound.CreateInstance();
+                    RockExplodeSs.Last().ExplodeSI.Volume = 0.15f;
+                    RockExplodeSs.Last().GameOver = GameOver;
                     RockExplodeSs.Last().Start();
                     Rocks.Last().RandomGenerator = this.Random;
                     Rocks.Last().PlayerRef = PlayerS;
@@ -525,6 +572,19 @@ namespace Asteroids_Deluxe
 
                 //Rocks[rockCount].GameOver = GameOver;
             }
+        }
+
+        void InitializeAudio()
+        {
+            PlayerS.InitializeAudio(Content.Load<Sound>("ADPlayerFire").CreateInstance(),
+                Content.Load<Sound>("ADPlayerThrust").CreateInstance(),
+                Content.Load<Sound>("PlayerExplode").CreateInstance(),
+                Content.Load<Sound>("ADBonusShip").CreateInstance(),
+                Content.Load<Sound>("ADShield").CreateInstance());
+
+            UFOS.InitializeAudio(Content.Load<Sound>("UFOFire").CreateInstance(),
+                Content.Load<Sound>("UFOLarge").CreateInstance(),
+                Content.Load<Sound>("UFOSmall").CreateInstance());
         }
     }
 }

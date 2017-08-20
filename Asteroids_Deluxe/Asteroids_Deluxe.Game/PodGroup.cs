@@ -66,9 +66,9 @@ namespace Asteroids_Deluxe
             Position.Y = RandomHeight();
 
             if (Velocity.X > 0)
-                Position.X = Edge.X;
-            else
                 Position.X = -Edge.X;
+            else
+                Position.X = Edge.X;
         }
 
     }

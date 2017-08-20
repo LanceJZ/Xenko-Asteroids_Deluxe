@@ -11,13 +11,14 @@ namespace Asteroids_Deluxe
 {
     public class Pod : Pods
     {
+        public Explode ExplodeRef;
 
         public override void Start()
         {
             Initalize();
             LoadModelChild();
             UpdateActive(false);
-            Radius = 1.29f;
+            Radius = 1.45f;
             Points = 200;
 
             base.Start();

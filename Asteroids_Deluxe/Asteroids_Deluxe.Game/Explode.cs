@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SiliconStudio.Core.Mathematics;
+using SiliconStudio.Xenko.Audio;
 using SiliconStudio.Xenko.Engine;
 
 namespace Asteroids_Deluxe
 {
     public class Explode : PO
     {
+        public SoundInstance ExplodeSI;
         List<Dot> Dots = new List<Dot>();
         Prefab DotP;
 
@@ -48,6 +50,11 @@ namespace Asteroids_Deluxe
 
         public void Spawn(float radius)
         {
+            if (!GameOver)
+            {
+                ExplodeSI.Play();
+            }
+
             Active = true;
             Position = Entity.Transform.Position;
 

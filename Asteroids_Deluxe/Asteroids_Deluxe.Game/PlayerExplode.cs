@@ -1,26 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using SiliconStudio.Core.Mathematics;
-using SiliconStudio.Xenko.Input;
+using SiliconStudio.Xenko.Audio;
 using SiliconStudio.Xenko.Engine;
 
 namespace Asteroids_Deluxe
 {
-    public class PlayerExplode : SyncScript
+    public class PlayerExplode : PO
     {
-        // Declared public member fields and properties will show in the game studio
+        Timer LifeTimer;
 
         public override void Start()
         {
-            // Initialization of the script.
+            base.Start();
+
+            Entity lifeTimerE = new Entity { new Timer() };
+            SceneSystem.SceneInstance.RootScene.Entities.Add(lifeTimerE);
+            LifeTimer = lifeTimerE.Get<Timer>();
+            LoadModel();
+            UpdateActive(false);
         }
 
         public override void Update()
         {
-            // Do stuff every new frame
+            if (Active)
+            {
+                if (LifeTimer.Expired)
+                {
+                    Active = false;
+                }
+            }
+
+            base.Update();
+        }
+
+        public void Spawn(Vector3 position, Vector3 velocity, float rotation, float rotationV, float life)
+        {
+            LifeTimer.Reset(life);
+            Active = true;
+            Position = position;
+            Velocity = velocity;
+            Rotation = rotation;
+            RotationVelocity = rotationV;
+            UpdatePR();
         }
     }
 }

@@ -13,6 +13,7 @@ namespace Asteroids_Deluxe
         protected float RotateMagnitude;
         protected float Speed;
         protected float RandomDirection;
+        protected bool Paired;
 
         float score;
         Timer DirectionTimer;
@@ -26,7 +27,7 @@ namespace Asteroids_Deluxe
 
         public override void Update()
         {
-            if (Active && !Paused)
+            if (Active && !Paused && !Paired)
             {
                 if (PlayerHit())
                 {
@@ -60,7 +61,9 @@ namespace Asteroids_Deluxe
         public void SetPause(bool pause)
         {
             Paused = pause;
-            DirectionTimer.SetPause(pause);
+
+            if (DirectionTimer != null)
+                DirectionTimer.SetPause(pause);
         }
 
         public void Spawn(Vector3 position, float rotation)
@@ -79,9 +82,16 @@ namespace Asteroids_Deluxe
 
         protected bool PlayerHit()
         {
-            if (PlayerRef.Active)
+            if (PlayerRef.Active && !PlayerRef.Hit)
             {
-                if (CirclesIntersect(PlayerRef.Position, PlayerRef.Radius))
+                if (PlayerRef.ShieldOn)
+                {
+                    if (CirclesIntersect(PlayerRef.Position, PlayerRef.ShieldRadius))
+                    {
+                        PlayerRef.ShieldHit(Position, Velocity);
+                    }
+                }
+                else if (CirclesIntersect(PlayerRef.Position, PlayerRef.Radius))
                 {
                     PlayerRef.Hit = true;
                     return true;
@@ -105,7 +115,7 @@ namespace Asteroids_Deluxe
 
         protected bool UFOHit()
         {
-            if (UFORef.Active)
+            if (UFORef.Active && !UFORef.Hit)
             {
                 if (CirclesIntersect(UFORef.Position, UFORef.Radius))
                 {
@@ -118,7 +128,7 @@ namespace Asteroids_Deluxe
             {
                 if (CirclesIntersect(UFORef.ShotS.Position, UFORef.ShotS.Radius))
                 {
-                    UFORef.ShotS.Hit = true;
+                    UFORef.ShotS.Active = false;
                     return true;
                 }
             }

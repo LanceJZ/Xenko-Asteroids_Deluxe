@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using SiliconStudio.Core.Mathematics;
+using SiliconStudio.Xenko.Audio;
 using SiliconStudio.Xenko.Engine;
 
 public enum UFOsizes
@@ -18,13 +19,16 @@ namespace Asteroids_Deluxe
         public Shot ShotS;
         public Player PlayerRef;
         public PodGroup PodGroupRef;
-        public Explode ExplodeRef;
 
+        bool SoundOn;
         float Speed = 5;
         Timer VectorTimer;
         Timer ShotTimer;
         Vector3 RadiusOffset;
         UFOsizes Size;
+        SoundInstance FireSI;
+        SoundInstance LargeSI;
+        SoundInstance SmallSI;
 
         public override void Start()
         {
@@ -71,6 +75,31 @@ namespace Asteroids_Deluxe
                 if (PlayerCollide())
                 {
                     SetScore();
+                }
+
+                if (!SoundOn && !GameOver)
+                {
+                    SoundOn = true;
+
+                    switch (Size)
+                    {
+                        case UFOsizes.Large:
+                            LargeSI.Play();
+                            break;
+
+                        case UFOsizes.Small:
+                            SmallSI.Play();
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                if (SoundOn)
+                {
+                    SoundOn = false;
+                    LargeSI.Stop();
+                    SmallSI.Stop();
                 }
             }
 
@@ -137,13 +166,33 @@ namespace Asteroids_Deluxe
             Hit = false;
         }
 
+        public void InitializeAudio(SoundInstance fire, SoundInstance large, SoundInstance small)
+        {
+            FireSI = fire;
+            LargeSI = large;
+            SmallSI = small;
+
+            FireSI.Volume = 0.5f;
+            LargeSI.Volume = 0.5f;
+            SmallSI.Volume = 0.5f;
+
+            LargeSI.IsLooping = true;
+            SmallSI.IsLooping = true;
+        }
+
         bool PlayerCollide()
         {
             if (PlayerRef.Active)
             {
-                if (Collide(PlayerRef))
+                if (PlayerRef.ShieldOn)
                 {
-                    PlayerRef.Hit = true;
+                    if (CirclesIntersect(PlayerRef.Position, PlayerRef.ShieldRadius))
+                    {
+                        PlayerRef.ShieldHit(Position, Velocity);
+                    }
+                }
+                else if (Collide(PlayerRef))
+                {
                     return true;
                 }
             }
@@ -154,7 +203,6 @@ namespace Asteroids_Deluxe
                 {
                     if (Collide(shot))
                     {
-                        shot.Active = false;
                         return true;
                     }
                 }
@@ -204,8 +252,8 @@ namespace Asteroids_Deluxe
 
         void FireShot()
         {
-            //if (!m_Player.GameOver)
-            //    m_FireShot.Play(0.4f, 0, 0);
+            if (!GameOver)
+                FireSI.Play();
 
             ShotTimer.Reset();
             float speed = 30;

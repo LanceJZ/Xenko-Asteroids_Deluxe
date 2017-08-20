@@ -14,34 +14,55 @@ namespace Asteroids_Deluxe
     public class Player : PO
     {
         Timer FlameTimer;
+        //Timer ThrustSoundTimer;
+        public PlayerExplodeControl ExplodeS;
 
         public Numbers ScoreRef;
+        public Numbers HighScoreRef;
         ModelComponent FlameM;
         ModelComponent ShieldM;
+        SoundInstance FireSI;
+        SoundInstance ThrustSI;
+        SoundInstance BonusSI;
+        SoundInstance ShieldSI;
+        SoundInstance ExplodeSI;
 
         public List<Shot> ShotSs;
 
         float ShieldPower;
         float shieldRadius;
         int score = 0;
+        int highScore = 0;
         int NextNewShip = 5000;
         int NewShipCount = 0;
         bool newShip;
         bool shieldOn;
+        bool ThrustOn;
 
         public int Score { get => score; }
         public bool NewShip { get => newShip; set => newShip = value; }
         public bool ShieldOn { get => shieldOn; }
         public float ShieldRadius { get => shieldRadius; }
+        public int HighScore { get => highScore; }
 
         public override void Start()
         {
             base.Start();
 
+            Entity explodeE = new Entity { new PlayerExplodeControl() };
+            SceneSystem.SceneInstance.RootScene.Entities.Add(explodeE);
+            ExplodeS = explodeE.Get<PlayerExplodeControl>();
+            ExplodeS.RandomGenerator = RandomGenerator;
+            ExplodeS.ExplodeSI = ExplodeSI;
+
             Entity flameTimerE = new Entity { new Timer() };
             SceneSystem.SceneInstance.RootScene.Entities.Add(flameTimerE);
             FlameTimer = flameTimerE.Get<Timer>();
             FlameTimer.Reset(0.01666f);
+
+            //Entity thrustTimerE = new Entity { new Timer() };
+            //SceneSystem.SceneInstance.RootScene.Entities.Add(thrustTimerE);
+            //ThrustSoundTimer = thrustTimerE.Get<Timer>();
 
             Radius = 1.25f;
             shieldRadius = 2.1f;
@@ -72,11 +93,6 @@ namespace Asteroids_Deluxe
 
                 if (CheckForEdge())
                     UpdatePR();
-            }
-
-            if (!Active)
-            {
-                ShieldPower = 100;
             }
 
             base.Update();
@@ -134,14 +150,40 @@ namespace Asteroids_Deluxe
             Acceleration = Vector3.Zero;
             FlameM.Enabled = false;
             ShieldM.Enabled = false;
+            ShieldPower = 100;
+            ThrustSI.Stop();
+            ShieldSI.Stop();
         }
 
         public void NewGame()
         {
+            if (highScore < score)
+            {
+                highScore = score;
+
+                HighScoreRef.ProcessNumber(highScore, new Vector3(5, Edge.Y - 1, 0), 1);
+            }
+
             score = 0;
             NewShipCount = 0;
             ShieldPower = 100;
             SetScore(0);
+        }
+
+        public void InitializeAudio(SoundInstance fire, SoundInstance thrust,
+            SoundInstance explode, SoundInstance bonus, SoundInstance shield)
+        {
+            FireSI = fire;
+            ThrustSI = thrust;
+            ExplodeSI = explode;
+            BonusSI = bonus;
+            ShieldSI = shield;
+
+            FireSI.Volume = 0.25f;
+            ThrustSI.Volume = 0.33f;
+            ExplodeSI.Volume = 0.5f;
+            BonusSI.Volume = 0.25f;
+            ShieldSI.Volume = 0.75f;
         }
 
         void Shield(bool active)
@@ -150,6 +192,12 @@ namespace Asteroids_Deluxe
             {
                 if (ShieldPower > 0)
                 {
+                    if (!ShieldSI.IsLooping)
+                    {
+                        ShieldSI.Play();
+                        ShieldSI.IsLooping = true;
+                    }
+
                     shieldOn = true;
                     ShieldM.Enabled = true;
                     ShieldPower -= 10 * (float)Game.UpdateTime.Elapsed.TotalSeconds;
@@ -161,6 +209,8 @@ namespace Asteroids_Deluxe
             }
             else
             {
+                ShieldSI.IsLooping = false;
+                ShieldSI.Stop();
                 shieldOn = false;
                 ShieldM.Enabled = false;
 
@@ -214,8 +264,8 @@ namespace Asteroids_Deluxe
             {
                 if (!ShotSs[shot].Active)
                 {
-                    //m_FireSoundInstance.Stop();
-                    //m_FireSoundInstance.Play();
+                    FireSI.Stop();
+                    FireSI.Play();
                     float speed = 35;
 
                     ShotSs[shot].Spawn(Position + VelocityFromRadian(Radius, Rotation),
@@ -228,7 +278,12 @@ namespace Asteroids_Deluxe
 
         void Thrust()
         {
-            //ThurstSoundInstance.Play();
+            if (!ThrustSI.IsLooping)
+            {
+                ThrustSI.Play();
+                ThrustSI.IsLooping = true;
+            }
+
             float maxPerSecond = 50;
             float thrustAmount = 0.55f;
             float testX;
@@ -257,6 +312,7 @@ namespace Asteroids_Deluxe
             if (testX + testY < maxPerSecond)
             {
                 Acceleration = new Vector3((float)Math.Cos(Rotation) * thrustAmount, (float)Math.Sin(Rotation) * thrustAmount, 0);
+                ThrustOn = true;
 
                 if (FlameTimer.Expired)
                 {
@@ -272,8 +328,18 @@ namespace Asteroids_Deluxe
 
         void ThrustOff()
         {
-            Acceleration = Vector3.Zero;
+            float Deceration = 0.025f;
+            Acceleration = -Velocity * Deceration;
+
             FlameM.Enabled = false;
+            ThrustSI.IsLooping = false;
+
+            if (ThrustOn)
+            {
+                ThrustSI.IsLooping = false;
+                ThrustSI.Stop();
+                ThrustOn = false;
+            }
         }
     }
 }

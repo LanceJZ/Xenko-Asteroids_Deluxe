@@ -11,23 +11,15 @@ namespace Asteroids_Deluxe
     public class PodPair : Pods
     {
         public List<TransformComponent> CenterPodTrans = new List<TransformComponent>();
-        public List<Vector3> PodCenterVects = new List<Vector3>();
 
         public override void Start()
         {
             Initalize();
             LoadModelChild();
             UpdateActive(false);
-            Radius = 1.29f;
+            Radius = 1.45f;
             Points = 100;
-
-            CenterPodTrans.Add(this.Entity.FindChild("PointOne").Get<TransformComponent>());
-            CenterPodTrans.Add(this.Entity.FindChild("PointTwo").Get<TransformComponent>());
-
-            for (int i = 0; i < 2; i++)
-            {
-                PodCenterVects.Add(Vector3.Zero);
-            }
+            Paired = true;
 
             base.Start();
         }
@@ -36,11 +28,6 @@ namespace Asteroids_Deluxe
         {
             if (Active && !Paused)
             {
-                for (int i = 0; i < 2; i++)
-                {
-                    PodCenterVects[i] = Vector3.TransformCoordinate(Position, CenterPodTrans[i].WorldMatrix);
-                }
-
                 UpdateDirection();
                 CheckEdges();
 
@@ -49,16 +36,51 @@ namespace Asteroids_Deluxe
                     SetScore();
                     Hit = true;
                 }
+
+                if (UFOCollide())
+                {
+                    Hit = true;
+                }
             }
 
             base.Update();
         }
 
+        bool UFOCollide()
+        {
+            if (UFORef.Active && !UFORef.Hit)
+            {
+                if (Collide(UFORef))
+                {
+                    UFORef.Hit = true;
+                    return true;
+                }
+            }
+
+            if (UFORef.ShotS.Active)
+            {
+                if (Collide(UFORef.ShotS))
+                {
+                    UFORef.ShotS.Active = false;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         bool PlayerCollide()
         {
-            if (PlayerRef.Active)
+            if (PlayerRef.Active && !PlayerRef.Hit)
             {
-                if (Collide(PlayerRef))
+                if (PlayerRef.ShieldOn)
+                {
+                    if (CirclesIntersect(PlayerRef.Position, PlayerRef.ShieldRadius))
+                    {
+                        PlayerRef.ShieldHit(Position, Velocity);
+                    }
+                }
+                else if (Collide(PlayerRef))
                 {
                     PlayerRef.Hit = true;
                     return true;
@@ -84,10 +106,7 @@ namespace Asteroids_Deluxe
         {
             for (int i = 0; i < 2; i++)
             {
-                Vector3 center = Vector3.TransformCoordinate(PodCenterVects[i],
-                        Matrix.Invert(CenterPodTrans[i].WorldMatrix));
-
-                if (target.CirclesIntersect(center, Radius))
+                if (target.CirclesIntersect(CenterPodTrans[i].WorldMatrix.TranslationVector, Radius))
                     return true;
             }
 

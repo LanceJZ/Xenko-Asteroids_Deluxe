@@ -12,7 +12,6 @@ namespace Asteroids_Deluxe
     {
         public Player PlayerRef;
         public UFO UFORef;
-        public Explode ExplodeRef;
 
         float Speed;
         RockSize Size;
@@ -58,7 +57,7 @@ namespace Asteroids_Deluxe
                 }
             }
 
-            if (PlayerRef.Active)
+            if (PlayerRef.Active && !PlayerRef.Hit)
             {
                 if (PlayerRef.ShieldOn)
                 {
@@ -84,9 +83,9 @@ namespace Asteroids_Deluxe
                 }
             }
 
-            if (UFORef.Active)
+            if (UFORef.Active && !UFORef.Hit)
             {
-                return UFORef.Collide(this);
+                UFORef.Collide(this);
             }
 
             return false;
@@ -142,9 +141,9 @@ namespace Asteroids_Deluxe
                 Position.Y = RandomHeight();
 
                 if (Velocity.X > 0)
-                    Position.X = Edge.X;
-                else
                     Position.X = -Edge.X;
+                else
+                    Position.X = Edge.X;
             }
 
             UpdatePR();

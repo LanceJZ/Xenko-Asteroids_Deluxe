@@ -70,3 +70,4 @@ Hierarchy:
                         RotationVelocity: 0.0
                         Rotation: 0.0
                         RandomGenerator: null
+                        ExplodeSI: null

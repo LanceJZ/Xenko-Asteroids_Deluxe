@@ -40,8 +40,9 @@ Hierarchy:
                         PlayerRef: null
                         UFORef: null
                         NewRockWave: false
-                        CenterPodTrans: {}
-                        PodCenterVects: {}
+                        CenterPodTrans:
+                            8434cba6b45d01179b96fe39008f7fca: ref!! f1881267-6456-4a5b-96ff-e18685430c49
+                            3c3d38104f2550d251f227a17a150416: ref!! 8b50d36f-7b74-4a2d-ad6b-a467185b26c2
         -   Entity:
                 Id: 1e5251a6-b15c-498d-933a-9aceea847470
                 Name: PodPair
@@ -49,7 +50,7 @@ Hierarchy:
                     86f3fc7273eb1df68ec063f18f96848f: !TransformComponent
                         Id: 9d2720af-39a7-4b62-a1f2-cae3c5fd1650
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
-                        Rotation: {X: 0.707106769, Y: 0.0, Z: 0.0, W: 0.707106769}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: {}
                     383bcf325fb081b9ea973c1889da7047: !ModelComponent

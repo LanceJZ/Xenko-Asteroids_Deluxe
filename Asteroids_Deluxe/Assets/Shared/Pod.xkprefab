@@ -57,6 +57,7 @@ Hierarchy:
                         RotationVelocity: 0.0
                         Rotation: 0.0
                         RandomGenerator: null
+                        ExplodeSI: null
         -   Entity:
                 Id: fb6cd9e8-c0fd-4afb-899c-6050e0642ca0
                 Name: Pod

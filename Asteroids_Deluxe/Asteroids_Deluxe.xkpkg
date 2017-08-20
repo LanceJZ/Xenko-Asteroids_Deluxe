@@ -58,11 +58,41 @@ ExplicitFolders: []
 Bundles: []
 TemplateFolders: []
 RootAssets:
+    - 00e93945-7dbb-4651-8d99-36a0ce45f8fe:ExplodeRear
+    - 0401700c-14d5-48dc-a885-bd619348a20c:Six
+    - 069da017-a2ec-42a7-9a65-659e6bb76c44:ADBackground
+    - 0732f8c6-7a6a-4cbb-9f2b-8746f6049dae:ExplodeWing
     - 0e59d721-7ea5-42a1-9016-859afdb3023d:Pod
+    - 0fa0de49-31d8-4ba3-937e-a4e7e80e785e:ADPlayerFire
+    - 12f8985c-3acc-4230-b3fd-611ca4f52a68:UFOExplode
+    - 1372efba-78aa-4897-a87d-5bf44887beaf:ADPlayerStart
     - 281818f4-3259-4e9f-b0c2-104e21dd7f4a:Shot
     - 301cba05-8de1-4013-be09-f3d0948239c4:PodPair
+    - 33b8aa05-a014-45cf-8679-86feabd585f8:ADPodExplode
+    - 33dfc020-76de-4ea1-b495-fe2647999323:Seven
+    - 40d1a0fa-499e-4f2c-868c-52e25d9e9c52:ExplodeFront
+    - 4153f1a2-0faa-4c8b-ab5d-f7f30a17b7b9:ADPodSpawn
+    - 4b595784-815a-4807-802e-a3879b8e6ce7:Three
     - 4e017b31-2af3-4a84-9734-5b51b402c680:ShotMat
+    - 57fb9406-ce9d-4f80-8915-ddf60bb0d768:Nine
+    - 58ec15cd-6622-48f1-8750-b7a0cdf3e86a:Four
+    - 63fd4dbd-a743-4015-8943-96966bed293c:UFOLarge
+    - 6a32bc05-07c5-47e7-9395-90165d4600a5:RockExplode
+    - 8222a7ee-4d72-48c8-b739-c8bf94c086e8:Particle
+    - 8638a516-5937-4905-874f-f7836f1ace9a:PlayerExplode
+    - 8f190a99-b24e-4e22-8254-c52f4f0a453c:ADBonusShip
+    - 9380d0d2-8c22-410c-974c-70bb8ab9f96d:Five
+    - a11f9fcc-7f3a-498a-9ef3-8060a3123e95:Two
     - bf6023ac-cf40-4d10-8d15-88fd49008183:UFO
+    - c8af1b5e-9455-47e7-a9af-b92984dc2700:UFOSmall
+    - ca80e606-7f64-44c3-9cb3-15f9bdf415e3:ADPlayerThrust
+    - d3ddac7e-aad2-4a2d-9924-1a799f560daf:ADShield
     - d4eb1338-8768-4615-8c94-ef1b90b67765:Player
     - d5e5f06f-75b8-42da-aa1d-6f63e12dda44:PodGroup
+    - e4d06ab9-2547-4832-8cac-769385b18e32:PlayerLife
+    - e83666d9-4598-4634-8cfe-c75d46eead84:Eight
+    - ee17b754-77ab-41e4-9c60-4875f9ce0002:Zero
+    - f6ca0e53-44c4-4560-ba73-4ffb98f2ef8b:ExplodeLine
     - f8ac2736-496b-42c0-b945-4743608516a6:Rock
+    - f901cfa5-33f7-4517-b0bd-f3f244846c6c:UFOFire
+    - fff1605d-88bc-4486-9fed-245b30baddf1:One

@@ -19,6 +19,7 @@ namespace Asteroids_Deluxe
             Ship = shipP.Instantiate().First();
             SceneSystem.SceneInstance.RootScene.Entities.Add(Ship);
             Model = Ship.FindChild("Ship").Get<ModelComponent>();
+            Model.Enabled = false;
         }
 
         public void Position(Vector3 position)
