@@ -67,6 +67,16 @@ namespace Asteroids_Deluxe
 
         }
 
+        public void Clear()
+        {
+            foreach (Dot dot in Dots)
+            {
+                dot.Active = false;
+            }
+
+            Active = false;
+        }
+
         bool CheckDone()
         {
             foreach (Dot dot in Dots)

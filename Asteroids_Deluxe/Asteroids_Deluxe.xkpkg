@@ -59,40 +59,70 @@ Bundles: []
 TemplateFolders: []
 RootAssets:
     - 00e93945-7dbb-4651-8d99-36a0ce45f8fe:ExplodeRear
-    - 0401700c-14d5-48dc-a885-bd619348a20c:Six
+    - 0401700c-14d5-48dc-a885-bd619348a20c:6
+    - 05910fa8-843b-4804-b715-1c4027e470e7:N
     - 069da017-a2ec-42a7-9a65-659e6bb76c44:ADBackground
     - 0732f8c6-7a6a-4cbb-9f2b-8746f6049dae:ExplodeWing
     - 0e59d721-7ea5-42a1-9016-859afdb3023d:Pod
+    - 0ef0d658-f4c5-4a6a-8850-5640b9497fa5:G
     - 0fa0de49-31d8-4ba3-937e-a4e7e80e785e:ADPlayerFire
     - 12f8985c-3acc-4230-b3fd-611ca4f52a68:UFOExplode
     - 1372efba-78aa-4897-a87d-5bf44887beaf:ADPlayerStart
+    - 1a431a84-251c-44f9-b7b7-ed276f2589fb:Y
+    - 1ae86101-f32b-4986-a9de-198a7ae8e4c6:U
     - 281818f4-3259-4e9f-b0c2-104e21dd7f4a:Shot
+    - 2f408a5f-c6b9-4a02-b0e0-e201de1460f0:A
     - 301cba05-8de1-4013-be09-f3d0948239c4:PodPair
     - 33b8aa05-a014-45cf-8679-86feabd585f8:ADPodExplode
     - 33dfc020-76de-4ea1-b495-fe2647999323:Seven
+    - 34a4fc2d-7252-40fb-9d9a-995e878b39ab:Z
+    - 3aa6084a-8c95-4722-b8ef-8c88a328ec2c:L
+    - 3d305f6f-4332-46b1-ae1c-970e23d60f7a:R
+    - 3f5b0637-b6a3-464a-a4ba-9a7f409370ea:B
     - 40d1a0fa-499e-4f2c-868c-52e25d9e9c52:ExplodeFront
     - 4153f1a2-0faa-4c8b-ab5d-f7f30a17b7b9:ADPodSpawn
-    - 4b595784-815a-4807-802e-a3879b8e6ce7:Three
+    - 41f07e56-554e-45a5-a1a7-3113b1b15a51:M
+    - 4b595784-815a-4807-802e-a3879b8e6ce7:3
     - 4e017b31-2af3-4a84-9734-5b51b402c680:ShotMat
+    - 55ad9b81-4250-41a1-a81b-75f230d18f72:W
     - 57fb9406-ce9d-4f80-8915-ddf60bb0d768:Nine
-    - 58ec15cd-6622-48f1-8750-b7a0cdf3e86a:Four
+    - 58ec15cd-6622-48f1-8750-b7a0cdf3e86a:4
+    - 5bf35ba5-6e3e-4855-828d-4bf5b1bb1894:C
+    - 610d3b88-8f50-4790-a06b-7460b4a4c57c:O
     - 63fd4dbd-a743-4015-8943-96966bed293c:UFOLarge
     - 6a32bc05-07c5-47e7-9395-90165d4600a5:RockExplode
+    - 6d32731e-68d6-4ddd-bb55-dd5317c6ff94:J
+    - 77a1efa9-77bb-4c47-973a-0804213861bb:0
+    - 7959cf22-34db-48fe-9d9f-e8a5550272da:F
     - 8222a7ee-4d72-48c8-b739-c8bf94c086e8:Particle
+    - 827eb0cd-4563-46b0-b899-2f33a1647986:H
     - 8638a516-5937-4905-874f-f7836f1ace9a:PlayerExplode
+    - 8e9917f2-02db-4e78-bfc0-6778cc027b97:9
     - 8f190a99-b24e-4e22-8254-c52f4f0a453c:ADBonusShip
-    - 9380d0d2-8c22-410c-974c-70bb8ab9f96d:Five
-    - a11f9fcc-7f3a-498a-9ef3-8060a3123e95:Two
+    - 9380d0d2-8c22-410c-974c-70bb8ab9f96d:5
+    - 94217d53-4879-4a77-afd6-37ea638518f7:P
+    - 965a4b16-7548-4c01-bcfd-3952209c2067:Q
+    - 97bfe545-a454-4408-962c-4709ce767fb0:X
+    - a11f9fcc-7f3a-498a-9ef3-8060a3123e95:2
+    - a2172bd1-f406-4db0-879e-3dcddf4cc566:7
+    - a2c5bc42-635f-4dcd-a398-e0d85c128aa2:E
+    - b39b2eb5-7972-45d1-a19d-36c588317fd6:T
     - bf6023ac-cf40-4d10-8d15-88fd49008183:UFO
     - c8af1b5e-9455-47e7-a9af-b92984dc2700:UFOSmall
     - ca80e606-7f64-44c3-9cb3-15f9bdf415e3:ADPlayerThrust
+    - cbe563c0-4711-4a4a-8564-beb6f0371430:D
+    - d163c3a5-709b-43d9-a2ff-5298bdde6285:K
     - d3ddac7e-aad2-4a2d-9924-1a799f560daf:ADShield
     - d4eb1338-8768-4615-8c94-ef1b90b67765:Player
     - d5e5f06f-75b8-42da-aa1d-6f63e12dda44:PodGroup
+    - e4a1e797-5aa1-4d37-b9a5-43cb0234fcc5:I
     - e4d06ab9-2547-4832-8cac-769385b18e32:PlayerLife
-    - e83666d9-4598-4634-8cfe-c75d46eead84:Eight
+    - e7cad1c5-778e-48c6-a7d7-3ecca1cc1e4a:S
+    - e83666d9-4598-4634-8cfe-c75d46eead84:8
     - ee17b754-77ab-41e4-9c60-4875f9ce0002:Zero
+    - f2646a2d-0bc2-4cfe-b717-b8321e1dd602:V
     - f6ca0e53-44c4-4560-ba73-4ffb98f2ef8b:ExplodeLine
     - f8ac2736-496b-42c0-b945-4743608516a6:Rock
     - f901cfa5-33f7-4517-b0bd-f3f244846c6c:UFOFire
-    - fff1605d-88bc-4486-9fed-245b30baddf1:One
+    - ffada5e9-4c8f-4dde-8154-0ae69f1050dc:Underline
+    - fff1605d-88bc-4486-9fed-245b30baddf1:1

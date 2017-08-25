@@ -8,7 +8,7 @@ using System.Resources;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Asteroids Deluxe in Xenko Beta 0.08")]
+[assembly: AssemblyProduct("Asteroids Deluxe in Xenko Beta 1.0")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

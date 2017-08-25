@@ -27,7 +27,7 @@ namespace Asteroids_Deluxe
 
         public override void Update()
         {
-            if (Active && !Paused && !Paired)
+            if (Active && !Paused && !Paired && !Hit)
             {
                 if (PlayerHit())
                 {
@@ -66,7 +66,7 @@ namespace Asteroids_Deluxe
                 DirectionTimer.SetPause(pause);
         }
 
-        public void Spawn(Vector3 position, float rotation)
+        public virtual void Spawn(Vector3 position, float rotation)
         {
             Position = position;
             Rotation = rotation;

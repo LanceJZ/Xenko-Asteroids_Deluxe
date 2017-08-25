@@ -21,12 +21,15 @@ namespace Asteroids_Deluxe
             Points = 100;
             Paired = true;
 
+            Entity warmTimerE = new Entity { new Timer() };
+            SceneSystem.SceneInstance.RootScene.Entities.Add(warmTimerE);
+
             base.Start();
         }
 
         public override void Update()
         {
-            if (Active && !Paused)
+            if (Active && !Paused && !Hit && Paired)
             {
                 UpdateDirection();
                 CheckEdges();
@@ -44,6 +47,16 @@ namespace Asteroids_Deluxe
             }
 
             base.Update();
+        }
+
+        public override void Spawn(Vector3 position, float rotation)
+        {
+            base.Spawn(position, rotation);
+
+            for (int i = 0; i < 2; i++)
+            {
+                CenterPodTrans[i].WorldMatrix.TranslationVector = position;
+            }
         }
 
         bool UFOCollide()

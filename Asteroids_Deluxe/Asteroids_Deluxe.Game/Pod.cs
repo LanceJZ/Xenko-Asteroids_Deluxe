@@ -26,7 +26,7 @@ namespace Asteroids_Deluxe
 
         public override void Update()
         {
-            if (Active)
+            if (Active && !Hit && !Paused)
             {
                 UpdateDirection();
                 CheckEdges();

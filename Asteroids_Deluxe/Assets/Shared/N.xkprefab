@@ -1,0 +1,22 @@
+!PrefabAsset
+Id: 05910fa8-843b-4804-b715-1c4027e470e7
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - 810719c1-a544-4497-8a13-5f1a8a2f5be0
+    Parts:
+        -   Entity:
+                Id: 810719c1-a544-4497-8a13-5f1a8a2f5be0
+                Name: N
+                Components:
+                    ed08a3b523be856230fd257e86afd50a: !TransformComponent
+                        Id: 3c96993a-4772-400f-8e58-ac208ab38e05
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    60728e90dc038aa4dc58b2c7292f9c55: !ModelComponent
+                        Id: 100fbf77-4ec6-43ec-bda7-d0f556d5c4b2
+                        Model: 402599de-aea1-4700-976c-074dbcb4b7be:FontN
+                        Materials: {}

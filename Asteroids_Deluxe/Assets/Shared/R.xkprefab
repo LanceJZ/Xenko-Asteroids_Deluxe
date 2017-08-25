@@ -1,0 +1,22 @@
+!PrefabAsset
+Id: 3d305f6f-4332-46b1-ae1c-970e23d60f7a
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - 3f260cf5-ab7c-4535-8308-c4947c90afae
+    Parts:
+        -   Entity:
+                Id: 3f260cf5-ab7c-4535-8308-c4947c90afae
+                Name: R
+                Components:
+                    573d8ba10b411118bde6d78a3e5595dc: !TransformComponent
+                        Id: a6589a4b-1669-47d2-bb16-8ed5e8162c8f
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    64018542ee535bb980ef6ff094048ccd: !ModelComponent
+                        Id: 4571d7ee-3dd8-4ff5-b17d-d71e5256b678
+                        Model: 7a705aad-d0e0-4540-a8de-41815271d915:FontR
+                        Materials: {}

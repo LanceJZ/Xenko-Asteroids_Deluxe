@@ -1,0 +1,22 @@
+!PrefabAsset
+Id: 0401700c-14d5-48dc-a885-bd619348a20c
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - 27a081bc-0d4a-4e95-bb44-ce19db97516f
+    Parts:
+        -   Entity:
+                Id: 27a081bc-0d4a-4e95-bb44-ce19db97516f
+                Name: Six
+                Components:
+                    dd66f4328bd31761c570e89cc2e50717: !TransformComponent
+                        Id: 01c9ed54-bdc8-488d-b1ff-d7fb34c59f55
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    d3a639fc7a7426656577875730e9c169: !ModelComponent
+                        Id: db8101b1-ee21-49d1-a962-5c95e6f703cb
+                        Model: dccace3f-9ef2-4ca4-9bed-d3e6277c6c18:SixM
+                        Materials: {}

@@ -1,0 +1,22 @@
+!PrefabAsset
+Id: 0ef0d658-f4c5-4a6a-8850-5640b9497fa5
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - ebc70900-da25-4cdf-93b0-008e73809ca2
+    Parts:
+        -   Entity:
+                Id: ebc70900-da25-4cdf-93b0-008e73809ca2
+                Name: G
+                Components:
+                    1b939e8b4c14aa082bacf2f36b7322b7: !TransformComponent
+                        Id: df9b907a-cdee-4f0d-afb1-2a0e5f2bfbac
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    d5aa10f580a4690143f1486f7c22536a: !ModelComponent
+                        Id: c3fc0026-4a7b-4115-9765-c21cc7977439
+                        Model: 32160774-3a10-4e7e-a0e8-37a6b6466fd7:FontG
+                        Materials: {}

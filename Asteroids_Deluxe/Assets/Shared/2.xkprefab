@@ -1,0 +1,22 @@
+!PrefabAsset
+Id: a11f9fcc-7f3a-498a-9ef3-8060a3123e95
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - 698f7e0d-d0a6-4a6a-8339-312d116dae75
+    Parts:
+        -   Entity:
+                Id: 698f7e0d-d0a6-4a6a-8339-312d116dae75
+                Name: Two
+                Components:
+                    14ea553783ea8786b67caa99f3f277b8: !TransformComponent
+                        Id: 117c2e63-ca0d-4850-ad56-d8c14b260987
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    72fedf310c863b2cc3dea6d3d3f6d2e9: !ModelComponent
+                        Id: 46b93538-f5c4-48af-908f-121658efc218
+                        Model: cf20aeb5-8c38-45fe-b51a-ace32ef06ea8:TwoM
+                        Materials: {}

@@ -1,0 +1,22 @@
+!PrefabAsset
+Id: 34a4fc2d-7252-40fb-9d9a-995e878b39ab
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - 63335a37-d22a-4435-aadd-ace7d360a184
+    Parts:
+        -   Entity:
+                Id: 63335a37-d22a-4435-aadd-ace7d360a184
+                Name: Z
+                Components:
+                    8b1ba59d245041f453338d7c72cc08ae: !TransformComponent
+                        Id: 7b26352f-7363-4ee2-8d4c-d26b4374a8fb
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    1d0e31dd2053a9ee7bde81b1ef9e600a: !ModelComponent
+                        Id: 00d73816-2273-46a5-a072-958e03cf6778
+                        Model: 7504b14d-15e8-4dca-abb0-688ac82fc4e0:FontZ
+                        Materials: {}

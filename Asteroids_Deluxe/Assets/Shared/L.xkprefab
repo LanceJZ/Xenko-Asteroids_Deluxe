@@ -1,0 +1,22 @@
+!PrefabAsset
+Id: 3aa6084a-8c95-4722-b8ef-8c88a328ec2c
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - 2d18d917-a145-46a0-aa7b-c4605b132cfa
+    Parts:
+        -   Entity:
+                Id: 2d18d917-a145-46a0-aa7b-c4605b132cfa
+                Name: L
+                Components:
+                    0198288e9e3a442058c0a3d6ae05efd5: !TransformComponent
+                        Id: 72ca32c2-a46d-4a44-aef9-82483f1095e7
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    67ee54dd6d141c4fbd4121d6d94f95f4: !ModelComponent
+                        Id: 689c9595-c77c-4d87-b53f-2cff9d78b8f8
+                        Model: 88dbf5b4-0242-4659-bd8d-f2d3d7ab534b:FontL
+                        Materials: {}

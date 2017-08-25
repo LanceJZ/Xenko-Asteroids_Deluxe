@@ -68,8 +68,6 @@ Hierarchy:
                         Rotation: 0.0
                         RandomGenerator: null
                         ExplodeS: null
-                        ScoreRef: null
-                        HighScoreRef: null
                         ShotSs: null
                         NewShip: false
         -   Entity:

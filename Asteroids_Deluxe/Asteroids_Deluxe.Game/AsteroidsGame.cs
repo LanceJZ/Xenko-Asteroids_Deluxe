@@ -11,6 +11,7 @@ namespace Asteroids_Deluxe
 {
     public class AsteroidsGame : RockSizes
     {
+        Timer DisplayTimer;
         Timer UFOSpawnTimer;
         Timer PodSpawnTimer;
         readonly float UFOTimerAmount = 10.15f;
@@ -18,12 +19,11 @@ namespace Asteroids_Deluxe
         Random Random;
         Prefab RockPF;
         ClearToSpawn ClearToSpawnS = new ClearToSpawn();
+        GameOverDisplay GameOverS;
         Player PlayerS;
         UFO UFOS;
         PodGroup PodGroupS;
         Explode UFOExplodeS;
-        Numbers ScoreS;
-        Numbers HighScoreS;
         Sound RockExplodeSound;
         SoundInstance PlayerStartSI;
         SoundInstance PodSpawnSI;
@@ -43,6 +43,8 @@ namespace Asteroids_Deluxe
         bool PodTimerStarted;
         bool GameOver = true;
         bool Paused;
+        bool Display;
+        bool NewWave;
 
         public override void Start()
         {
@@ -57,6 +59,17 @@ namespace Asteroids_Deluxe
             SceneSystem.SceneInstance.RootScene.Entities.Add(PodTimerE);
             PodSpawnTimer = PodTimerE.Get<Timer>();
             PodSpawnTimer.Reset(PodTimerAmount);
+
+            Entity dispTimer = new Entity { new Timer() };
+            SceneSystem.SceneInstance.RootScene.Entities.Add(dispTimer);
+            DisplayTimer = PodTimerE.Get<Timer>();
+            DisplayTimer.Reset(5);
+
+            Entity display = new Entity { new GameOverDisplay() };
+            SceneSystem.SceneInstance.RootScene.Entities.Add(display);
+            GameOverS = display.Get<GameOverDisplay>();
+            GameOverS.Start();
+            GameOverS.Display(false);
 
             Prefab playerPF = Content.Load<Prefab>("Player");
             Prefab UFOPF = Content.Load<Prefab>("UFO");
@@ -120,20 +133,6 @@ namespace Asteroids_Deluxe
                 PodExplodeSs.Last().RandomGenerator = this.Random;
                 PodExplodeSs.Last().ExplodeSI = Content.Load<Sound>("ADPodExplode").CreateInstance();
             }
-
-            Entity scoreE = new Entity { new Numbers() };
-            SceneSystem.SceneInstance.RootScene.Entities.Add(scoreE);
-            ScoreS = scoreE.Get<Numbers>();
-            ScoreS.Initialize();
-
-            Entity highScoreE = new Entity { new Numbers() };
-            SceneSystem.SceneInstance.RootScene.Entities.Add(highScoreE);
-            HighScoreS = highScoreE.Get<Numbers>();
-            HighScoreS.Initialize();
-
-            PlayerS.ScoreRef = ScoreS;
-            PlayerS.HighScoreRef = HighScoreS;
-            PlayerS.SetScore(0);
         }
 
         public override void Update()
@@ -149,6 +148,12 @@ namespace Asteroids_Deluxe
             {
                 if (Input.IsKeyPressed(Keys.N))
                     NewGame();
+
+                if (DisplayTimer.Expired && !PlayerS.NewHighScore)
+                {
+                    DisplayTimer.Reset();
+                    GameOverDisplayChange();
+                }
             }
             else
             {
@@ -185,8 +190,17 @@ namespace Asteroids_Deluxe
             }
         }
 
+        void GameOverDisplayChange()
+        {
+            Display = !Display;
+
+            GameOverS.Display(Display);
+            PlayerS.HighDisplay = !Display;
+        }
+
         void NewGame()
         {
+            GameOverS.Display(false);
             PlayerS.NewGame();
 
             foreach (Shot shot in PlayerS.ShotSs)
@@ -209,27 +223,33 @@ namespace Asteroids_Deluxe
                 podPair.Active = false;
             }
 
+            foreach (Explode rockExp in RockExplodeSs)
+            {
+                rockExp.Clear();
+            }
+
+            foreach (Explode podExp in PodExplodeSs)
+            {
+                podExp.Clear();
+            }
+
             PodGroupS.Activate(false);
             PodSpawnTimer.Reset();
 
             UFOS.Active = false;
-            UFOS.GameOver = false;
             UFOS.ShotS.Active = false;
-            UFOExplodeS.GameOver = false;
+            UFOExplodeS.Clear();
             UFOSpawnTimer.Reset();
-
-            foreach (Explode rock in RockExplodeSs)
-            {
-                rock.GameOver = false;
-            }
 
             LargeRockAmount = 4;
             Wave = 0;
             UFOSpawnCount = 0;
             PlayerLives = 4;
-            GameOver = false;
             PlayerController();
             PlayerLifeDisplay();
+
+            IsGameOver(false);
+            PlayerS.SetScore(0);
         }
 
         void PlayerLifeDisplay()
@@ -261,6 +281,24 @@ namespace Asteroids_Deluxe
             }
         }
 
+        void IsGameOver(bool over)
+        {
+            GameOver = over;
+            UFOExplodeS.GameOver = over;
+            UFOS.GameOver = over;
+            PlayerS.GameOver = over;
+
+            foreach (Explode rock in RockExplodeSs)
+            {
+                rock.GameOver = over;
+            }
+
+            foreach (Explode pod in PodExplodeSs)
+            {
+                pod.GameOver = over;
+            }
+        }
+
         void PlayerController()
         {
             if (PlayerS.NewShip)
@@ -282,15 +320,7 @@ namespace Asteroids_Deluxe
 
                     if (PlayerLives < 1)
                     {
-                        GameOver = true;
-                        UFOExplodeS.GameOver = true;
-                        UFOS.GameOver = true;
-
-                        foreach (Explode rock in RockExplodeSs)
-                        {
-                            rock.GameOver = true;
-                        }
-
+                        IsGameOver(true);
                         return;
                     }
                 }
@@ -376,6 +406,7 @@ namespace Asteroids_Deluxe
 
                         PodSpawnTimer.Reset();
                         PodGroupS.Spawn();
+                        NewWave = false;
                     }
                 }
                 else
@@ -399,6 +430,8 @@ namespace Asteroids_Deluxe
 
             for (int ipair = 0; ipair < PodPairSs.Count; ipair++)
             {
+                PodPairSs[ipair].NewRockWave = NewWave;
+
                 if (PodPairSs[ipair].Active && PodPairSs[ipair].Hit)
                 {
                     PodPairSs[ipair].Active = false;
@@ -420,6 +453,8 @@ namespace Asteroids_Deluxe
 
             for (int i = 0; i < PodSs.Count; i++)
             {
+                PodSs[i].NewRockWave = NewWave;
+
                 if (PodSs[i].Active && PodSs[i].Hit)
                 {
                     PodSs[i].Active = false;
@@ -519,6 +554,7 @@ namespace Asteroids_Deluxe
 
                 PodTimerStarted = false;
                 PodGroupS.NewRockWave = true;
+                NewWave = true;
 
                 foreach (PodPair pair in PodPairSs)
                 {

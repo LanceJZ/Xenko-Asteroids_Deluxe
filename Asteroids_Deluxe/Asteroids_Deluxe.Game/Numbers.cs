@@ -12,20 +12,6 @@ namespace Asteroids_Deluxe
         List<Entity> NumberEs = new List<Entity>();
         Vector3 Position = Vector3.Zero;
 
-        public void Initialize()
-        {
-            NumberPFs[0] = Content.Load<Prefab>("Zero");
-            NumberPFs[1] = Content.Load<Prefab>("One");
-            NumberPFs[2] = Content.Load<Prefab>("Two");
-            NumberPFs[3] = Content.Load<Prefab>("Three");
-            NumberPFs[4] = Content.Load<Prefab>("Four");
-            NumberPFs[5] = Content.Load<Prefab>("Five");
-            NumberPFs[6] = Content.Load<Prefab>("Six");
-            NumberPFs[7] = Content.Load<Prefab>("Seven");
-            NumberPFs[8] = Content.Load<Prefab>("Eight");
-            NumberPFs[9] = Content.Load<Prefab>("Nine");
-        }
-
         public void ProcessNumber(int number, Vector3 locationStart, float scale)
         {
             Position = locationStart;
@@ -50,6 +36,25 @@ namespace Asteroids_Deluxe
                 space += scale * 2;
 
             } while (numberIn > 0);
+        }
+
+        public void ShowNumbers(bool show)
+        {
+            if (NumberEs != null)
+            {
+                foreach (Entity number in NumberEs)
+                {
+                    number.Get<ModelComponent>().Enabled = show;
+                }
+            }
+        }
+
+        public void Initialize()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                NumberPFs[i] = Content.Load<Prefab>(i.ToString());
+            }
         }
 
         Entity InitiateNumber(int number)

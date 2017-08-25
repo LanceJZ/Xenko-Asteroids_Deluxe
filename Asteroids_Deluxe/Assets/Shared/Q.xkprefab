@@ -1,0 +1,22 @@
+!PrefabAsset
+Id: 965a4b16-7548-4c01-bcfd-3952209c2067
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - c20ce0fd-d087-4dc9-83b6-1da6b9b4d03e
+    Parts:
+        -   Entity:
+                Id: c20ce0fd-d087-4dc9-83b6-1da6b9b4d03e
+                Name: Q
+                Components:
+                    bc3851753d4822855acc4fcb24cbde39: !TransformComponent
+                        Id: 55ee5849-555c-4c80-a6db-c47980b32dba
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    7187bd50cc53a569343393946a18be68: !ModelComponent
+                        Id: 43d52d06-0d23-4d72-b757-767364cd497a
+                        Model: e99b1394-87bc-4335-89e8-5acb3e038026:FontQ
+                        Materials: {}

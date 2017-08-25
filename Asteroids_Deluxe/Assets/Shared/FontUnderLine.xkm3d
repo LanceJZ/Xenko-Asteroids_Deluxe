@@ -1,0 +1,15 @@
+!Model
+Id: 1aa3ffa7-f98a-46ec-b30a-733b59b75dd2
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../../../../../Installed Programs/MagicaVoxel-0.98.2/export/FontUnderLine.obj
+PivotPosition: {X: 0.0, Y: 6.5, Z: 0.0}
+ScaleImport: 0.18
+Materials:
+    eb5d9c9ee03dfdf61ae4ee4e5d455bde:
+        Name: palette
+        MaterialInstance:
+            Material: 1f2d65b5-cdbf-4bc6-87c4-45bc385cda76:palette
+Skeleton: null
+~SourceHashes:
+    5d001d80617c0c246a7d1ab0f23ae68d~../../../../../../Installed Programs/MagicaVoxel-0.98.2/export/FontUnderLine.obj: a99328cac941314f731849ccbd360c56

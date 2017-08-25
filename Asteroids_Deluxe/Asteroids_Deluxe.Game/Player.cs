@@ -14,36 +14,42 @@ namespace Asteroids_Deluxe
     public class Player : PO
     {
         Timer FlameTimer;
-        //Timer ThrustSoundTimer;
-        public PlayerExplodeControl ExplodeS;
 
-        public Numbers ScoreRef;
-        public Numbers HighScoreRef;
+        Numbers ScoreS;
+        Numbers HighScoreS;
+
+        HighScores HighScoreListS;
+
         ModelComponent FlameM;
         ModelComponent ShieldM;
+
         SoundInstance FireSI;
         SoundInstance ThrustSI;
         SoundInstance BonusSI;
         SoundInstance ShieldSI;
         SoundInstance ExplodeSI;
 
-        public List<Shot> ShotSs;
 
         float ShieldPower;
         float shieldRadius;
         int score = 0;
-        int highScore = 0;
         int NextNewShip = 5000;
         int NewShipCount = 0;
         bool newShip;
         bool shieldOn;
         bool ThrustOn;
+        bool ShotsDone;
+        bool GameEnded;
+
+        public PlayerExplodeControl ExplodeS;
+        public List<Shot> ShotSs;
 
         public int Score { get => score; }
         public bool NewShip { get => newShip; set => newShip = value; }
         public bool ShieldOn { get => shieldOn; }
         public float ShieldRadius { get => shieldRadius; }
-        public int HighScore { get => highScore; }
+        public bool HighDisplay { set => HighScoreListS.DisplayHighScoreList(value); }
+        public bool NewHighScore { get => HighScoreListS.NewHighScore; }
 
         public override void Start()
         {
@@ -59,10 +65,6 @@ namespace Asteroids_Deluxe
             SceneSystem.SceneInstance.RootScene.Entities.Add(flameTimerE);
             FlameTimer = flameTimerE.Get<Timer>();
             FlameTimer.Reset(0.01666f);
-
-            //Entity thrustTimerE = new Entity { new Timer() };
-            //SceneSystem.SceneInstance.RootScene.Entities.Add(thrustTimerE);
-            //ThrustSoundTimer = thrustTimerE.Get<Timer>();
 
             Radius = 1.25f;
             shieldRadius = 2.1f;
@@ -82,6 +84,24 @@ namespace Asteroids_Deluxe
 
             FlameM = this.Entity.FindChild("PlayerFlame").Get<ModelComponent>();
             ShieldM = this.Entity.FindChild("PlayerShield").Get<ModelComponent>();
+
+            Entity scoreE = new Entity { new Numbers() };
+            SceneSystem.SceneInstance.RootScene.Entities.Add(scoreE);
+            ScoreS = scoreE.Get<Numbers>();
+            ScoreS.Initialize();
+
+            Entity highScoreE = new Entity { new Numbers() };
+            SceneSystem.SceneInstance.RootScene.Entities.Add(highScoreE);
+            HighScoreS = highScoreE.Get<Numbers>();
+            HighScoreS.Initialize();
+
+            Entity highScoreListE = new Entity { new HighScores() };
+            SceneSystem.SceneInstance.RootScene.Entities.Add(highScoreListE);
+            HighScoreListS = highScoreListE.Get<HighScores>();
+            HighScoreListS.Start();
+
+            HighScore(HighScoreListS.HighScore);
+
             Disable();
         }
 
@@ -93,6 +113,26 @@ namespace Asteroids_Deluxe
 
                 if (CheckForEdge())
                     UpdatePR();
+            }
+
+            if (GameOver)
+            {
+                if (!GameEnded)
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        if (ShotSs[i].Active)
+                            return;
+                    }
+
+                    EndGame();
+                    GameEnded = true;
+                }
+
+                if (HighScoreListS.NewHighScore)
+                {
+                    HighScoreListS.AddNewHighScore();
+                }
             }
 
             base.Update();
@@ -138,7 +178,7 @@ namespace Asteroids_Deluxe
                 NewShip = true;
             }
 
-            ScoreRef.ProcessNumber(score, new Vector3(-23, Edge.Y - 1, 0), 1);
+            ScoreS.ProcessNumber(score, new Vector3(-23, Edge.Y - 1, 0), 1);
         }
 
         public void Disable()
@@ -155,18 +195,28 @@ namespace Asteroids_Deluxe
             ShieldSI.Stop();
         }
 
-        public void NewGame()
+        public void EndGame()
         {
-            if (highScore < score)
+            if (score > HighScoreListS.HighScore)
             {
-                highScore = score;
-
-                HighScoreRef.ProcessNumber(highScore, new Vector3(5, Edge.Y - 1, 0), 1);
+                HighScore(score);
             }
 
+            HighScoreListS.EndingScore(score);
+        }
+
+        void HighScore(int highscore)
+        {
+            HighScoreS.ProcessNumber(highscore, new Vector3(8, Edge.Y - 1, 0), 0.666f);
+        }
+
+        public void NewGame()
+        {
+            GameEnded = false;
             score = 0;
             NewShipCount = 0;
             ShieldPower = 100;
+            HighScoreListS.DisplayHighScoreList(false);
             SetScore(0);
         }
 

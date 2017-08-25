@@ -1,0 +1,22 @@
+!PrefabAsset
+Id: 1a431a84-251c-44f9-b7b7-ed276f2589fb
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - 96c28bc4-f4bc-4d32-b097-ebd08e3d9e2f
+    Parts:
+        -   Entity:
+                Id: 96c28bc4-f4bc-4d32-b097-ebd08e3d9e2f
+                Name: Y
+                Components:
+                    32277a26c1e0d4d59953fd8476655de9: !TransformComponent
+                        Id: 294bb72c-76d8-4c83-a683-17f227201c52
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    c59756b820474a72aff6773e7c8a0bac: !ModelComponent
+                        Id: 82021210-1a2c-4071-9084-9ec34a6b42fa
+                        Model: 9eeeb399-e06b-42f9-ac2c-989862e68758:FontY
+                        Materials: {}

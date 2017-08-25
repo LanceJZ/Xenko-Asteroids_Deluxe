@@ -1,0 +1,22 @@
+!PrefabAsset
+Id: 1ae86101-f32b-4986-a9de-198a7ae8e4c6
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - b37a032c-b11b-4dbb-9b07-88a957a6683a
+    Parts:
+        -   Entity:
+                Id: b37a032c-b11b-4dbb-9b07-88a957a6683a
+                Name: U
+                Components:
+                    9bef1d9f61832546935f5251c0dbd287: !TransformComponent
+                        Id: fbc660bd-bedf-4526-84c5-124ccc9322cc
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    7d71684457d6a95af12bcda64ba3c5ba: !ModelComponent
+                        Id: 81ae96ec-c39c-405e-8b82-e97166ec2bd6
+                        Model: c6677733-6d6a-4de1-a7cb-b8add836b4d6:FontU
+                        Materials: {}

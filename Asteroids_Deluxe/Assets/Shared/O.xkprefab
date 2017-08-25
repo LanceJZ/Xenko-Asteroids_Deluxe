@@ -1,0 +1,22 @@
+!PrefabAsset
+Id: 610d3b88-8f50-4790-a06b-7460b4a4c57c
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - 138f2f90-6afd-4f7e-8d5e-0315802341aa
+    Parts:
+        -   Entity:
+                Id: 138f2f90-6afd-4f7e-8d5e-0315802341aa
+                Name: O
+                Components:
+                    8733ea00099d26637b6c2c470a793414: !TransformComponent
+                        Id: 502c4403-3755-40d7-b74d-b31e71453999
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    ce921c09c5b6e7f74f4472a1df570cdd: !ModelComponent
+                        Id: 1168746b-5677-4b8b-9f53-4252176b0518
+                        Model: f624eedb-76a8-4b41-aa50-762dcb0d693a:FontO
+                        Materials: {}

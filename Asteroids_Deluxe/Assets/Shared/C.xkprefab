@@ -1,0 +1,22 @@
+!PrefabAsset
+Id: 5bf35ba5-6e3e-4855-828d-4bf5b1bb1894
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - 920fba28-bea4-4ae5-84e9-c3763241192a
+    Parts:
+        -   Entity:
+                Id: 920fba28-bea4-4ae5-84e9-c3763241192a
+                Name: C
+                Components:
+                    6791ba8080eea194890313ad1898ed3b: !TransformComponent
+                        Id: f458ca0a-aee8-453a-addc-0ed6723b3868
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    257c9aed290d40524a7e05a1dc1c5998: !ModelComponent
+                        Id: b120c61d-f5e1-4693-a24d-77c87660a936
+                        Model: 3c99dada-323a-4830-9479-3d4248789226:FontC
+                        Materials: {}

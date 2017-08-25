@@ -1,0 +1,22 @@
+!PrefabAsset
+Id: d163c3a5-709b-43d9-a2ff-5298bdde6285
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - 24069301-62bf-4368-a08a-bd9be45c9b5f
+    Parts:
+        -   Entity:
+                Id: 24069301-62bf-4368-a08a-bd9be45c9b5f
+                Name: K
+                Components:
+                    08e01dfea750e5ab4120e52cde4cc2ab: !TransformComponent
+                        Id: ae045a04-000c-439a-9538-78dfd93627a7
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    b01b5882a391d7d383acb05f8ef95770: !ModelComponent
+                        Id: e74a2659-852c-4f11-abaa-4d2ee72d48bc
+                        Model: 1a8f3c9b-78db-48bf-9414-e22fcde12abe:FontK
+                        Materials: {}

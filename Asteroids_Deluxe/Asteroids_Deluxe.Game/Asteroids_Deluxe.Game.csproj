@@ -226,6 +226,8 @@
     <Compile Include="ClearToSpawn.cs" />
     <Compile Include="Dot.cs" />
     <Compile Include="Explode.cs" />
+    <Compile Include="GameOverDisplay.cs" />
+    <Compile Include="HighScores.cs" />
     <Compile Include="Numbers.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerExplode.cs" />
@@ -243,6 +245,7 @@
     <Compile Include="Timer.cs" />
     <Compile Include="UFO.cs" />
     <Compile Include="UI.cs" />
+    <Compile Include="Words.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="$(SiliconStudioPackageProps)" Condition="Exists('$(SiliconStudioPackageProps)')" />

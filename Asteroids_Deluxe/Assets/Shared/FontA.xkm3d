@@ -1,0 +1,15 @@
+!Model
+Id: 86e45cc8-04c2-49c0-b6fd-7b1240d40afd
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Source: ../../../../../../Installed Programs/MagicaVoxel-0.98.2/export/FontA.obj
+PivotPosition: {X: 0.0, Y: 6.5, Z: 0.0}
+ScaleImport: 0.18
+Materials:
+    f38845d3512a967f0409206b6551ef72:
+        Name: palette
+        MaterialInstance:
+            Material: 1f2d65b5-cdbf-4bc6-87c4-45bc385cda76:palette
+Skeleton: null
+~SourceHashes:
+    c7e9fbc9539db9d5befc7f5065894de0~../../../../../../Installed Programs/MagicaVoxel-0.98.2/export/FontA.obj: 51e4f754d0624ecd46d1a4d11497517d

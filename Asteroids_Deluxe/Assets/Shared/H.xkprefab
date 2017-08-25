@@ -1,0 +1,22 @@
+!PrefabAsset
+Id: 827eb0cd-4563-46b0-b899-2f33a1647986
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - 9eafa6e4-84fb-4bba-b2db-6974bad09dfa
+    Parts:
+        -   Entity:
+                Id: 9eafa6e4-84fb-4bba-b2db-6974bad09dfa
+                Name: H
+                Components:
+                    adbb1e38ce474150e916d29b7b9560dd: !TransformComponent
+                        Id: f541e053-790c-4978-8ec6-dc48f62873b5
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    8680cb36420cd8edecb44dcbccee20e6: !ModelComponent
+                        Id: 4f991ae8-7b6c-453a-87fb-735982a2f414
+                        Model: 81b3863c-c60c-417a-b6cb-ae8d1082e187:FontH
+                        Materials: {}

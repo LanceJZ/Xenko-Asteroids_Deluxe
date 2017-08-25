@@ -1,0 +1,22 @@
+!PrefabAsset
+Id: 2f408a5f-c6b9-4a02-b0e0-e201de1460f0
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - 14f4d9a3-f15d-44ab-aa83-414bef5ff0b8
+    Parts:
+        -   Entity:
+                Id: 14f4d9a3-f15d-44ab-aa83-414bef5ff0b8
+                Name: FontA
+                Components:
+                    6b7583f97060ee758827ebf833a5905c: !TransformComponent
+                        Id: ae81d6a0-e7d1-4648-980e-4be7d77710f1
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    f921c101a8805ed9c0dcf0b6e1ed52b5: !ModelComponent
+                        Id: bffe6ba0-2dfd-4adb-9a10-de0cea6343a4
+                        Model: 86e45cc8-04c2-49c0-b6fd-7b1240d40afd:FontA
+                        Materials: {}

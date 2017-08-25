@@ -1,0 +1,22 @@
+!PrefabAsset
+Id: 6d32731e-68d6-4ddd-bb55-dd5317c6ff94
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - c75808e7-f00c-4f2a-b7c0-25cbbabeddd0
+    Parts:
+        -   Entity:
+                Id: c75808e7-f00c-4f2a-b7c0-25cbbabeddd0
+                Name: J
+                Components:
+                    ca7f08d954d1a73f6de8fbfc7e3788a2: !TransformComponent
+                        Id: c9e8af72-4c19-4670-a02c-ac473fb8ee7d
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    79ff19835b1ea2cbb4fbea830b1eac13: !ModelComponent
+                        Id: 9ffa5f44-aa94-419e-ae44-5fe6a299a3dc
+                        Model: 82de940b-15cf-4aff-90e6-54ad1c7b9875:FontJ
+                        Materials: {}

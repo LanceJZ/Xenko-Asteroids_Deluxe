@@ -1,0 +1,22 @@
+!PrefabAsset
+Id: 94217d53-4879-4a77-afd6-37ea638518f7
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - 009880aa-1a3a-4082-9e7a-04d0b1b7cac5
+    Parts:
+        -   Entity:
+                Id: 009880aa-1a3a-4082-9e7a-04d0b1b7cac5
+                Name: P
+                Components:
+                    473c58203694f45518ac0ff32a104c71: !TransformComponent
+                        Id: 009effe2-3e20-4923-a8b4-855df02fd5cc
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    ea5e7e2e486afee9c5eacf155d869dbd: !ModelComponent
+                        Id: 0ec7fd7d-9d91-4bd6-a530-18eb66da59e7
+                        Model: 0073de41-4e08-4b2b-b9e8-c70129a17087:FontP
+                        Materials: {}

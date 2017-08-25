@@ -57,8 +57,7 @@ Hierarchy:
                         Id: 21fa821c-4c88-44a3-bd67-97f0a81ac46b
                         Model: ff63aa78-fd1c-419e-a376-08989b875593:ADPodPair
                         Materials: {}
-        -   Folder: null
-            Entity:
+        -   Entity:
                 Id: 8144d624-4b86-4bf3-869b-c2b8566d390c
                 Name: PointTwo
                 Components:
@@ -68,6 +67,7 @@ Hierarchy:
                         Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: {}
+            Folder: null
         -   Entity:
                 Id: cf1f64be-95a5-4efe-b9fd-9d48faf9853b
                 Name: PointOne

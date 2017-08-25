@@ -1,0 +1,22 @@
+!PrefabAsset
+Id: 9380d0d2-8c22-410c-974c-70bb8ab9f96d
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - ea86652a-8f97-411f-a52f-4cd27a8df4c2
+    Parts:
+        -   Entity:
+                Id: ea86652a-8f97-411f-a52f-4cd27a8df4c2
+                Name: Five
+                Components:
+                    e4d45fc6ae699c15ef9a3269f02c1c4a: !TransformComponent
+                        Id: 4ef421bc-91ca-4c83-b61a-9c7514892267
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    f5739d8b25a0e06212141e561a08455c: !ModelComponent
+                        Id: 35460289-6c08-4219-9241-f7cc081feb2e
+                        Model: 0fb8b01c-b659-49be-81d1-29e7c0b26ef1:FiveM
+                        Materials: {}
