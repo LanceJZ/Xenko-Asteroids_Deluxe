@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFrameworks>net461;monoandroid50</TargetFrameworks>
     <RootNamespace>Asteroids_Deluxe</RootNamespace>
-    <AssemblyVersion>1.2.13.0</AssemblyVersion>
-    <FileVersion>0813.225.8.0006</FileVersion>
+    <AssemblyVersion>1.3.13.0</AssemblyVersion>
+    <FileVersion>0813.225.8.0347</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
