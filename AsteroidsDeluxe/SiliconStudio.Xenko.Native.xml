@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SiliconStudio.Xenko.Native</name>
+    </assembly>
+    <members>
+        <member name="T:SiliconStudio.Xenko.Native.DirectInput.XInputChecker">
+            <summary>
+            Finds out if a device is an XInputDevice
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Native.DirectInput.XInputChecker.IsXInputDevice(System.Guid@)">
+            <summary>
+            Check if device represented by <paramref name="guid"/> is indeed an XInput device.
+            </summary>
+            <param name="guid">Guid of device to check.</param>
+            <returns>True if XInput device.</returns>
+        </member>
+        <member name="T:SiliconStudio.XenkoVersion">
+            <summary>
+            Internal version used to identify Xenko version.
+            </summary>
+            <remarks>
+            Note: Xenko.xkpkg and PublicVersion versions should match.
+            Also, during package build, PackageUpdateVersionTask is updating that file and expect some specific text regex so be careful if you change any of this.
+            </remarks>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.CopyrightYear">
+            <summary>
+            The copyright year or year range.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.PublicVersion">
+            <summary>
+            The version used by editor for display purpose. 4th digit needs to be at least 1 if used (due to NuGet special cases).
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.AssemblyVersion">
+            <summary>
+            The current assembly version as text, currently same as <see cref="F:SiliconStudio.XenkoVersion.PublicVersion"/>.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.NuGetVersionSimple">
+            <summary>
+            The NuGet package version without special tags.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.NuGetVersion">
+            <summary>
+            The NuGet package version.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.NuGetVersionSuffix">
+            <summary>
+            The NuGet package suffix (i.e. -beta01). Note: might be replaced during package build.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.AssemblyInformationalVersion">
+            <summary>
+            The informational assembly version, containing -dev or -g[git_hash] during package.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.AssemblyInformationalSuffix">
+            <summary>
+            The assembly suffix. Note: replaced by git commit during package build.
+            </summary>
+        </member>
+    </members>
+</doc>

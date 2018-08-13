@@ -1,10 +1,10 @@
 !PrefabAsset
 Id: 2f408a5f-c6b9-4a02-b0e0-e201de1460f0
-SerializedVersion: {Xenko: 2.0.0.0}
+SerializedVersion: {Xenko: 2.1.0.1}
 Tags: []
 Hierarchy:
-    RootPartIds:
-        - 14f4d9a3-f15d-44ab-aa83-414bef5ff0b8
+    RootParts:
+        - ref!! 14f4d9a3-f15d-44ab-aa83-414bef5ff0b8
     Parts:
         -   Entity:
                 Id: 14f4d9a3-f15d-44ab-aa83-414bef5ff0b8

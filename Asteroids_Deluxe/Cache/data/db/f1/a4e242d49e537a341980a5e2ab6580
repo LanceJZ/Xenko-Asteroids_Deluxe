@@ -1,0 +1,15 @@
+// Copyright (c) 2014-2017 Silicon Studio Corp. All rights reserved. (https://www.siliconstudio.co.jp)
+// See LICENSE.md for full license information.
+shader ComputeColorAdd : ComputeColor
+{
+    compose ComputeColor color1;
+    compose ComputeColor color2;
+
+    override float4 Compute()
+    {
+        float4 tex1 = color1.Compute();
+        float4 tex2 = color2.Compute();
+
+        return tex1.rgba + tex2.rgba;
+    }
+};

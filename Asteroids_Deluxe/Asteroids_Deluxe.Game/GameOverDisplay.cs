@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SiliconStudio.Xenko.Input;
-using SiliconStudio.Core.IO;
+using Xenko.Core.Mathematics;
+using Xenko.Input;
+using Xenko.Engine;
+using Xenko.Games.Time;
+using Xenko.Graphics;
+using Xenko.Rendering;
+using Xenko.Audio;
 using System.IO;
-using SiliconStudio.Core.Mathematics;
-using SiliconStudio.Xenko.Engine;
 
 namespace Asteroids_Deluxe
 {

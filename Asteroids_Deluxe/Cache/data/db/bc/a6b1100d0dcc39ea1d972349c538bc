@@ -1,0 +1,20 @@
+// Copyright (c) 2017 Silicon Studio Corp. All rights reserved. (https://www.siliconstudio.co.jp)
+// See LICENSE.md for full license information.
+
+shader VolumeMinMaxShader : ShaderBase, PositionHStream4
+{
+    stage matrix WorldViewProjection;
+    stage stream float4 Position : POSITION;
+
+    stage override void VSMain()
+    {
+        streams.ShadingPosition = mul(streams.Position, WorldViewProjection);
+        streams.PositionH = streams.ShadingPosition;
+    }
+
+    stage override void PSMain()
+    {
+        float depth = streams.PositionH.z / streams.PositionH.w;
+        streams.ColorTarget = float4(depth, depth, 0, 1);
+    }
+};

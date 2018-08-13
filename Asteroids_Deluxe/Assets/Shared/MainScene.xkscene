@@ -1,15 +1,15 @@
 !SceneAsset
 Id: 69d01234-800b-4b33-beaa-174fda06a849
-SerializedVersion: {Xenko: 2.0.0.0}
+SerializedVersion: {Xenko: 2.1.0.1}
 Tags: []
 ChildrenIds: []
 Offset: {X: 0.0, Y: 0.0, Z: 0.0}
 Hierarchy:
-    RootPartIds:
-        - 43a691e8-8be1-4ccc-95cf-2f01e7c31e3f
-        - 0885079e-34a0-42c4-b623-f8c044815dce
-        - b5585940-8a48-47b4-898a-05b07d625627
-        - 1038cab8-6ab6-459a-8331-141a7b987605
+    RootParts:
+        - ref!! 43a691e8-8be1-4ccc-95cf-2f01e7c31e3f
+        - ref!! 0885079e-34a0-42c4-b623-f8c044815dce
+        - ref!! b5585940-8a48-47b4-898a-05b07d625627
+        - ref!! 1038cab8-6ab6-459a-8331-141a7b987605
     Parts:
         -   Entity:
                 Id: 0885079e-34a0-42c4-b623-f8c044815dce
@@ -32,6 +32,7 @@ Hierarchy:
                                 Size: Large
                                 DepthRange: {}
                                 PartitionMode: !LightDirectionalShadowMap.PartitionLogarithmic {}
+                                ComputeTransmittance: false
                                 BiasParameters: {}
                         Intensity: 0.75
         -   Entity:
@@ -47,8 +48,8 @@ Hierarchy:
                     968008241bb2e19e328a07bb96e2378d: !ModelComponent
                         Id: 8a779682-b775-47f5-891f-7994ebed69ab
                         Model: 82888ef6-a14f-4e3e-b85e-cc7397f5828d:Ground
-                        Materials: {}
                         IsShadowCaster: false
+                        Materials: {}
                     f101949b2a2b745837a4137b341af2d3: !Asteroids_Deluxe.AsteroidsGame,Asteroids_Deluxe.Game
                         Id: 7731e637-a1dc-4929-8f70-1695cdfeb63b
         -   Entity:

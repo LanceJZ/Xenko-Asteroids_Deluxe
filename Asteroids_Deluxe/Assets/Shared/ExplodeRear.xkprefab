@@ -1,10 +1,10 @@
 !PrefabAsset
 Id: 00e93945-7dbb-4651-8d99-36a0ce45f8fe
-SerializedVersion: {Xenko: 2.0.0.0}
+SerializedVersion: {Xenko: 2.1.0.1}
 Tags: []
 Hierarchy:
-    RootPartIds:
-        - c4a9d9d4-05ce-443b-b8e4-4214d1907140
+    RootParts:
+        - ref!! c4a9d9d4-05ce-443b-b8e4-4214d1907140
     Parts:
         -   Entity:
                 Id: c4a9d9d4-05ce-443b-b8e4-4214d1907140
@@ -20,8 +20,8 @@ Hierarchy:
                         Id: 10df8c77-6e46-4777-8404-236c12b434e8
                         Enabled: false
                         Model: eb592ebf-afbc-49be-be47-28ec479f9ad2:ADPlayerExplodeRear
-                        Materials: {}
                         IsShadowCaster: false
+                        Materials: {}
                     0179ee954f9df5204b8f011e7da0b36c: !Asteroids_Deluxe.PlayerExplode,Asteroids_Deluxe.Game
                         Id: c739ce66-5aac-406b-a057-0034ab46d3e3
                         Model: null

@@ -2,14 +2,14 @@ using Android.App;
 using Android.OS;
 using Android.Content.PM;
 
-using SiliconStudio.Xenko.Engine;
-using SiliconStudio.Xenko.Starter;
+using Xenko.Engine;
+using Xenko.Starter;
 
 namespace Asteroids_Deluxe
 {
     [Activity(MainLauncher = true, 
               Icon = "@drawable/icon", 
-              ScreenOrientation = ScreenOrientation.Portrait,
+              ScreenOrientation = ScreenOrientation.Landscape,
               ConfigurationChanges = ConfigChanges.UiMode | ConfigChanges.Orientation | ConfigChanges.KeyboardHidden | ConfigChanges.ScreenSize)]
     public class Asteroids_DeluxeActivity : AndroidXenkoActivity
     {
@@ -17,7 +17,7 @@ namespace Asteroids_Deluxe
         {
             base.OnCreate(bundle);
 
-            Game = new AsteroidsGame();
+            Game = new Game();
             Game.Run(GameContext);
         }
 

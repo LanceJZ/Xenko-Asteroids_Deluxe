@@ -1,0 +1,19 @@
+// Copyright (c) 2014-2017 Silicon Studio Corp. All rights reserved. (https://www.siliconstudio.co.jp)
+// See LICENSE.md for full license information.
+/// <summary>
+/// Defines the normal, view space normal and tangent streams.
+/// </summary>
+shader NormalStream
+{
+    // The normal attribute from the mesh
+    stage stream float3 meshNormal : NORMAL;
+    
+    // The tangent attribute from the mesh
+    stage stream float4 meshTangent : TANGENT;
+	
+    // The normal in world space
+    stage stream float3 normalWS : NORMALWS;
+
+    // The tangent to view matrix to transform a tangent normal vector to normal vector in viewspace
+    stage stream float3x3 tangentToWorld;
+};

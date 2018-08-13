@@ -1,0 +1,18 @@
+// Copyright (c) 2014-2017 Silicon Studio Corp. All rights reserved. (https://www.siliconstudio.co.jp)
+// See LICENSE.md for full license information.
+namespace SiliconStudio.Xenko.Rendering.Shadows
+{
+    /// <summary>
+    /// Performs default filtering: no filtering.
+    /// </summary>
+    shader ShadowMapFilterDefault<MemberName PerLighting> : ShadowMapFilterBase<PerLighting>
+    {
+        /// <summary>
+        /// Calculate the shadow factor based on the shadow map texture, the position, a sampler
+        /// </summary>
+        float FilterShadow(float2 position, float positionDepth)
+        {
+            return ShadowMapTexture.SampleCmpLevelZero(LinearClampCompareLessEqualSampler, position, positionDepth);
+        }
+    };
+}

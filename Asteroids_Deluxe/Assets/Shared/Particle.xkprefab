@@ -1,10 +1,10 @@
 !PrefabAsset
 Id: 8222a7ee-4d72-48c8-b739-c8bf94c086e8
-SerializedVersion: {Xenko: 2.0.0.0}
+SerializedVersion: {Xenko: 2.1.0.1}
 Tags: []
 Hierarchy:
-    RootPartIds:
-        - 46cacf7e-5a43-4714-8e61-cf17dca575e4
+    RootParts:
+        - ref!! 46cacf7e-5a43-4714-8e61-cf17dca575e4
     Parts:
         -   Entity:
                 Id: 46cacf7e-5a43-4714-8e61-cf17dca575e4
@@ -20,8 +20,8 @@ Hierarchy:
                         Id: a52bbb8b-b358-4995-b8aa-cedd598c9ccc
                         Enabled: false
                         Model: cf2c7e88-1626-4049-b482-ba2444f93151:ParticleVoxel
-                        Materials: {}
                         IsShadowCaster: false
+                        Materials: {}
                     3227747bb37083830b2400c4a68c2f6f: !Asteroids_Deluxe.Dot,Asteroids_Deluxe.Game
                         Id: ab6b7bfe-8c41-419f-b69b-ccf99bcf8142
                         Model: null

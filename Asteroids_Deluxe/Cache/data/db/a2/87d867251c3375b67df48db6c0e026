@@ -1,0 +1,13 @@
+// Copyright (c) 2014-2017 Silicon Studio Corp. All rights reserved. (https://www.siliconstudio.co.jp)
+// See LICENSE.md for full license information.
+/// <summary>
+/// Performs skinning on the tangent.
+/// </summary>
+shader TangentMeshSkinning : TransformationSkinning, NormalStream
+{
+    override void PreTransformPosition()
+    {
+        base.PreTransformPosition();
+        streams.meshTangent.xyz = mul(streams.meshTangent.xyz, (float3x3)streams.skinningBlendMatrix);
+    }
+};

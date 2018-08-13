@@ -1,0 +1,2231 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SiliconStudio.Xenko.Shaders.Parser</name>
+    </assembly>
+    <members>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoParsingInfo.StageInitializedVariables">
+            <summary>
+            Variables that referenced the stage class ( "= stage" )
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoParsingInfo.Typedefs">
+            <summary>
+            All typedefs
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoParsingInfo.StructureDefinitions">
+            <summary>
+            All structure definitions
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoParsingInfo.BaseMethodCalls">
+            <summary>
+            All the base method calls (base.xxx)
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoParsingInfo.ThisMethodCalls">
+            <summary>
+            All the method calls that are not base
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoParsingInfo.StageMethodCalls">
+            <summary>
+            All the method calls to stage methods
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoParsingInfo.ForEachStatements">
+            <summary>
+            All foreach statements
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoParsingInfo.ClassReferences">
+            <summary>
+            References to members of the current shader
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoParsingInfo.StaticReferences">
+            <summary>
+            Static references to class members
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoParsingInfo.ExternReferences">
+            <summary>
+            References to extern members
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoParsingInfo.StageInitReferences">
+            <summary>
+            References to stage initialized variables and methods
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoParsingInfo.NavigableNodes">
+            <summary>
+            Gets navigable nodes (local variables, base class...etc.)
+            </summary>
+            <value>The navigable nodes.</value>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoParsingInfo.StaticClasses">
+            <summary>
+            List of the static classes
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoParsingInfo.ErrorsWarnings">
+            <summary>
+            Error logger
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.XenkoKeywords">
+            <summary>
+            List of useful language keywords
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.parsingInfo">
+            <summary>
+            The structure that will store all the information
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.moduleMixins">
+            <summary>
+            List of all the mixins inside the module
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.analyzedModuleMixin">
+            <summary>
+            The module that is the context of the analysis
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.currentVisitedMethod">
+            <summary>
+            The method currently visited
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.inSampler">
+            <summary>
+            a flag stating if the visitor visits a sampler
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.currentAssignmentOperatorStatus">
+            <summary>
+            Status of the assignment
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.expandForEachStatements">
+            <summary>
+            A flag for expanding foreach statements
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.#ctor(SiliconStudio.Shaders.Parser.ParsingResult,SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin,System.Collections.Generic.List{SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin})">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis"/> class.
+            </summary>
+            <param name="result">The result</param>
+            <param name="analyzedMixin">the context in which the analysis is set</param>
+            <param name="moduleMixinsInCompilationGroup">the list of all the modules that are not in the inheritance hierarchy of the context</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.RunAnalysis(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin,System.Collections.Generic.List{SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin},System.Boolean)">
+            <summary>
+            Run the analysis
+            </summary>
+            <param name="mixinToAnalyze">the current context (virtual table) from mixin inheritance</param>
+            <param name="compilationContext">List of all the mixin in the compilation context</param>
+            <returns>true if the shader is correct, false otherwise</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.Visit(SiliconStudio.Shaders.Ast.Xenko.ShaderTypeName)">
+            <summary>
+            Visits the specified shader type name.
+            </summary>
+            <param name="shaderTypeName">Name of the type.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.StoreMethod(SiliconStudio.Shaders.Ast.MethodDeclaration)">
+            <summary>
+            Store the method in the correct list
+            </summary>
+            <param name="methodDeclaration"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.CheckParamatersAndReturnType(SiliconStudio.Shaders.Ast.MethodDeclaration)">
+            <summary>
+            Checks that the method does not have mixin as parameter or return type
+            </summary>
+            <param name="methodDeclaration">the method.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.Visit(SiliconStudio.Shaders.Ast.MethodDeclaration)">
+            <summary>
+            Analyse the method declaration and store it in the correct list
+            </summary>
+            <param name="methodDeclaration">The MethodDeclaration</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.Visit(SiliconStudio.Shaders.Ast.MethodDefinition)">
+            <summary>
+            Analyse the method definition and store it in the correct lists (based on storage and stream usage)
+            </summary>
+            <param name="methodDefinition">the MethodDefinition</param>
+            <returns>the input method definition</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.PostMethodDeclarationVisit(SiliconStudio.Shaders.Ast.MethodDeclaration)" -->
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.Visit(SiliconStudio.Shaders.Ast.Variable)">
+            <summary>
+            Visits the specified variable
+            </summary>
+            <param name="variable">The variable</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.FindFinalType(SiliconStudio.Shaders.Ast.TypeBase)">
+            <summary>
+            Find the base type in case of array
+            </summary>
+            <param name="typeBase">the type to explore</param>
+            <returns>the base type</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.Visit(SiliconStudio.Shaders.Ast.Hlsl.Typedef)">
+            <summary>
+            store the Typedef
+            </summary>
+            <param name="typedef">the Typedef</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.Visit(SiliconStudio.Shaders.Ast.Hlsl.Technique)">
+            <summary>
+            Visit a technique, store an error
+            </summary>
+            <param name="technique">the technique</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.CommonVisit(SiliconStudio.Shaders.Ast.MemberReferenceExpression)">
+            <summary>
+            Visits the specified member reference.
+            </summary>
+            <param name="memberReference">The member reference.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.CheckStreamMemberReference(SiliconStudio.Shaders.Ast.MemberReferenceExpression)">
+            <summary>
+            Analyze the stream and store the datas
+            </summary>
+            <param name="memberReference">the MemberReferenceExpression</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.FindMemberTypeReference(SiliconStudio.Shaders.Ast.Xenko.ShaderClassType,SiliconStudio.Shaders.Ast.MemberReferenceExpression)">
+            <summary>
+            Finds the member type reference.
+            </summary>
+            <param name="shaderDecl">Type of the shader</param>
+            <param name="memberReference">The member reference.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.FindDeclarationsFromObject(SiliconStudio.Shaders.Ast.TypeBase,System.String)">
+            <summary>
+            Finds the declaration inside the compositions and calls the base method too
+            </summary>
+            <param name="typeBase">the type of the object</param>
+            <param name="memberName">the name of its member</param>
+            <returns>a collection of all possible members</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.FindDeclarations(System.String)">
+            <summary>
+            Finds a list of declaration by its name.
+            </summary>
+            <param name="name">The name.</param>
+            <returns>A list of declaration</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.Visit(SiliconStudio.Shaders.Ast.MethodInvocationExpression)">
+            <summary>
+            Calls the base method but modify the stream usage beforehand
+            </summary>
+            <param name="expression">the method expression</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.ProcessMethodInvocation(SiliconStudio.Shaders.Ast.MethodInvocationExpression,System.String,System.Collections.Generic.List{SiliconStudio.Shaders.Ast.IDeclaration})">
+            <summary>
+            Analyse the MethodInvocationExpression, link to the base calls, remove "this" from virtual calls, store in the correct list for later analysis
+            </summary>
+            <param name="expression">the method expression</param>
+            <param name="methodName">the method name</param>
+            <param name="declarations">the special declarations</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.TestMethodInvocationArgument(SiliconStudio.Shaders.Ast.TypeBase,SiliconStudio.Shaders.Ast.TypeBase,SiliconStudio.Shaders.Ast.TypeBase,SiliconStudio.Shaders.Ast.TypeBase,System.Int32@)">
+            <summary>
+            Tests the arguments of the method - check streams type here
+            </summary>
+            <param name="argTypeBase">the argument typebase</param>
+            <param name="expectedTypeBase">the expected typebase</param>
+            <param name="argType">the argument type</param>
+            <param name="expectedType">the expected type</param>
+            <param name="score">the score of the overload</param>
+            <returns>true if the overload is correct, false otherwise</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.Visit(SiliconStudio.Shaders.Ast.AssignmentExpression)">
+            <summary>
+            Analyse the AssignmentExpression to correctly infer the potential stream usage
+            </summary>
+            <param name="assignmentExpression">the AssignmentExpression</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.CheckNameConflict(SiliconStudio.Shaders.Ast.VariableReferenceExpression)">
+            <summary>
+            Checks that the name does not bear many meanings
+            </summary>
+            <param name="variableReferenceExpression">the variable reference expression to check to check</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.Visit(SiliconStudio.Shaders.Ast.VariableReferenceExpression)">
+            <summary>
+            Analyse the VariableReferenceExpression, detects streams, propagate type inference, get stored in the correct list for later analysis
+            </summary>
+            <param name="variableReferenceExpression">the VariableReferenceExpression</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.ProcessIndexerExpression(SiliconStudio.Shaders.Ast.IndexerExpression)">
+            <summary>
+            Find the type of the expression
+            </summary>
+            <param name="indexerExpression">the indexer expression</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.Visit(SiliconStudio.Shaders.Ast.Hlsl.InterfaceType)">
+            <summary>
+            Visit an interface to send an error
+            </summary>
+            <param name="interfaceType">the interface.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.Visit(SiliconStudio.Shaders.Ast.StructType)">
+            <summary>
+            Visit a structure and store its definition
+            </summary>
+            <param name="structType">the structure definition</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.Visit(SiliconStudio.Shaders.Ast.GenericType)">
+            <summary>
+            Visit a generic type and test that it has no shader class type
+            </summary>
+            <param name="genericType">the generic type</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.AddToVariablesReference(SiliconStudio.Shaders.Ast.Expression)">
+            <summary>
+            Adds the expression to the reference list of the variable
+            </summary>
+            <param name="expression">the Expression</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.AddToMethodsReferences(SiliconStudio.Shaders.Ast.MethodInvocationExpression)">
+            <summary>
+            Adds the method reference to the list of methods references
+            </summary>
+            <param name="expression">the method reference expression</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.Visit(SiliconStudio.Shaders.Ast.Xenko.ForEachStatement)">
+            <summary>
+            Visits the ForEachStatement Node and collects information from it.
+            </summary>
+            <param name="forEachStatement">The ForEachStatement</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.GetBinaryImplicitConversionType(SiliconStudio.Shaders.Ast.SourceSpan,SiliconStudio.Shaders.Ast.TypeBase,SiliconStudio.Shaders.Ast.TypeBase,System.Boolean)">
+            <summary>
+            Gets the type of the binary implicit conversion.
+            </summary>
+            <param name="span">The span.</param>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <param name="isBinaryOperator">if set to <c>true</c> [is binary operator].</param>
+            <returns>
+            The implicit conversion between between to two types
+            </returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.GetMultiplyImplicitConversionType(SiliconStudio.Shaders.Ast.SourceSpan,SiliconStudio.Shaders.Ast.TypeBase,SiliconStudio.Shaders.Ast.TypeBase)">
+            <summary>
+            Gets the type of the binary implicit conversion.
+            </summary>
+            <param name="span">The span.</param>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The implicit conversion between between to two types</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.GetDivideImplicitConversionType(SiliconStudio.Shaders.Ast.SourceSpan,SiliconStudio.Shaders.Ast.TypeBase,SiliconStudio.Shaders.Ast.TypeBase)">
+            <summary>
+            Gets the type of the binary implicit conversion.
+            </summary>
+            <param name="span">The span.</param>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The implicit conversion between between to two types</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.IsStageInitMember(SiliconStudio.Shaders.Ast.Expression)">
+            <summary>
+            Test if the expression is from a stage nitialized one
+            </summary>
+            <param name="expression">the expression</param>
+            <returns>true if it is the case, false otherwise</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.HasExternQualifier(SiliconStudio.Shaders.Ast.Expression)">
+            <summary>
+            Look for extern qualifier in expression typeinference
+            </summary>
+            <param name="expression">the expression</param>
+            <returns>true if there is a reference to an extern variable</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.IsStreamMember(SiliconStudio.Shaders.Ast.MemberReferenceExpression)">
+            <summary>
+            Checks if expression is a stream
+            </summary>
+            <param name="expression">the Expression</param>
+            <returns>true if it is a stream, false otherwise</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.IsMutableMember(SiliconStudio.Shaders.Ast.MemberReferenceExpression)">
+            <summary>
+            Tests if a MemberReferenceExpression is a reference to a stream from an Input/Output type
+            </summary>
+            <param name="expression">the expression to analyze</param>
+            <returns>true if it is a member of an Input/Output type</returns>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Mixins.MixinVirtualTable.Methods">
+            <summary>
+            List of all declared methods
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Mixins.MixinVirtualTable.Variables">
+            <summary>
+            List of all declared Variables
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Mixins.MixinVirtualTable.StructureTypes">
+            <summary>
+            List of all the structure definitions
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Mixins.MixinVirtualTable.Typedefs">
+            <summary>
+            List of all the Typedefs
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.MixinVirtualTable.MergeWithLocalVirtualTable(SiliconStudio.Xenko.Shaders.Parser.Mixins.MixinVirtualTable,System.String,SiliconStudio.Shaders.Utility.LoggerResult)">
+            <summary>
+            Merge with a local virtual table =  need to check override keywords
+            </summary>
+            <param name="virtualTable">the virtual table to add</param>
+            <param name="mixinName">the name of the mixin</param>
+            <param name="log">the error logger</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.MixinVirtualTable.CheckNameConflict(SiliconStudio.Xenko.Shaders.Parser.Mixins.MixinVirtualTable,SiliconStudio.Shaders.Utility.LoggerResult)">
+            <summary>
+            Check the name conflict between the two virtual tables
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.MixinName">
+            <summary>
+            The name of the mixin
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.MixinGenericName">
+            <summary>
+            The name of the mixin
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.Shader">
+            <summary>
+            The shader AST
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.LocalVirtualTable">
+            <summary>
+            the virtual table before inheritance
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.VirtualTable">
+            <summary>
+            the virtual table after inheritance
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.RemainingNodes">
+            <summary>
+            List of all the other declarations
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.BaseMixins">
+            <summary>
+            List of all the base mixins
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.InheritanceList">
+            <summary>
+            List of all the classes dependencies
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.MinimalContext">
+            <summary>
+            List of all the needed mixins to perform semantic analysis
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.VariableDependencies">
+            <summary>
+            List of all the variables dependencies
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.StageInitVariableDependencies">
+            <summary>
+            List of all the variable that are initialized at "stage"
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.ClassReferences">
+            <summary>
+            Current class member references
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.StaticReferences">
+            <summary>
+            Static references
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.ExternReferences">
+            <summary>
+            Static references
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.StageInitReferences">
+            <summary>
+            References through stage init variables
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.ParsingInfo">
+            <summary>
+            The result of the parsing
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.OccurrenceId">
+            <summary>
+            Occurrence ID in the inheritance tree
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.PotentialConflictingVariables">
+            <summary>
+            List of variables that share their name i.e. potential conflicting variables
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.PotentialConflictingMethods">
+            <summary>
+            List of methods that share their signature i.e. potential conflicting methods
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.StageOnlyClass">
+            <summary>
+            A boolean stating that all the members are stage
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.DependenciesStatus">
+            <summary>
+            A flag to state if the mixin dependencies has been analyzed yet
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.TypeAnalysisStatus">
+            <summary>
+            A flag to state if the mixin type analysis was performed.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.ModuleMixinBuildStatus">
+            <summary>
+            A flag to state if the module mixin was built.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.VirtualTableStatus">
+            <summary>
+            A flag to state if the mixin virtual table was created
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.SemanticAnalysisStatus">
+            <summary>
+            A flag to state if the mixin semantic analysis was performed
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.SetShaderAst(SiliconStudio.Shaders.Ast.Xenko.ShaderClassType)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="shader">the shader AST</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.FindMethod(SiliconStudio.Shaders.Ast.MethodInvocationExpression)">
+            <summary>
+            Finds the method in the mixin
+            </summary>
+            <param name="expression">>The expression of the method reference</param>
+            <returns>a collection of the base methods if found</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.FindTopThisFunction(SiliconStudio.Shaders.Ast.MethodInvocationExpression)">
+            <summary>
+            Finds the top method - /!\ this is a hack because the mixin may not be analyzed yet /!\
+            </summary>
+            <param name="expression">The expression of the method reference</param>
+            <returns>The base method if found</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.FindVariableByName(System.String)">
+            <summary>
+            Finds the same variable in the ModuleMixin
+            </summary>
+            <param name="variableName">the variable name</param>
+            <returns>the variable declaration if found</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.FindAllVariablesByName(System.String)">
+            <summary>
+            Find all the variables with this name
+            </summary>
+            <param name="variableName">the name of the variable</param>
+            <returns>A list of all the variables</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.GetMethodFromDeclaration(SiliconStudio.Shaders.Ast.MethodDeclaration)">
+            <summary>
+            Get the overloaded method from one of its base declaration
+            </summary>
+            <param name="methodDeclaration">the MethodDeclaration</param>
+            <returns>the overloaded MethodDeclaration</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.GetMethodFromExpression(SiliconStudio.Shaders.Ast.Expression)">
+            <summary>
+            Get the overloaded method from its call
+            </summary>
+            <param name="expression">the calling Expression</param>
+            <returns>the overloaded MethodDeclaration</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.GetBaseMethodFromExpression(SiliconStudio.Shaders.Ast.Expression,SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin)">
+            <summary>
+            Get the base MethodDeclaration from its call and the mixin where the call is performed
+            </summary>
+            <param name="expression">the calling expression</param>
+            <param name="mixin">the mixin where the call is performed</param>
+            <returns>the base MethodDeclaration</returns>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Shaders.Parser.Mixins.AnalysisStatus">
+            <summary>
+            A status needed to analyze the mixin in the correct order within a compilation module
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo.mixinName">
+            <summary>
+            The name of the mixin
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo.mixinAst">
+            <summary>
+            The ShaderClassType
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo.ShaderSource">
+            <summary>
+            The ShaderClassSource to load
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo.MixinName">
+            <summary>
+            The name of the mixin (property)
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo.MixinGenericName">
+            <summary>
+            The name of the mixin with its hashed code (property)
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo.Log">
+            <summary>
+            The log stored by this mixin info.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo.MixinAst">
+            <summary>
+            The ShaderClassType (property)
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo.IsShaderClass(System.String)">
+            <summary>
+            Tests if this instance is a <see cref="T:SiliconStudio.Xenko.Shaders.ShaderClassSource"/> of the specified type name 
+            </summary>
+            <param name="typeName">The type name to test</param>
+            <returns><c>true</c> if same type name</returns>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo.Mixin">
+            <summary>
+            The ModuleMixin
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo.Instanciated">
+            <summary>
+            A flag stating that the mixin is instanciated
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo.ReplacementChecked">
+            <summary>
+            a flag checking that the check for replacement has be done
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo.SourceHash">
+            <summary>
+            the source hash
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo.HashPreprocessSource">
+            <summary>
+            the SHA1 hash of the source
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo.Macros">
+            <summary>
+            The macros used for this mixin
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo.MinimalContext">
+            <summary>
+            the list of all the necessary MixinInfos to compile the shader
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo.CleanIdentifiers(System.Collections.Generic.List{SiliconStudio.Shaders.Ast.Identifier})">
+            <summary>
+            Cleans the identifiers (i.e. make them use the minimal string)
+            </summary>
+            <param name="genList">The list of identifier</param>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoAssignmentCloner">
+            <summary>
+            Class used to clone an expression without the references it may contain
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoReplaceAppend.appendMethodsList">
+            <summary>
+            List of append methods
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoReplaceAppend.outputStatements">
+            <summary>
+            List of output statements replacing the append method
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoReplaceAppend.outputVre">
+            <summary>
+            Variable replacing the stream in the append function
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoReplaceExtern.VariableToReplace">
+            <summary>
+            The variable to replace
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoReplaceExtern.IndexerReplacement">
+            <summary>
+            the expression that will replace the variable
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoReplaceVisitor">
+            <summary>
+            Class to replace a node by another in an AST
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoReplaceVisitor.nodeToReplace">
+            <summary>
+            The node to replace
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoReplaceVisitor.replacementNode">
+            <summary>
+            the replacement node
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoReplaceVisitor.complete">
+            <summary>
+            a boolean stating that the operation is complete
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderLibrary.MixinInfos">
+            <summary>
+            List of all the mixin infos
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderLibrary.ShaderLoader">
+            <summary>
+            Load function
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderLibrary.ErrorWarningLog">
+            <summary>
+            Log of all the warnings and errors
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderLibrary.SourceHashes">
+            <summary>
+            The source hashes
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderLibrary.mapMacrosToMixins">
+            <summary>
+            List of contexts per macros
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderLibrary.LoadShaderSource(SiliconStudio.Xenko.Shaders.ShaderSource,SiliconStudio.Shaders.Parser.ShaderMacro[])">
+            <summary>
+            Explore the ShaderSource and add the necessary shaders
+            </summary>
+            <param name="shaderSource">the ShaderSource to explore</param>
+            <param name="macros">the macros used</param>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderLibrary.DeleteObsoleteCache(System.Collections.Generic.HashSet{System.String})">
+            <summary>
+            Deletes the shader cache for the specified shaders.
+            </summary>
+            <param name="modifiedShaders">The modified shaders.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderLibrary.ExtendLibrary(SiliconStudio.Xenko.Shaders.ShaderSource,SiliconStudio.Shaders.Parser.ShaderMacro[],System.Collections.Generic.HashSet{SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo})">
+            <summary>
+            Explore the ShaderSource and add the necessary shaders
+            </summary>
+            <param name="shaderSource">the ShaderSource to explore</param>
+            <param name="macros">the macros used</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderLibrary.GetModuleMixinInfo(SiliconStudio.Xenko.Shaders.ShaderSource,SiliconStudio.Shaders.Parser.ShaderMacro[],System.String)">
+            <summary>
+            Get the ModuleMixinInfo based on the ShaderSource and the macros. Creates the needed shader if necessary
+            </summary>
+            <param name="shaderSource">the ShaderSource</param>
+            <param name="macros">the macros</param>
+            <param name="macrosString">the name of the macros</param>
+            <returns>ModuleMixinInfo.</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderLibrary.ReplaceMixins(System.Collections.Generic.HashSet{SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo})">
+            <summary>
+            Replace the mixins
+            </summary>
+            <param name="mixinInfos">the mixins to verify</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderLibrary.CheckMixinForReplacement(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo)">
+            <summary>
+            Check if a previously analyzed instance of the shader can be used
+            </summary>
+            <param name="mixinInfo">the ModuleMixinInfo</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderLibrary.BuildMixinInfo(SiliconStudio.Xenko.Shaders.ShaderSource,SiliconStudio.Shaders.Parser.ShaderMacro[])">
+            <summary>
+            Build the ModuleMixinInfo class
+            </summary>
+            <param name="shaderSource">the ShaderSource to load</param>
+            <param name="macros">the macros applied on the source</param>
+            <returns>the ModuleMixinInfo</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderLibrary.LoadMixinFromClassSource(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo)">
+            <summary>
+            Loads the mixin based on its ShaderSource
+            </summary>
+            <param name="mixinInfo">the ModuleMixinInfo</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderLibrary.LoadNecessaryShaders(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo,SiliconStudio.Shaders.Parser.ShaderMacro[],System.String)">
+            <summary>
+            Loads generic classes that may appear in the mixin
+            </summary>
+            <param name="mixinInfo">The mixin to investigate</param>
+            <param name="macros">The macros.</param>
+            <param name="macrosString">The macros string.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderLibrary.BuildShaderGenericParameters(SiliconStudio.Shaders.Ast.Hlsl.IdentifierGeneric)">
+            <summary>
+            Build the array of generic parameters
+            </summary>
+            <param name="genericClass">the shader with its generics</param>
+            <returns>the array of generic parameters</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderLibrary.GetIdentifierName(SiliconStudio.Shaders.Ast.Identifier)">
+            <summary>
+            Helper function to get the complete name of an identifier
+            </summary>
+            <param name="identifier">the identifier</param>
+            <returns>the identifier name</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderLibrary.MergeMacroSets(SiliconStudio.Xenko.Shaders.ShaderMixinSource,SiliconStudio.Shaders.Parser.ShaderMacro[])">
+            <summary>
+            Merge the set of macros in the mixin. The top level macros are always overidden by the child's ones (the one defined in the current ShaderMixinSource).
+            Also update the macros of the mixin.
+            </summary>
+            <param name="mixin">The mixin that will be looked at with the macros.</param>
+            <param name="macros">The external macros.</param>
+            <returns>An array with all the macros</returns>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.MixedShader">
+            <summary>
+            The final shader
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.log">
+            <summary>
+            Log of all the warnings and errors
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.mainModuleMixin">
+            <summary>
+            the module to generate
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.CompositionsPerVariable">
+            <summary>
+            the extern modules
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.StageMethodInheritance">
+            <summary>
+            List of all the method Declaration
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.MixinInheritance">
+            <summary>
+            Ordered list of all the mixin in their appearance order
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.mixContext">
+            <summary>
+            Dictionary of all the mixins used for this compilation
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.defaultCloneContext">
+            <summary>
+            The default clone context
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.#ctor(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin,SiliconStudio.Xenko.Shaders.Parser.ShaderMixinParsingResult,System.Collections.Generic.Dictionary{System.String,SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin},SiliconStudio.Xenko.Shaders.Parser.Mixins.CompositionDictionary,SiliconStudio.Shaders.Ast.CloneContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="moduleMixin">the final shader information</param>
+            <param name="log">The log.</param>
+            <param name="context">all the mixins in the context</param>
+            <param name="compositionsPerVariable">The compositions per variable.</param>
+            <param name="cloneContext">The clone context.</param>
+            <exception cref="T:System.ArgumentNullException">
+            moduleMixin
+            or
+            log
+            or
+            context
+            </exception>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.Mix">
+            <summary>
+            Performs the mix
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.AddDefaultCompositions(System.Collections.Generic.Stack{SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin})">
+            <summary>
+            Add default compositions if no already present
+            </summary>
+            <param name="mixinsToAnalyze">the remaining mixins to analyzez</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.RedoSematicAnalysis">
+            <summary>
+            performs semantic analysis on mixin that have composition arrays
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.CreateReferencesStructures">
+            <summary>
+            Create the references for each top mixin
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.CreateReferencesStructures(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin)">
+            <summary>
+            Merge reference from mixin dependencies
+            </summary>
+            <param name="mixin"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.GetStaticReferences(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin,SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin)">
+            <summary>
+            bubble up the static references in the mixin dependency tree
+            </summary>
+            <param name="topMixin">the top mixin</param>
+            <param name="staticMixin">the mixin to look into</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.LinkVariables(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin,System.String,System.Collections.Generic.List{SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin})">
+            <summary>
+            Rename the links of the variables
+            </summary>
+            <param name="mixin">the current mixin</param>
+            <param name="context">the string to append</param>
+            <param name="visitedMixins">list of already visited mixin</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.MergeReferences">
+            <summary>
+            Merge the class references of the externs to the main class, and the static calls too
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.AddStageVariables(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin)">
+            <summary>
+            Add the stage variables from the mixin to the main one
+            </summary>
+            <param name="mixin">the ModuleMixin</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.BuildMixinInheritance(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin)">
+            <summary>
+            Build an ordered list of mixin defining the inheritance for stage values
+            </summary>
+            <param name="mixin">the mixin to add</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.ComputeMixinOccurrence">
+            <summary>
+            Compute the occurrence Id of each mixin
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.FindVariable(SiliconStudio.Shaders.Ast.Expression,SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin@)">
+            <summary>
+            Find the correct variable inference
+            </summary>
+            <param name="expression"></param>
+            <param name="mixin"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.BuildStageInheritance">
+            <summary>
+            Build inheritance list for methods
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.InsertStageMethods(System.Collections.Generic.List{SiliconStudio.Shaders.Ast.MethodDeclaration},SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin)">
+            <summary>
+            Adds le methods in the list to the inheritance list
+            </summary>
+            <param name="extMethodList">the list of methods</param>
+            <param name="mixin">the mixin in which the methods are defined</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.AddToMethodsReferences(SiliconStudio.Shaders.Ast.MethodInvocationExpression)">
+            <summary>
+            Add the method to its correct dictionary
+            </summary>
+            <param name="expression"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.RemoveFromMethodsReferences(SiliconStudio.Shaders.Ast.MethodInvocationExpression,SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin)">
+            <summary>
+            Remove the method from the correctdictionary
+            </summary>
+            <param name="expression"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.GetTopMixin(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin)">
+            <summary>
+            Find the mixin in which the parameter is a dependency
+            </summary>
+            <param name="mixin">the mixin</param>
+            <returns>the mixin that depends on the parameter</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.FindStaticMethod(SiliconStudio.Shaders.Ast.MethodInvocationExpression)">
+            <summary>
+            Find a static method
+            </summary>
+            <param name="expression">the calling expression</param>
+            <returns>the correct called method</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.GetBaseStageMethod(SiliconStudio.Shaders.Ast.MethodInvocationExpression)">
+            <summary>
+            Gets the base stage method
+            </summary>
+            <param name="methodCall">the reference expression</param>
+            <returns>the base declaration</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.GetThisStageMethod(SiliconStudio.Shaders.Ast.MethodInvocationExpression)">
+            <summary>
+            Gets the last override of the method
+            </summary>
+            <param name="methodCall">the method call</param>
+            <returns>the declaration</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.PatchAllMethodInferences(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin)">
+            <summary>
+            Solves both base and direct method calls
+            </summary>
+            <param name="mixin"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.InferStageVariables(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin)">
+            <summary>
+            Rebranch the type inference for the stage variable reference in the extern
+            </summary>
+            <param name="externMix"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.ProcessExternReferences(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin)">
+            <summary>
+            Inference for extern calls
+            </summary>
+            <param name="mixin"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.ProcessStageInitReferences(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin)">
+            <summary>
+            Redo type inference for stage init variables
+            </summary>
+            <param name="moduleMixin">the module mixin to analyze</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.ProcessExterns">
+            <summary>
+            Relink stage references, extern references, merge static references from externs
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.RenameAllVariables">
+            <summary>
+            Rename all the variables
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.RenameAllVariables(SiliconStudio.Xenko.Shaders.Parser.Mixins.ReferencesPool,System.Int32@)">
+            <summary>
+            Rename all the variables and their references based on the id
+            </summary>
+            <param name="references">the pool to rename</param>
+            <param name="id">the id used to build the new name</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.RenameAllMethods(SiliconStudio.Xenko.Shaders.Parser.Mixins.ReferencesPool,System.Collections.Generic.HashSet{SiliconStudio.Shaders.Ast.MethodDefinition},System.Int32@)">
+            <summary>
+            Rename the methods and their references
+            </summary>
+            <param name="references">the pool to rename</param>
+            <param name="id">the id used to build the new name</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.RenameAllMethods">
+            <summary>
+            Rename all the methods
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.FindEntryPoint(System.String)">
+            <summary>
+            Finds all the function with the name
+            </summary>
+            <param name="name">the name of the function</param>
+            <returns>a collection of all the functions with that name, correctly ordered</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.GenerateShader">
+            <summary>
+            Creates a new AST with all the definitions
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.RemoveUselessVariables">
+            <summary>
+            Remove useless variables
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.IsOutOfCBufferVariable(SiliconStudio.Shaders.Ast.Variable)">
+            <summary>
+            Test if the variable should be in a constant buffer
+            </summary>
+            <param name="variable">the variable</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.KeepVariableInCBuffer(SiliconStudio.Shaders.Ast.Variable)">
+            <summary>
+            Test if the variable should be in a constant buffer
+            </summary>
+            <param name="variable">the variable</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.MergeSameSemanticVariables(System.Collections.Generic.List{SiliconStudio.Shaders.Ast.Variable})">
+            <summary>
+            Merge all the variables with the same semantic and rename them (but typeinference is not correct)
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.MergeReferenceVariables(System.Collections.Generic.List{SiliconStudio.Shaders.Ast.Variable})">
+            <summary>
+            Merge variables that are references of another one
+            </summary>
+            <param name="variables"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.ExpandForEachStatements(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin)">
+            <summary>
+            Replaces the ForEachStatements in the mixin by ForStatements
+            </summary>
+            <param name="mixin">the mixin</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.ExpandForEachStatement(SiliconStudio.Shaders.Ast.Xenko.ForEachStatement)">
+            <summary>
+            Creates a ForStatement with the same behavior
+            </summary>
+            <param name="forEachStatement">the ForEachStatement</param>
+            <returns>the ForStatement</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.ReplaceMemberReferenceExpressionByVariableReferenceExpression(SiliconStudio.Shaders.Ast.MemberReferenceExpression,SiliconStudio.Shaders.Ast.VariableReferenceExpression,SiliconStudio.Shaders.Ast.Node)">
+            <summary>
+            Replace a MemberReferenceExpression by a VariableReferenceExpression in the AST
+            </summary>
+            <param name="memberReferenceExpression">the member reference expression.</param>
+            <param name="variableReferenceExpression">the variable reference expression.</param>
+            <param name="parentNode">the parent node.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.AreSameSemantics(System.String,System.String)">
+            <summary>
+            Compare the semantics
+            </summary>
+            <param name="sem0"></param>
+            <param name="sem1"></param>
+            <returns></returns>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamAnalyzer.currentStreamUsage">
+            <summary>
+            Current stream usage
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamAnalyzer.currentStreamUsageList">
+            <summary>
+            List of stream usage
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamAnalyzer.alreadyAddedMethodsList">
+            <summary>
+            List of already added methods.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamAnalyzer.currentAssignmentOperatorStatus">
+            <summary>
+            Status of the assignment
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamAnalyzer.errorWarningLog">
+            <summary>
+            Log of all the warnings and errors
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamAnalyzer.shaderName">
+            <summary>
+            Name of the shader
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamAnalyzer.StreamAssignations">
+            <summary>
+            List of assignations in the form of "streams = ...;"
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamAnalyzer.AssignationsToStream">
+            <summary>
+            List of assignations in the form of "... = streams;"
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamAnalyzer.VariableStreamsAssignment">
+            <summary>
+            List of assignations in the form of "StreamType backup = streams;"
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamAnalyzer.StreamsUsageByMethodDefinition">
+            <summary>
+            streams usage by method
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamAnalyzer.AppendMethodCalls">
+            <summary>
+            A list containing all the "streams" Variable references
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamAnalyzer.Visit(SiliconStudio.Shaders.Ast.MethodDefinition)">
+            <summary>
+            Analyse the method definition and store it in the correct lists (based on storage and stream usage)
+            </summary>
+            <param name="methodDefinition">the MethodDefinition</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamAnalyzer.Visit(SiliconStudio.Shaders.Ast.MethodInvocationExpression)">
+            <summary>
+            Calls the base method but modify the stream usage beforehand
+            </summary>
+            <param name="expression">the method expression</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamAnalyzer.Visit(SiliconStudio.Shaders.Ast.VariableReferenceExpression)">
+            <summary>
+            Analyse the VariableReferenceExpression, detects streams, propagate type inference, get stored in the correct list for later analysis
+            </summary>
+            <param name="variableReferenceExpression">the VariableReferenceExpression</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamAnalyzer.Visit(SiliconStudio.Shaders.Ast.AssignmentExpression)">
+            <summary>
+            Analyse the AssignmentExpression to correctly infer the potential stream usage
+            </summary>
+            <param name="assignmentExpression">the AssignmentExpression</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamAnalyzer.AddStreamUsage(SiliconStudio.Shaders.Ast.Variable,SiliconStudio.Shaders.Ast.Expression,SiliconStudio.Xenko.Shaders.Parser.Mixins.StreamUsage)">
+            <summary>
+            Adds a stream usage to the current method
+            </summary>
+            <param name="variable">the stream Variable</param>
+            <param name="expression">the calling expression</param>
+            <param name="usage">the encountered usage</param>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.StreamUsage.Partial">
+            <summary>
+            Not all the components of the variable have been read/written
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.shader">
+            <summary>
+            The shader
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.mainModuleMixin">
+            <summary>
+            the main ModuleMixin corresonding to the shader
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.mixinInheritance">
+            <summary>
+            Ordered list of all the mixin in their appearance order
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.entryPointMethods">
+            <summary>
+            the entry points of the shader
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.streamsUsages">
+            <summary>
+            All the streams usages
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.methodsPerShaderStage">
+            <summary>
+            List of methods that need streams structure.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.streamAnalyzer">
+            <summary>
+            Stream analyzer
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.parsingResult">
+            <summary>
+            the error logger
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.RemoveUselessAndSortMethods">
+            <summary>
+            Sort the methods based on their calls
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.BuildOrderedMethodUsageList(System.Collections.Generic.HashSet{SiliconStudio.Shaders.Ast.MethodDeclaration},System.Collections.Generic.Dictionary{SiliconStudio.Shaders.Ast.MethodDeclaration,System.Int32})">
+            <summary>
+            Recursively create a list of all the methods that are exclusively used from the start ones
+            </summary>
+            <param name="startList">the list of starting methods</param>
+            <param name="methodReferenceCounter">all the methods</param>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.FindEntryPoint(System.String)">
+            <summary>
+            Finds all the function with the name
+            </summary>
+            <param name="name">the name of the function</param>
+            <returns>a collection of all the functions with that name, correctly ordered</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.StreamAnalysisPerShader(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin,SiliconStudio.Shaders.Ast.MethodDeclaration,SiliconStudio.Xenko.Shaders.Parser.Mixins.XkShaderStage)">
+            <summary>
+            Get the streams usage for this entrypoint
+            </summary>
+            <param name="moduleMixin">the current module mixin</param>
+            <param name="entryPoint">the entrypoint method</param>
+            <returns>a StreamStageUsage containing the streams usages</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.FindStreamsUsage(SiliconStudio.Shaders.Ast.MethodDeclaration,System.Collections.Generic.List{SiliconStudio.Shaders.Ast.IDeclaration},System.Collections.Generic.List{SiliconStudio.Shaders.Ast.IDeclaration},System.Collections.Generic.List{SiliconStudio.Shaders.Ast.MethodDeclaration})">
+            <summary>
+            Finds the usage of the streams
+            </summary>
+            <param name="currentMethod">the current method</param>
+            <param name="inStreamList">list of in-streams</param>
+            <param name="outStreamList">list of out-streams</param>
+            <param name="visitedMethods">list of already visited methods</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.BubbleUpStreamUsages(System.Collections.Generic.List{SiliconStudio.Xenko.Shaders.Parser.Mixins.StreamStageUsage})">
+            <summary>
+            Pass the stream usage accros the stages.
+            </summary>
+            <param name="streamStageUsages">the ordered stream usage list</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.ComputeShaderStreamAnalysis(SiliconStudio.Xenko.Shaders.Parser.Mixins.StreamStageUsage)">
+            <summary>
+            Organize the streams for the compute shader
+            </summary>
+            <param name="streamStageUsage">the StreamStageUsage of the compute stage</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.GenerateStreams(SiliconStudio.Shaders.Ast.MethodDefinition,SiliconStudio.Xenko.Shaders.Parser.Mixins.StreamStageUsage,System.String,SiliconStudio.Shaders.Ast.StructType,System.Boolean)">
+            <summary>
+            Generates a stream structure and add them to the Ast
+            </summary>
+            <param name="entryPoint">the entrypoint function</param>
+            <param name="streamStageUsage">the stream usage in this stage</param>
+            <param name="stageName">the name of the stage</param>
+            <param name="prevOuputStructure">the output structutre from the previous stage</param>
+            <returns>the new output structure</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.GenerateStreamsWithSpecialDataInput(SiliconStudio.Shaders.Ast.MethodDefinition,SiliconStudio.Xenko.Shaders.Parser.Mixins.StreamStageUsage,System.String,SiliconStudio.Shaders.Ast.StructType)">
+            <summary>
+            Generates a stream structure and add them to the Ast - for the geometry shader
+            </summary>
+            <param name="entryPoint">the entrypoint function</param>
+            <param name="streamStageUsage">the stream usage in this stage</param>
+            <param name="stageName">the name of the stage</param>
+            <param name="prevOuputStructure">the output structutre from the previous stage</param>
+            <returns>the new output structure</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.ReplaceAppendMethod(SiliconStudio.Shaders.Ast.MethodDefinition,SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoReplaceAppend)">
+            <summary>
+            Replace the append methods
+            </summary>
+            <param name="entryPoint">the entrypoint method</param>
+            <param name="replacor">the visitor</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.GenerateStreamsForHullShader(SiliconStudio.Shaders.Ast.MethodDefinition,SiliconStudio.Shaders.Ast.MethodDefinition,SiliconStudio.Xenko.Shaders.Parser.Mixins.StreamStageUsage,System.String,SiliconStudio.Shaders.Ast.StructType)">
+            <summary>
+            Generates a stream structure and add them to the Ast - for the hull shader and hull shader constant
+            </summary>
+            <param name="entryPoint">the entrypoint function</param>
+            <param name="entryPointHSConstant">entrypoint for the hull shader constant</param>
+            <param name="streamStageUsage">the stream usage in this stage</param>
+            <param name="stageName">the name of the stage</param>
+            <param name="prevOuputStructure">the output structutre from the previous stage</param>
+            <returns>the new output structure</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.GenerateStreamsForHullShaderConstant(SiliconStudio.Shaders.Ast.MethodDefinition,SiliconStudio.Shaders.Ast.TypeName,SiliconStudio.Shaders.Ast.TypeName)">
+            <summary>
+            Modify the Hull shader constant
+            </summary>
+            <param name="entryPoint">the entrypoint method</param>
+            <param name="inStreamStructTypeName">the input structure of the Hull shader</param>
+            <param name="outStreamStructTypeName">the output structure of the Hull shader</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.GenerateStreamsForDomainShader(SiliconStudio.Shaders.Ast.MethodDefinition,SiliconStudio.Xenko.Shaders.Parser.Mixins.StreamStageUsage,System.String,SiliconStudio.Shaders.Ast.StructType)">
+            <summary>
+            Generates a stream structure and add them to the Ast - for the domain shader
+            </summary>
+            <param name="entryPoint">the entrypoint function</param>
+            <param name="streamStageUsage">the stream usage in this stage</param>
+            <param name="stageName">the name of the stage</param>
+            <param name="prevOuputStructure">the output structutre from the previous stage</param>
+            <returns>the new output structure</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.PropagateStreamsParameter(SiliconStudio.Shaders.Ast.MethodDefinition,SiliconStudio.Shaders.Ast.StructType,SiliconStudio.Shaders.Ast.StructType,SiliconStudio.Shaders.Ast.StructType,System.Collections.Generic.HashSet{SiliconStudio.Shaders.Ast.MethodDeclaration},System.Collections.Generic.List{SiliconStudio.Shaders.Ast.MethodDeclaration})">
+            <summary>
+            Checks if a function needs to have a stream strucutre added in its declaration
+            </summary>
+            <param name="methodDefinition">the method definition</param>
+            <param name="inputStream">The stage input structure stream.</param>
+            <param name="intermediateStream">the stream structure</param>
+            <param name="outputStream">The stage output stream structure.</param>
+            <param name="visitedMethods">the list of already visited methods</param>
+            <param name="methodsWithStreams">The list of methods that have a streams argument.</param>
+            <returns>true if needed, false otherwise</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.TransformStreamsAssignments(SiliconStudio.Shaders.Ast.MethodDefinition,SiliconStudio.Shaders.Ast.StructType,SiliconStudio.Shaders.Ast.StructType,SiliconStudio.Shaders.Ast.StructType)">
+            <summary>
+            Transform stream assignments with correct input/ouput structures
+            </summary>
+            <param name="methodDefinition">the current method</param>
+            <param name="inputStreamStruct">the input structure of the stage</param>
+            <param name="intermediateStreamStruct">the intermediate structure of the stage</param>
+            <param name="outputStreamStruct">the output structure of the stage</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.SearchExpressionStatement(SiliconStudio.Shaders.Ast.StatementList,SiliconStudio.Shaders.Ast.Expression)">
+            <summary>
+            Search a statement in method.
+            </summary>
+            <param name="statementList">The statement list.</param>
+            <param name="expression">The expression.</param>
+            <returns>The index of the statement in the statement list.</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.RecursiveRename(SiliconStudio.Shaders.Ast.MethodDeclaration,SiliconStudio.Shaders.Ast.TypeName,SiliconStudio.Shaders.Ast.TypeName,SiliconStudio.Shaders.Ast.TypeName,SiliconStudio.Shaders.Ast.TypeName,System.Collections.Generic.Stack{SiliconStudio.Shaders.Ast.MethodDeclaration})">
+            <summary>
+            Recursively rename the input/output types
+            </summary>
+            <param name="methodDeclaration">the method to explore</param>
+            <param name="inputName">the TypeName for Input</param>
+            <param name="input2Name">the TypeName for Input2</param>
+            <param name="outputName">the TypeName for Output</param>
+            <param name="constantsName">the TypeName for Constants</param>
+            <param name="visitedMethods">the already visited methods</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.TryGetMethodCalls(SiliconStudio.Shaders.Ast.MethodDeclaration,System.Collections.Generic.List{SiliconStudio.Shaders.Ast.MethodDeclaration}@)">
+            <summary>
+            Get all the calls from the current method
+            </summary>
+            <param name="currentMethod">the current method</param>
+            <param name="calledMethods">list of method called</param>
+            <returns>true if calls were found</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.RenameInputOutput(SiliconStudio.Shaders.Ast.MethodDeclaration,SiliconStudio.Shaders.Ast.TypeName,SiliconStudio.Shaders.Ast.TypeName,SiliconStudio.Shaders.Ast.TypeName,SiliconStudio.Shaders.Ast.TypeName)">
+            <summary>
+            rename the input/ouput of a method
+            </summary>
+            <param name="methodDeclaration">the method</param>
+            <param name="inputName">the type replacement for Input</param>
+            <param name="input2Name">the type replacement for Input2</param>
+            <param name="outputName">the type replacement for Output</param>
+            <param name="constantsName">the type replacement for Constants</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.CheckCrossStageMethodCall(SiliconStudio.Xenko.Shaders.Parser.Mixins.XkShaderStage,System.Collections.Generic.List{SiliconStudio.Shaders.Ast.MethodDeclaration})">
+            <summary>
+            Check that methods with streams are not called across several stages.
+            </summary>
+            <param name="shaderStage">The current shader stage to check.</param>
+            <param name="methodsWithStreams">The list of methods that need streams in that stage.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.AssignStreamFromInput(SiliconStudio.Shaders.Ast.StructType,System.String,SiliconStudio.Shaders.Ast.StructType,SiliconStudio.Shaders.Ast.Expression,System.Boolean)">
+            <summary>
+            Creates assignement statements with its default value
+            </summary>
+            <param name="streamStruct">the stream structure</param>
+            <param name="streamName">the name of the stream</param>
+            <param name="inputStruct">the input structure</param>
+            <param name="initialValue">the initial value</param>
+            <param name="scopeStack">???</param>
+            <returns>A collection of statements</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.AssignOutputFromStream(SiliconStudio.Shaders.Ast.StructType,System.String,SiliconStudio.Shaders.Ast.StructType,System.String)">
+            <summary>
+            Creates assignement statements with its default value
+            </summary>
+            <param name="outputStruct">the output structure</param>
+            <param name="outputName">the name of the output stream</param>
+            <param name="streamStruct">the stream structure</param>
+            <param name="streamName">the name of the stream</param>
+            <returns>a collection of statements</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.CreateStreamFromInput(SiliconStudio.Shaders.Ast.StructType,System.String,SiliconStudio.Shaders.Ast.StructType,SiliconStudio.Shaders.Ast.Expression,System.Boolean)">
+            <summary>
+            Creates a stream structure and assign its default values
+            </summary>
+            <param name="streamStruct">the structure</param>
+            <param name="streamName">the name of the stream</param>
+            <param name="inputStruct">the inputStructure</param>
+            <param name="initialValue">the initial value of the struture</param>
+            <param name="scopeStack">???</param>
+            <returns>a collection of statements to insert in the body of a method</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.CreateOutputFromStream(SiliconStudio.Shaders.Ast.StructType,System.String,SiliconStudio.Shaders.Ast.StructType,System.String)">
+            <summary>
+            Creates an output stream structure and assign its default values
+            </summary>
+            <param name="outputStruct">the structuer</param>
+            <param name="outputName">the name of the structure</param>
+            <param name="streamStruct">>the initial value of the struture</param>
+            <param name="streamName">the name of the stream</param>
+            <returns>a collection of statements to insert in the body of a method</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.CreateStreamStructure(System.Collections.Generic.List{SiliconStudio.Shaders.Ast.IDeclaration},System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Generate a stream structure
+            </summary>
+            <param name="streamsDeclarationList">the list of the declarations</param>
+            <param name="structName">the name of the structure</param>
+            <returns>the structure</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.CreateIntermediateStructType(SiliconStudio.Xenko.Shaders.Parser.Mixins.StreamStageUsage,System.String)">
+            <summary>
+            Creates an intermediate structure given the stream usage
+            </summary>
+            <param name="streamStageUsage">the StreamStageUsage</param>
+            <param name="stageName">the name of the stage</param>
+            <returns>the intermediate stream structure</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoStreamCreator.CreateStructInit(SiliconStudio.Shaders.Ast.StructType,System.String)">
+            <summary>
+            Creates an declaration for this structure
+            </summary>
+            <param name="structType">the structure</param>
+            <param name="structVarName">the name of the variable</param>
+            <returns>the declaration statement</returns>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Mixins.ReferencesPool.VariablesReferences">
+            <summary>
+            List of all the variable references
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Mixins.ReferencesPool.MethodsReferences">
+            <summary>
+            List of all the variable references
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ReferencesPool.Merge(SiliconStudio.Xenko.Shaders.Parser.Mixins.ReferencesPool)">
+            <summary>
+            Merge the argument references into this one
+            </summary>
+            <param name="pool">the ReferencePool</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ReferencesPool.RegenKeys">
+            <summary>
+            Regen the keys bacause they could have been modified
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ReferencesPool.InsertVariable(SiliconStudio.Shaders.Ast.Variable,SiliconStudio.Xenko.Shaders.Parser.Analysis.ExpressionNodeCouple)">
+            <summary>
+            Insert a variable reference
+            </summary>
+            <param name="variable">the variable</param>
+            <param name="expression">the reference</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ReferencesPool.InsertMethod(SiliconStudio.Shaders.Ast.MethodDeclaration,SiliconStudio.Shaders.Ast.MethodInvocationExpression)">
+            <summary>
+            Insert a method reference
+            </summary>
+            <param name="methodDeclaration">the method</param>
+            <param name="expression">the reference</param>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderCompilationContext.AnalysisLock">
+            <summary>
+            A lock to perform a thread safe analysis of the mixins.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderCompilationContext.MixinInfos">
+            <summary>
+            List of all the mixins
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderCompilationContext.ErrorWarningLog">
+            <summary>
+            Log of all the warnings and errors
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderCompilationContext.#ctor(SiliconStudio.Shaders.Utility.LoggerResult)">
+            <summary>
+            Default constructor for cloning
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderCompilationContext.Preprocess(System.Collections.Generic.HashSet{SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo})">
+            <summary>
+            Runs the first step of the analysis on the context
+            </summary>
+            <param name="mixinInfos">the context</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderCompilationContext.Analyze(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo)">
+            <summary>
+            Specifically analyze a module
+            </summary>
+            <param name="mixinInfo">the ModuleMixinInfo</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderCompilationContext.GetModuleMixinFromShaderSource(SiliconStudio.Xenko.Shaders.ShaderSource)">
+            <summary>
+            Get the module mixin based on the ShaderSource
+            </summary>
+            <param name="shaderSource">the ShaderSource</param>
+            <returns>the ModuleMixin</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderCompilationContext.BuildModuleMixins(System.Collections.Generic.HashSet{SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo})">
+            <summary>
+            Get all the declarations of all the mixins
+            </summary>
+            <param name="mixinInfos">list of ModuleMixinInfo</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderCompilationContext.BuildModuleMixin(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo)">
+            <summary>
+            Get all the declarations in the mixin
+            </summary>
+            <param name="mixinInfo">The mixin info</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderCompilationContext.BuildMixinDependencies(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo)">
+            <summary>
+            Get the list of dependencies for the mixin (base classes only)
+            </summary>
+            <param name="mixinInfo">the mixin info</param>
+            <returns>A collection of class names</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderCompilationContext.PerformTypeAnalysis(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo)">
+            <summary>
+            Performs type analysis for each mixin
+            </summary>
+            <param name="mixinInfo">the ModuleMixinInfo</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderCompilationContext.BuildVirtualTables(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo)">
+            <summary>
+            Build the virtual table for the specified mixin
+            </summary>
+            <param name="mixinInfo">the mixin</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderCompilationContext.CheckStageClass(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin)">
+            <summary>
+            Check if the class is stage
+            </summary>
+            <param name="mixin">the ModuleMixin to check</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderCompilationContext.ModuleSemanticAnalysisPerMixin(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo)">
+            <summary>
+            Performs an semantic analysis of the mixin inside its own context
+            </summary>
+            <param name="mixinInfo">The mixin to analyze</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderCompilationContext.CheckReferencesFromExternMixin(SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin,SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin)">
+            <summary>
+            Check that the stage function calls are possible and that the stage declared variable have a correct type
+            </summary>
+            <param name="externMixin">the mixin to look into</param>
+            <param name="contextMixin">the root mixin</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderCompilationContext.AreMacrosEqual(SiliconStudio.Shaders.Parser.ShaderMacro[],SiliconStudio.Shaders.Parser.ShaderMacro[])">
+            <summary>
+            Tests the equality of the macro sets.
+            </summary>
+            <param name="macros0">The first set of macros.</param>
+            <param name="macros1">The second set of macros.</param>
+            <returns>True if the sets match, false otherwise.</returns>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderDependencyVisitor.sourceManager">
+            <summary>
+            Name of the classes
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderKeyGeneratorBase.IsColorStatus">
+            <summary>
+            A flag stating if the currently visited variable is a Color.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderKeyGeneratorBase.IsArrayStatus">
+            <summary>
+            A flag stating if the currently visited variable is an array.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderKeyGeneratorBase.ProcessInitialValueStatus">
+            <summary>
+            A flag stating if the initial value of the variable should be processed.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderKeyGeneratorBase.VariableAsParameterKey">
+            <summary>
+            A flag indicating whether a variable must be transformed to a parameter key
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderKeyGeneratorBase.Run">
+            <summary>
+            Runs the code generation. Results is accessible from <see cref="P:SiliconStudio.Shaders.Writer.ShaderWriter.Text"/> property.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderKeyGeneratorBase.Visit(SiliconStudio.Shaders.Ast.Variable)">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderKeyGeneratorBase.Visit(SiliconStudio.Shaders.Ast.Xenko.NamespaceBlock)">
+            <summary>
+            Visits the specified namespace block.
+            </summary>
+            <param name="namespaceBlock">The namespace block.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderKeyGeneratorBase.Visit(SiliconStudio.Shaders.Ast.TypeName)">
+            <summary>
+            Visits the specified type.
+            </summary>
+            <param name="typeName">the type.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderKeyGeneratorBase.Visit(SiliconStudio.Shaders.Ast.ScalarType)">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderKeyGeneratorBase.Visit(SiliconStudio.Shaders.Ast.VectorType)">
+            <summary>
+            Visits the specified type.
+            </summary>
+            <param name="type">the type.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderKeyGeneratorBase.Visit(SiliconStudio.Shaders.Ast.MatrixType)">
+            <summary>
+            Visits the specified type.
+            </summary>
+            <param name="type">the type.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderKeyGeneratorBase.Visit(SiliconStudio.Shaders.Ast.Hlsl.TextureType)">
+            <summary>
+            Visits the specified type.
+            </summary>
+            <param name="type">the type.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderKeyGeneratorBase.Visit(SiliconStudio.Shaders.Ast.ObjectType)">
+            <summary>
+            Visits the specified type.
+            </summary>
+            <param name="type">the type.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderKeyGeneratorBase.Visit(SiliconStudio.Shaders.Ast.ArrayType)">
+            <summary>
+            Visits the specified type.
+            </summary>
+            <param name="type">the type.</param>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderLoader">
+            <summary>
+            Provides methods for loading a <see cref="T:SiliconStudio.Shaders.Ast.Xenko.ShaderClassType"/>.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderLoader.SourceManager">
+            <summary>
+            Gets the source manager.
+            </summary>
+            <value>The source manager.</value>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderLoader.#ctor(SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderSourceManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderLoader"/> class.
+            </summary>
+            <param name="sourceManager">The source manager.</param>
+            <exception cref="T:System.ArgumentNullException">sourceManager</exception>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderLoader.DeleteObsoleteCache(System.Collections.Generic.HashSet{System.String})">
+            <summary>
+            Deletes the shader cache for the specified shaders.
+            </summary>
+            <param name="modifiedShaders">The modified shaders.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderLoader.LoadClassSource(SiliconStudio.Xenko.Shaders.ShaderClassSource,SiliconStudio.Shaders.Parser.ShaderMacro[],SiliconStudio.Shaders.Utility.LoggerResult,System.Boolean)">
+            <summary>
+            Loads the <see cref="T:SiliconStudio.Shaders.Ast.Xenko.ShaderClassType" />.
+            </summary>
+            <param name="shaderClassSource">The shader class source.</param>
+            <param name="shaderMacros">The shader macros.</param>
+            <param name="log">The log to output error logs.</param>
+            <param name="autoGenericInstances"></param>
+            <returns>A ShaderClassType or null if there was some errors.</returns>
+            <exception cref="T:System.ArgumentNullException">shaderClassSource</exception>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen">
+            <summary>
+            This class is responsible to generate associated C# code from an effect file (extension: xkfx).
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.#ctor(SiliconStudio.Shaders.Ast.Shader,SiliconStudio.Shaders.Utility.LoggerResult)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen" /> class.
+            </summary>
+            <param name="shader">The shader.</param>
+            <param name="logging">The logging.</param>
+            <exception cref="T:System.ArgumentNullException">shader or logging</exception>
+            <exception cref="T:System.InvalidOperationException">Cannot process shaders having already parsing errors</exception>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.GenerateCsharp(System.String,System.String)">
+            <summary>
+            Generates the csharp code from a xkfx file.
+            </summary>
+            <param name="xkfxShaderCode">The PDXFX shader code.</param>
+            <param name="filePath">The file path.</param>
+            <returns>System.String.</returns>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.Run">
+            <summary>
+            Runs the code generation. Results is accessible from <see cref="P:SiliconStudio.Shaders.Writer.ShaderWriter.Text"/> property.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.Visit(SiliconStudio.Shaders.Ast.Xenko.EnumType)">
+            <summary>
+            Visits the specified enum type.
+            </summary>
+            <param name="enumType">Type of the enum.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.Visit(SiliconStudio.Shaders.Ast.Xenko.ParametersBlock)">
+            <summary>
+            Visits the specified params block.
+            </summary>
+            <param name="paramsBlock">The params block.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.Visit(SiliconStudio.Shaders.Ast.KeywordExpression)">
+            <summary>
+            Visits the specified keyword expression.
+            </summary>
+            <param name="keywordExpression">The keyword expression.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.Visit(SiliconStudio.Shaders.Ast.Xenko.ForEachStatement)">
+            <summary>
+            Visits the specified for each statement.
+            </summary>
+            <param name="forEachStatement">For each statement.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.Visit(SiliconStudio.Shaders.Ast.Xenko.EffectBlock)">
+            <summary>
+            Visits the specified shader block.
+            </summary>
+            <param name="effectBlock">The shader block.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.Visit(SiliconStudio.Shaders.Ast.Xenko.MixinStatement)">
+            <summary>
+            Visits the specified mixin statement.
+            </summary>
+            <param name="mixinStatement">The mixin statement.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.Visit(SiliconStudio.Shaders.Ast.Xenko.UsingStatement)">
+            <summary>
+            Visits the specified using statement.
+            </summary>
+            <param name="usingStatement">The using statement.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.Visit(SiliconStudio.Shaders.Ast.Xenko.UsingParametersStatement)">
+            <summary>
+            Visits the specified using parameters statement.
+            </summary>
+            <param name="usingParametersStatement">The using parameters statement.</param>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.ShaderBlockVisitor">
+            <summary>
+            Internal visitor to precalculate all available Parameters in the context
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderSourceManager">
+            <summary>
+            Class ShaderSourceManager
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderSourceManager.fileProvider">
+            <summary>
+            The file provider used to load shader sources.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderSourceManager.LookupDirectoryList">
+            <summary>
+            Gets the directory list.
+            </summary>
+            <value>The directory list.</value>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderSourceManager.UrlToFilePath">
+            <summary>
+            Gets or sets the URL mapping to file path.
+            </summary>
+            <value>The URL automatic file path.</value>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderSourceManager.UseFileSystem">
+            <summary>
+            Gets or sets a value indicating whether [use file system]. (Currently used only by tests, made static)
+            </summary>
+            <value><c>true</c> if [use file system]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderSourceManager.#ctor(SiliconStudio.Core.IO.IVirtualFileProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderSourceManager" /> class.
+            </summary>
+            <param name="fileProvider">The file provider to use for loading shader sources.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderSourceManager.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderSourceManager"/> class.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderSourceManager.AddShaderSource(System.String,System.String,System.String)">
+            <summary>
+            Adds the shader source registered manually.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="sourceCode">The source code.</param>
+            <param name="sourcePath">The source path.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderSourceManager.DeleteObsoleteCache(System.Collections.Generic.HashSet{System.String})">
+            <summary>
+            Deletes the shader cache for the specified shaders.
+            </summary>
+            <param name="modifiedShaders">The modified shaders.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderSourceManager.LoadShaderSource(System.String)">
+            <summary>
+            Loads the shader source with the specified type name.
+            </summary>
+            <param name="type">The typeName.</param>
+            <returns>ShaderSourceWithHash.</returns>
+            <exception cref="T:System.IO.FileNotFoundException">If the file was not found</exception>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderSourceManager.IsClassExists(System.String)">
+            <summary>
+            Determines whether a class with the specified type name exists.
+            </summary>
+            <param name="typeName">The typeName.</param>
+            <returns><c>true</c> if a class with the specified type name exists; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderVirtualTable.AddVirtualTable(SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderVirtualTable,System.String,SiliconStudio.Shaders.Utility.LoggerResult)">
+            <summary>
+            Adds the virtual table of the mixin
+            </summary>
+            <param name="shaderVirtualTable"></param>
+            <param name="className"></param>
+            <param name="errorLogger"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderVirtualTable.ReplaceVirtualMethod(SiliconStudio.Shaders.Ast.MethodDeclaration,SiliconStudio.Shaders.Utility.LoggerResult)">
+            <summary>
+            Replace the method occurrence with its last definition
+            </summary>
+            <param name="methodDeclaration">the overriding method</param>
+            <param name="errorLogger"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderVirtualTable.AddFinalDeclarations(System.Collections.Generic.List{SiliconStudio.Shaders.Ast.MethodDeclaration},System.String,SiliconStudio.Shaders.Utility.LoggerResult)">
+            <summary>
+            Adds the methods defined in the final mixin
+            </summary>
+            <param name="methodDeclarations">a list of MethodDeclaration</param>
+            <param name="className">the name of the class</param>
+            <param name="errorLogger">the logger for errors and warnings</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderVirtualTable.GetBaseDeclaration(SiliconStudio.Shaders.Ast.MethodDeclaration)">
+            <summary>
+            Finds the location of the method in the virtual table of its definition mixin
+            </summary>
+            <param name="methodDeclaration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderVirtualTable.GetMethod(System.String,System.Int32)">
+            <summary>
+            Returns the method at the specified location
+            </summary>
+            <param name="mixinName">the sub virtual table</param>
+            <param name="slot">the slot index</param>
+            <returns>the method in the specified location</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderVirtualTable.LookForBaseDeclarationMixin(SiliconStudio.Shaders.Ast.MethodDeclaration,SiliconStudio.Shaders.Utility.LoggerResult)">
+            <summary>
+            Find the base definition of the method and override its occurrence
+            </summary>
+            <param name="methodDeclaration"></param>
+            <param name="errorLogger"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.StreamOutputParser.Parse(System.Collections.Generic.IList{SiliconStudio.Xenko.Shaders.ShaderStreamOutputDeclarationEntry},System.Int32[]@,System.String[],System.Collections.Generic.IList{SiliconStudio.Shaders.Ast.Variable})">
+            <summary>
+            Parse stream output declarations.
+            Format is "[slot :] semantic[index][.mask] ; ...".
+            </summary>
+            <param name="entries">The parsed entries.</param>
+            <param name="strides">The output strides.</param>
+            <param name="streams">The output declarations to parse.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.XenkoShaderCleaner.Run(SiliconStudio.Shaders.Ast.Shader)">
+            <summary>
+            Runs this instance on the specified node.
+            </summary>
+            <param name="shader">The shader.</param>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Shaders.Parser.XenkoShaderParser">
+            <summary>
+            Main class for parsing Xenko HLSL grammar.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.XenkoShaderParser.Initialize">
+            <summary>
+            Preinitialize the parser.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.XenkoShaderParser.TryPreProcessAndParse(System.String,System.String,SiliconStudio.Shaders.Parser.ShaderMacro[],System.String[])">
+            <summary>
+            Preprocesses and parses the specified source.
+            </summary>
+            <param name="source">The source.</param>
+            <param name="sourceFileName">Name of the source file.</param>
+            <param name="macros">The macros defined for the preprocessor.</param>
+            <param name="includeDirectories">The include directories used by the preprocessor..</param>
+            <returns>Result of parsing</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.XenkoShaderParser.PreProcessAndParse(System.String,System.String,SiliconStudio.Shaders.Parser.ShaderMacro[],System.String[])">
+            <summary>
+            Preprocesses and parses the specified source.
+            </summary>
+            <param name="source">The source.</param>
+            <param name="sourceFileName">Name of the source file.</param>
+            <param name="macros">The macros defined for the preprocessor.</param>
+            <param name="includeDirectories">The include directories used by the preprocessor..</param>
+            <returns>Result of parsing</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.XenkoShaderParser.TryPreProcessAndParse(System.String,SiliconStudio.Shaders.Parser.ShaderMacro[],System.String[])">
+            <summary>
+            Preprocesses and parses the specified source.
+            </summary>
+            <param name="sourceFileName">Name of the source file.</param>
+            <param name="macros">The macros defined for the preprocessor.</param>
+            <param name="includeDirectories">The include directories used by the preprocessor..</param>
+            <returns>Result of parsing</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.XenkoShaderParser.PreProcessAndParse(System.String,SiliconStudio.Shaders.Parser.ShaderMacro[],System.String[])">
+            <summary>
+            Preprocesses and parses the specified source.
+            </summary>
+            <param name="sourceFileName">Name of the source file.</param>
+            <param name="macros">The macros defined for the preprocessor.</param>
+            <param name="includeDirectories">The include directories used by the preprocessor..</param>
+            <returns>Result of parsing</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.XenkoShaderParser.Parse(System.String,System.String)">
+            <summary>
+            Parses the specified source code.
+            </summary>
+            <param name="sourceCode">The source code.</param>
+            <param name="sourceFileName">Name of the source file.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.XenkoShaderParser.TryParse(System.String,System.String)">
+            <summary>
+            Parses the specified source code.
+            </summary>
+            <param name="sourceCode">The source code.</param>
+            <param name="sourceFileName">Name of the source file.</param>
+            <returns></returns>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Shaders.Parser.ShaderMixinParser">
+            <summary>
+            Parser for mixin.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.ShaderMixinParser.PreprocessLock">
+            <summary>
+            An Objbect to lock the preprocess step (virtual tables building etc.).
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.ShaderMixinParser.SemanticAnalyzerLock">
+            <summary>
+            An Objbect to lock the semantic analysis step.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.ShaderMixinParser.hlslCloneContext">
+            <summary>
+            The CloneContext with the Hlsl classes and types
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.ShaderMixinParser.shaderLibrary">
+            <summary>
+            The library containing all the shaders
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.ShaderMixinParser.SourceManager">
+            <summary>
+            The shader source manager.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.ShaderMixinParser.#ctor(SiliconStudio.Core.IO.IVirtualFileProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.ShaderMixinParser"/> class.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.ShaderMixinParser.DeleteObsoleteCache(System.Collections.Generic.HashSet{System.String})">
+            <summary>
+            Deletes the shader cache for the specified shaders.
+            </summary>
+            <param name="modifiedShaders">The modified shaders.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.ShaderMixinParser.Parse(SiliconStudio.Xenko.Shaders.ShaderMixinSource,SiliconStudio.Xenko.Shaders.ShaderMacro[])">
+            <summary>
+            Mixes shader parts to produces a single HLSL file shader.
+            </summary>
+            <param name="shaderMixinSource">The shader source.</param>
+            <param name="macros">The shader perprocessor macros.</param>
+            <param name="modifiedShaders">The list of modified shaders.</param>
+            <returns>The combined shader in AST form.</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.ShaderMixinParser.BuildCompositionsDictionary(SiliconStudio.Xenko.Shaders.ShaderSource,SiliconStudio.Xenko.Shaders.Parser.Mixins.CompositionDictionary,SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderCompilationContext,SiliconStudio.Shaders.Ast.CloneContext,SiliconStudio.Shaders.Utility.LoggerResult)">
+            <summary>
+            create the context for each composition by cloning their dependencies
+            </summary>
+            <param name="shaderSource">the entry ShaderSource (root)</param>
+            <param name="dictionary">the ouputed compositions</param>
+            <param name="compilationContext">the compilation context</param>
+            <param name="cloneContext">The clone context.</param>
+            <returns>a list of all the needed mixins</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.ShaderMixinParser.FullLinkStageCompositions(SiliconStudio.Shaders.Ast.Variable,System.Collections.Generic.List{SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin},SiliconStudio.Xenko.Shaders.Parser.Mixins.CompositionDictionary,System.Collections.Generic.Dictionary{SiliconStudio.Shaders.Ast.Variable,System.Collections.Generic.List{SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin}},SiliconStudio.Shaders.Utility.LoggerResult)">
+            <summary>
+            Link all the stage compositions in case it is referenced at several places.
+            </summary>
+            <param name="variable">The variable of the composition.</param>
+            <param name="composition">The composition.</param>
+            <param name="dictionary">The already registered compositions.</param>
+            <param name="extraDictionary">The new compositions.</param>
+            <param name="log">The logger.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.ShaderMixinParser.GetCompilationContext(System.Collections.Generic.IEnumerable{SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixinInfo},SiliconStudio.Shaders.Utility.LoggerResult)">
+            <summary>
+            Get a compilation context based on the macros
+            </summary>
+            <param name="mixinToAnalyze">List of mixin to analyze</param>
+            <param name="log">The log.</param>
+            <returns>the correct compilation context</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.ShaderMixinParser.BuildMixinDictionary(System.Collections.Generic.IEnumerable{SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin})">
+            <summary>
+            Build a dictionary of mixins
+            </summary>
+            <param name="finalMixins">a list of mixins</param>
+            <returns>a dictionary of all the necessary mixins</returns>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Shaders.Parser.ShaderLinker">
+            <summary>
+            This AST Visitor will look for any "Link" annotation in order to bind EffectVariable to their associated HLSL variables.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.ShaderLinker.#ctor(SiliconStudio.Xenko.Shaders.Parser.ShaderMixinParsingResult)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.ShaderLinker" /> class.
+            </summary>
+            <param name="parsingResult">The parsing result.</param>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.ShaderLinker.Samplers">
+            <summary>
+            Gets the samplers.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.ShaderLinker.Run(SiliconStudio.Shaders.Ast.Shader)">
+            <summary>
+            Runs the linker on the specified Shader.
+            </summary>
+            <param name="shader">The shader.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.ShaderLinker.Visit(SiliconStudio.Shaders.Ast.Variable)">
+            <summary>
+            Visits the specified variable.
+            </summary>
+            <param name="variable">The variable.</param>
+            <returns>The variable visited</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.ShaderLinker.Visit(SiliconStudio.Shaders.Ast.Hlsl.ConstantBuffer)">
+            <summary>
+            Visits the specified constant buffer.
+            </summary>
+            <param name="constantBuffer">The constant buffer.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.ShaderLinker.VisitNode(SiliconStudio.Shaders.Ast.Node)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Shaders.Parser.ShaderNavigation">
+            <summary>
+            This class helps to navigate from a text location and try to find the associated definition location 
+            (local variables, stage variables, class xksl, shaders xkfx...etc.)
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.ShaderNavigation.AnalyzeAndGoToDefinition(System.String,SiliconStudio.Shaders.Ast.SourceLocation,System.Collections.Generic.List{System.String})">
+            <summary>
+            Analyzes the shader source code and go to definition.
+            </summary>
+            <param name="shaderSource">The shader source.</param>
+            <param name="location">The location.</param>
+            <param name="shaderDirectories">The shader directories.</param>
+            <returns>ShaderNavigationResult.</returns>
+            <exception cref="T:System.ArgumentNullException">shaderSource</exception>
+            <exception cref="T:System.ArgumentException">Expecting a FileSource location;location</exception>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Shaders.Parser.ShaderNavigationResult">
+            <summary>
+            Results of a <see cref="T:SiliconStudio.Xenko.Shaders.Parser.ShaderNavigation"/>
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.ShaderNavigationResult.DefinitionLocation">
+            <summary>
+            Gets or sets the definition location.
+            </summary>
+            <value>The definition location.</value>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Shaders.Parser.ShaderNavigationResult.Messages">
+            <summary>
+            Gets the parsing messages.
+            </summary>
+            <value>The messages.</value>
+        </member>
+        <member name="T:SiliconStudio.XenkoVersion">
+            <summary>
+            Internal version used to identify Xenko version.
+            </summary>
+            <remarks>
+            Note: Xenko.xkpkg and PublicVersion versions should match.
+            Also, during package build, PackageUpdateVersionTask is updating that file and expect some specific text regex so be careful if you change any of this.
+            </remarks>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.CopyrightYear">
+            <summary>
+            The copyright year or year range.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.PublicVersion">
+            <summary>
+            The version used by editor for display purpose. 4th digit needs to be at least 1 if used (due to NuGet special cases).
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.AssemblyVersion">
+            <summary>
+            The current assembly version as text, currently same as <see cref="F:SiliconStudio.XenkoVersion.PublicVersion"/>.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.NuGetVersionSimple">
+            <summary>
+            The NuGet package version without special tags.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.NuGetVersion">
+            <summary>
+            The NuGet package version.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.NuGetVersionSuffix">
+            <summary>
+            The NuGet package suffix (i.e. -beta01). Note: might be replaced during package build.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.AssemblyInformationalVersion">
+            <summary>
+            The informational assembly version, containing -dev or -g[git_hash] during package.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.AssemblyInformationalSuffix">
+            <summary>
+            The assembly suffix. Note: replaced by git commit during package build.
+            </summary>
+        </member>
+    </members>
+</doc>

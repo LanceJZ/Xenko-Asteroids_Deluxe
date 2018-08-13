@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using SiliconStudio.Core.Mathematics;
-using SiliconStudio.Xenko.Engine;
+using Xenko.Core.Mathematics;
+using Xenko.Input;
+using Xenko.Engine;
+using Xenko.Games.Time;
+using Xenko.Graphics;
+using Xenko.Rendering;
+using Xenko.Audio;
 
 namespace Asteroids_Deluxe
 {
@@ -25,7 +30,6 @@ namespace Asteroids_Deluxe
                 //Make digit the modulus of 10 from number.
                 int digit = numberIn % 10;
                 //This sends a digit to the draw function with the location and size.
-                //MakeNumberMesh(space, digit, scale);
                 Entity numberE = InitiateNumber(digit);
                 numberE.Transform.Position = Position - new Vector3(space, 0, 0);
                 numberE.Transform.Scale = new Vector3(scale);

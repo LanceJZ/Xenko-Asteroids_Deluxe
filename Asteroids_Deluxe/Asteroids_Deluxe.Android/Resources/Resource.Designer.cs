@@ -26,10 +26,10 @@ namespace Asteroids_Deluxe
 		
 		public static void UpdateIdValues()
 		{
-			global::SiliconStudio.Xenko.Resource.Id.EditTextLayout = global::Asteroids_Deluxe.Resource.Id.EditTextLayout;
-			global::SiliconStudio.Xenko.Resource.Id.GameMainLayout = global::Asteroids_Deluxe.Resource.Id.GameMainLayout;
-			global::SiliconStudio.Xenko.Resource.Id.GameViewLayout = global::Asteroids_Deluxe.Resource.Id.GameViewLayout;
-			global::SiliconStudio.Xenko.Resource.Layout.Game = global::Asteroids_Deluxe.Resource.Layout.Game;
+			global::Xenko.Resource.Id.EditTextLayout = global::Asteroids_Deluxe.Resource.Id.EditTextLayout;
+			global::Xenko.Resource.Id.GameMainLayout = global::Asteroids_Deluxe.Resource.Id.GameMainLayout;
+			global::Xenko.Resource.Id.GameViewLayout = global::Asteroids_Deluxe.Resource.Id.GameViewLayout;
+			global::Xenko.Resource.Layout.Game = global::Asteroids_Deluxe.Resource.Layout.Game;
 		}
 		
 		public partial class Attribute

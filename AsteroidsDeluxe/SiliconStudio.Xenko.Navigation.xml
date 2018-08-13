@@ -1,0 +1,795 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SiliconStudio.Xenko.Navigation</name>
+    </assembly>
+    <members>
+        <member name="T:SiliconStudio.Xenko.Navigation.NavigationMeshGroup">
+            <summary>
+            A group that is used to distinguish between different agent types with it's <see cref="P:SiliconStudio.Xenko.Navigation.NavigationMeshGroup.Id"/> used at run-time to acquire the navigation mesh for a group
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Navigation.NavigationMeshGroup.Name">
+            <summary>
+            Display name
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshGroup.AgentSettings">
+            <summary>
+            Agent settings for this group
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Navigation.NavigationSettings">
+            <summary>
+            Settings for the dynamic navigation mesh builder (<see cref="T:SiliconStudio.Xenko.Navigation.DynamicNavigationMeshSystem"/>)
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Navigation.NavigationSettings.EnableDynamicNavigationMesh">
+            <summary>
+            If set to <c>true</c>, navigation meshes will be built at runtime. This allows for scene streaming and dynamic obstacles
+            </summary>
+            <userdoc>
+            Enable dynamic navigation on navigation components that have no assigned navigation mesh
+            </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Navigation.NavigationSettings.IncludedCollisionGroups">
+            <summary>
+            Collision filter that indicates which colliders are used in navmesh generation
+            </summary>
+            <userdoc>
+            Set which collision groups dynamically-generated navigation meshes use
+            </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Navigation.NavigationSettings.BuildSettings">
+            <summary>
+            Build settings used by Recast
+            </summary>
+            <userdoc>
+            Advanced settings for dynamically-generated navigation meshes
+            </userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationSettings.Groups">
+            <summary>
+            Settings for agents used with the dynamic navigation mesh
+            </summary>
+            <userdoc>
+            The groups that use the dynamic navigation mesh
+            </userdoc>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationSettingsExtensions.ComputeGroupsHash(SiliconStudio.Xenko.Navigation.NavigationSettings)">
+            <summary>
+            Computes the hash of the <see cref="F:SiliconStudio.Xenko.Navigation.NavigationSettings.Groups"/> field
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Navigation.Processors.NavigationProcessor">
+            <summary>
+            Manages the loading of the native side navigation meshes. Will only load one version of the navigation mesh if it is referenced by multiple components
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.Processors.NavigationProcessor.Load(SiliconStudio.Xenko.Navigation.NavigationMesh,System.Guid)">
+            <summary>
+            Loads or references a <see cref="T:SiliconStudio.Xenko.Navigation.Processors.RecastNavigationMesh"/> for a group of a navigation mesh
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.Processors.NavigationProcessor.Unload(SiliconStudio.Xenko.Navigation.Processors.NavigationProcessor.NavigationMeshGroupData)">
+            <summary>
+            Removes a reference to a group
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Navigation.Processors.NavigationProcessor.AssociatedData">
+            <summary>
+            Associated data for navigation mesh components
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Navigation.Processors.NavigationProcessor.NavigationMeshData">
+            <summary>
+            Contains groups that are loaded for a navigation mesh
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Navigation.Processors.NavigationProcessor.NavigationMeshGroupData">
+            <summary>
+            A loaded group of a navigation mesh
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Navigation.Processors.RecastNavigationMesh">
+            <summary>
+            Recast native navigation mesh wrapper
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.Processors.RecastNavigationMesh.AddOrReplaceTile(System.Byte[])">
+            <summary>
+            Adds or replaces a tile in the navigation mesh
+            </summary>
+            <remarks>The coordinate of the tile is embedded inside the tile data header</remarks>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.Processors.RecastNavigationMesh.RemoveTile(SiliconStudio.Core.Mathematics.Point)">
+            <summary>
+            Removes a tile at given coordinate
+            </summary>
+            <param name="coord">The tile coordinate</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.Processors.RecastNavigationMesh.Raycast(SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Xenko.Navigation.NavigationQuerySettings)">
+            <summary>
+            Performs a raycast on the navigation mesh to perform line of sight or similar checks
+            </summary>
+            <param name="start">Starting point</param>
+            <param name="end">Ending point</param>
+            <param name="querySettings">Advanced settings to be provided to the navigation mesh query</param>
+            <returns>The found raycast hit if <see cref="F:SiliconStudio.Xenko.Navigation.NavigationRaycastResult.Hit"/> is true</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.Processors.RecastNavigationMesh.TryFindPath(SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,System.Collections.Generic.ICollection{SiliconStudio.Core.Mathematics.Vector3},SiliconStudio.Xenko.Navigation.NavigationQuerySettings)">
+            <summary>
+            Finds a path from point <paramref cref="!:start"/> to <paramref cref="!:end"/>
+            </summary>
+            <param name="start">The starting location of the pathfinding query</param>
+            <param name="end">The ending location of the pathfinding query</param>
+            <param name="querySettings">Advanced settings to be provided to the navigation mesh query</param>
+            <param name="path">The waypoints for the found path, if any (at least 2 if a path was found)</param>
+            <returns>The found path points or null</returns>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Navigation.NavigationBoundingBoxComponent">
+            <summary>
+            A three dimensional bounding box  using the scale of the owning entity as the box extent. This is used to limit the area in which navigation meshes are generated
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationBoundingBoxComponent.Size">
+            <summary>
+            The size of one edge of the bounding box
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Navigation.DynamicNavigationMeshSystem">
+            <summary>
+            System that handles building of navigation meshes at runtime
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Navigation.DynamicNavigationMeshSystem.AutomaticRebuild">
+            <summary>
+            If <c>true</c>, this will automatically rebuild on addition/removal of static collider components
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Navigation.DynamicNavigationMeshSystem.IncludedCollisionGroups">
+            <summary>
+            Collision filter that indicates which colliders are used in navmesh generation
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Navigation.DynamicNavigationMeshSystem.BuildSettings">
+            <summary>
+            Build settings used by Recast
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Navigation.DynamicNavigationMeshSystem.Groups">
+            <summary>
+            Settings for agents used with the dynamic navigation mesh
+            </summary>
+        </member>
+        <member name="E:SiliconStudio.Xenko.Navigation.DynamicNavigationMeshSystem.NavigationMeshUpdated">
+            <summary>
+            Raised when the navigation mesh for the current scene is updated
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Navigation.DynamicNavigationMeshSystem.CurrentNavigationMesh">
+            <summary>
+            The most recently built navigation mesh
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.DynamicNavigationMeshSystem.Initialize">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.DynamicNavigationMeshSystem.InitializeSettingsFromGameSettings(SiliconStudio.Xenko.Engine.Design.GameSettings)">
+            <summary>
+            Copies the default settings from the <see cref="T:SiliconStudio.Xenko.Engine.Design.GameSettings"/> for building navigation
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.DynamicNavigationMeshSystem.Update(SiliconStudio.Xenko.Games.GameTime)">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.DynamicNavigationMeshSystem.Rebuild">
+            <summary>
+            Starts an asynchronous rebuild of the navigation mesh
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Navigation.NavigationAgentSettings">
+            <summary>
+            Navigation agent
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationAgentSettings.Height">
+            <summary>
+            Height of the actor
+            </summary>
+            <userdoc>
+            The height of the entities in this group. Entities can't enter areas with ceilings lower than this value.
+            </userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationAgentSettings.MaxClimb">
+            <summary>
+            Maximum vertical distance this agent can climb
+            </summary>
+            <userdoc>
+            The maximum height that entities in this group can climb. 
+            </userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationAgentSettings.MaxSlope">
+            <summary>
+            Maximum slope angle this agent can climb
+            </summary>
+            <userdoc>
+            The maximum incline (in degrees) that entities in this group can climb. Entities can't go up or down slopes higher than this value. 
+            </userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationAgentSettings.Radius">
+            <summary>
+            Radius of the actor
+            </summary>
+            <userdoc>
+            The larger this value, the larger the area of the navigation mesh entities use. Entities can't pass through gaps of less than twice the radius.
+            </userdoc>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Navigation.NavigationComponent">
+            <summary>
+            This is used to interface with the navigation mesh. Supports TryFindPath and Raycast
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Navigation.NavigationComponent.NavigationMesh">
+            <summary>
+            The navigation mesh which is being used. Setting this to <c>null</c> will load the dynamic navigation mesh for the current game (if enabled)
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Navigation.NavigationComponent.GroupId">
+            <summary>
+            The navigation mesh group to use
+            </summary>
+        </member>
+        <member name="E:SiliconStudio.Xenko.Navigation.NavigationComponent.NavigationMeshChanged">
+            <summary>
+            Raised when the navigation mesh changed on this component
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationComponent.TryFindPath(SiliconStudio.Core.Mathematics.Vector3,System.Collections.Generic.IList{SiliconStudio.Core.Mathematics.Vector3})">
+            <summary>
+            Finds a path from the entity's current location to <paramref cref="!:end"/>
+            </summary>
+            <param name="end">The ending location of the pathfinding query</param>
+            <param name="path">The resulting collection of waypoints for the found path, if any (at least 2 if a path was found)</param>
+            <returns>The found path points or null</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationComponent.TryFindPath(SiliconStudio.Core.Mathematics.Vector3,System.Collections.Generic.IList{SiliconStudio.Core.Mathematics.Vector3},SiliconStudio.Xenko.Navigation.NavigationQuerySettings)">
+            <summary>
+            Finds a path from the entity's current location to <paramref cref="!:end"/>
+            </summary>
+            <param name="end">The ending location of the pathfinding query</param>
+            <param name="querySettings">Advanced settings to be provided to the navigation mesh query</param>
+            <param name="path">The resulting collection of waypoints for the found path, if any (at least 2 if a path was found)</param>
+            <returns>True if a valid path was found</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationComponent.TryFindPath(SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,System.Collections.Generic.IList{SiliconStudio.Core.Mathematics.Vector3})">
+            <summary>
+            Finds a path from point <paramref cref="!:start"/> to <paramref cref="!:end"/>
+            </summary>
+            <param name="start">The starting location of the pathfinding query</param>
+            <param name="end">The ending location of the pathfinding query</param>
+            <param name="path">The resulting collection of waypoints for the found path, if any (at least 2 if a path was found)</param>
+            <returns>True if a valid path was found</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationComponent.TryFindPath(SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,System.Collections.Generic.IList{SiliconStudio.Core.Mathematics.Vector3},SiliconStudio.Xenko.Navigation.NavigationQuerySettings)">
+            <summary>
+            Finds a path from point <paramref cref="!:start"/> to <paramref cref="!:end"/>
+            </summary>
+            <param name="start">The starting location of the pathfinding query</param>
+            <param name="end">The ending location of the pathfinding query</param>
+            <param name="querySettings">Advanced settings to be provided to the navigation mesh query</param>
+            <param name="path">The resulting collection of waypoints for the found path, if any (at least 2 if a path was found)</param>
+            <returns>True if a valid path was found</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationComponent.Raycast(SiliconStudio.Core.Mathematics.Vector3)">
+            <summary>
+            Performs a raycast on the navigation mesh to perform line of sight or similar checks. Starts from the entity's current world position
+            </summary>
+            <param name="end">Ending point</param>
+            <returns>The found raycast hit if <see cref="F:SiliconStudio.Xenko.Navigation.NavigationRaycastResult.Hit"/> is true</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationComponent.Raycast(SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Xenko.Navigation.NavigationQuerySettings)">
+            <summary>
+            Performs a raycast on the navigation mesh to perform line of sight or similar checks.  Starts from the entity's current world position
+            </summary>
+            <param name="end">Ending point</param>
+            <param name="querySettings">Advanced settings to be provided to the navigation mesh query</param>
+            <returns>The found raycast hit if <see cref="F:SiliconStudio.Xenko.Navigation.NavigationRaycastResult.Hit"/> is true</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationComponent.Raycast(SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3)">
+            <summary>
+            Performs a raycast on the navigation mesh to perform line of sight or similar checks.
+            </summary>
+            <param name="start">Starting point</param>
+            <param name="end">Ending point</param>
+            <returns>The found raycast hit if <see cref="F:SiliconStudio.Xenko.Navigation.NavigationRaycastResult.Hit"/> is true</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationComponent.Raycast(SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Xenko.Navigation.NavigationQuerySettings)">
+            <summary>
+            Performs a raycast on the navigation mesh to perform line of sight or similar checks
+            </summary>
+            <param name="start">Starting point</param>
+            <param name="end">Ending point</param>
+            <param name="querySettings">Advanced settings to be provided to the navigation mesh query</param>
+            <returns>The found raycast hit if <see cref="F:SiliconStudio.Xenko.Navigation.NavigationRaycastResult.Hit"/> is true</returns>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Navigation.NavigationMesh">
+            <summary>
+            A Navigation Mesh, can be used for pathfinding.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Navigation.NavigationMesh.Layers">
+            <summary>
+            The layers of this navigation mesh, there will be one layer for each enabled group that a navigation mesh is selected to build for
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Navigation.NavigationMeshBuilder">
+            <summary>
+            Incremental navigation mesh builder. 
+            Builds the navigation mesh in individual tiles
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshBuilder.Logger">
+            <summary>
+            The logger to send additional information to
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationMeshBuilder.#ctor(SiliconStudio.Xenko.Navigation.NavigationMesh)">
+            <summary>
+            Initializes the builder, optionally with a previous navigation mesh when building incrementally
+            </summary>
+            <param name="oldNavigationMesh">The previous navigation mesh, to allow incremental builds</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationMeshBuilder.Add(SiliconStudio.Xenko.Navigation.StaticColliderData)">
+            <summary>
+            Adds information about a collider to this builder
+            </summary>
+            <remarks>
+            You can only register a single <see cref="T:SiliconStudio.Xenko.Physics.StaticColliderComponent"/> once
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">When trying to register collider data with the same <see cref="T:SiliconStudio.Xenko.Physics.StaticColliderComponent"/> twice</exception>
+            <param name="colliderData">A collider data object to add</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationMeshBuilder.Remove(SiliconStudio.Xenko.Navigation.StaticColliderData)">
+            <summary>
+            Removes a specific collider from the builder
+            </summary>
+            <param name="colliderData">The collider data object to remove</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationMeshBuilder.Build(SiliconStudio.Xenko.Navigation.NavigationMeshBuildSettings,System.Collections.Generic.ICollection{SiliconStudio.Xenko.Navigation.NavigationMeshGroup},SiliconStudio.Xenko.Physics.CollisionFilterGroupFlags,System.Collections.Generic.ICollection{SiliconStudio.Core.Mathematics.BoundingBox},System.Threading.CancellationToken)">
+            <summary>
+            Performs the build of a navigation mesh
+            </summary>
+            <param name="buildSettings">The build settings to pass to recast</param>
+            <param name="agentSettings">A collection of agent settings to use, this will generate a layer in the navigation mesh for every agent settings in this collection (in the same order)</param>
+            <param name="includedCollisionGroups">The collision groups that will affect which colliders are considered solid</param>
+            <param name="boundingBoxes">A collection of bounding boxes to use as the region for which to generate navigation mesh tiles</param>
+            <param name="cancellationToken">A cancellation token to interrupt the build process</param>
+            <returns>The build result</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationMeshBuilder.BuildInput(SiliconStudio.Xenko.Navigation.StaticColliderData[],SiliconStudio.Xenko.Physics.CollisionFilterGroupFlags)">
+            <summary>
+            Rebuilds outdated triangle data for colliders and recalculates hashes storing everything in StaticColliderData
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationMeshBuilder.MarkTiles(SiliconStudio.Xenko.Navigation.NavigationMeshInputBuilder,SiliconStudio.Xenko.Navigation.NavigationMeshBuildSettings@,SiliconStudio.Xenko.Navigation.NavigationAgentSettings@,System.Collections.Generic.HashSet{SiliconStudio.Core.Mathematics.Point})">
+            <summary>
+            Marks tiles that should be built according to how much their geometry affects the navigation mesh and the bounding boxes specified for building
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationMeshBuilder.BuildPlaneGeometry(SiliconStudio.Core.Mathematics.Plane,SiliconStudio.Core.Mathematics.BoundingBox)">
+            <summary>
+            Generates triangles for an infinite plane that will completely intersect the given bounding box
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationMeshBuilder.GetColliderShapeDesc``1(SiliconStudio.Xenko.Physics.IColliderShapeDesc)">
+            <summary>
+            Extract the collider shape description in the case of it being either an inline shape or an asset as shape
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Navigation.NavigationMeshBuildResult">
+            <summary>
+            The result of building a navigation mesh
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshBuildResult.Success">
+            <summary>
+            <c>true</c> if the build was successful
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshBuildResult.NavigationMesh">
+            <summary>
+            The generated navigation mesh
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshBuildResult.UpdatedLayers">
+            <summary>
+            List of updated layers + tiles
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Navigation.NavigationMeshLayerUpdateInfo">
+            <summary>
+            Information about what tiles changes after building a navigation mesh
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshLayerUpdateInfo.GroupId">
+            <summary>
+            The id of the group
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshLayerUpdateInfo.UpdatedTiles">
+            <summary>
+            Coordinates of the tiles that were updated
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Navigation.NavigationMeshBuildSettings">
+            <summary>
+            Provides settings for the navigation mesh builder to control granularity and error margins 
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshBuildSettings.CellHeight">
+            <summary>
+            The Height of a grid cell in the navigation mesh building steps using heightfields. 
+            A lower number means higher precision on the vertical axis but longer build times
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshBuildSettings.CellSize">
+            <summary>
+            The Width/Height of a grid cell in the navigation mesh building steps using heightfields. 
+            A lower number means higher precision on the horizontal axes but longer build times
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshBuildSettings.TileSize">
+            <summary>
+            Tile size used for Navigation mesh tiles, the final size of a tile is CellSize*TileSize
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshBuildSettings.MinRegionArea">
+            <summary>
+            The minimum number of cells allowed to form isolated island areas
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshBuildSettings.RegionMergeArea">
+            <summary>
+            Any regions with a span count smaller than this value will, if possible, 
+            be merged with larger regions.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshBuildSettings.MaxEdgeLen">
+            <summary>
+            The maximum allowed length for contour edges along the border of the mesh.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshBuildSettings.MaxEdgeError">
+            <summary>
+            The maximum distance a simplfied contour's border edges should deviate from the original raw contour.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshBuildSettings.DetailSamplingDistance">
+            <summary>
+            Sets the sampling distance to use when generating the detail mesh. (For height detail only.)
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshBuildSettings.MaxDetailSamplingError">
+            <summary>
+            The maximum distance the detail mesh surface should deviate from heightfield data. (For height detail only.)
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Navigation.NavigationMeshBuildUtils">
+            <summary>
+            Utility function for navigation mesh building
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationMeshBuildUtils.GetOverlappingTiles(SiliconStudio.Xenko.Navigation.NavigationMeshBuildSettings,SiliconStudio.Core.Mathematics.BoundingBox)">
+            <summary>
+            Check which tiles overlap a given bounding box
+            </summary>
+            <param name="settings"></param>
+            <param name="boundingBox"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationMeshBuildUtils.SnapBoundingBoxToCellHeight(SiliconStudio.Xenko.Navigation.NavigationMeshBuildSettings,SiliconStudio.Core.Mathematics.BoundingBox@)">
+            <summary>
+            Snaps a <see cref="T:SiliconStudio.Core.Mathematics.BoundingBox"/>'s height according to the given <see cref="T:SiliconStudio.Xenko.Navigation.NavigationMeshBuildSettings"/>
+            </summary>
+            <param name="settings">The build settings</param>
+            <param name="boundingBox">Reference to the bounding box to snap</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationMeshBuildUtils.CalculateTileBoundingBox(SiliconStudio.Xenko.Navigation.NavigationMeshBuildSettings,SiliconStudio.Core.Mathematics.Point)">
+            <summary>
+            Calculates X-Z span for a navigation mesh tile. The Y-axis will span from <see cref="F:System.Single.MinValue"/> to <see cref="F:System.Single.MaxValue"/>
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationMeshBuildUtils.GenerateTangentBinormal(SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Vector3@)">
+            <summary>
+            Generates a random tangent and binormal for a given normal, 
+            usefull for creating plane vertices or orienting objects (lookat) where the rotation along the normal doesn't matter
+            </summary>
+            <param name="normal"></param>
+            <param name="tangent"></param>
+            <param name="binormal"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationMeshBuildUtils.BuildPlanePoints(SiliconStudio.Core.Mathematics.Plane@,System.Single,SiliconStudio.Core.Mathematics.Vector3[]@,System.Int32[]@)">
+            <summary>
+            Generates vertices and indices for an infinite size, limited by the <paramref cref="!:size"/> parameter
+            </summary>
+            <param name="plane"></param>
+            <param name="size">the amount from the origin the plane points are placed</param>
+            <param name="points"></param>
+            <param name="inds"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationMeshBuildUtils.ExtendBoundingBox(SiliconStudio.Core.Mathematics.BoundingBox@,SiliconStudio.Core.Mathematics.Vector3)">
+            <summary>
+            Applies an offset vector to a bounding box to make it bigger or smaller
+            </summary>
+            <param name="boundingBox"></param>
+            <param name="offsets"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationMeshBuildUtils.CheckColliderFilter(SiliconStudio.Xenko.Physics.StaticColliderComponent,SiliconStudio.Xenko.Physics.CollisionFilterGroupFlags)">
+            <summary>
+            Checks if a static collider passes the given filter group
+            </summary>
+            <param name="collider">The collider to check</param>
+            <param name="includedCollisionGroups">The collision filter</param>
+            <returns><c>true</c> if the collider passes the filter, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationMeshBuildUtils.HashEntityCollider(SiliconStudio.Xenko.Physics.StaticColliderComponent,SiliconStudio.Xenko.Physics.CollisionFilterGroupFlags)">
+            <summary>
+            Hashes and entity's transform and it's collider shape settings
+            </summary>
+            <param name="collider">The collider to hash</param>
+            <param name="includedCollisionGroups">The filter group for active collides, 
+                which is used to hash if this colliders participates in the navigation mesh build</param>
+            <returns></returns>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Navigation.NavigationMeshCache">
+            <summary>
+            Holds the cached result of building a scene into a navigation mesh, with input vertex data to allow incremental builds.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshCache.Objects">
+            <summary>
+            State of static colliders by their component Id that was used for building
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshCache.BoundingBoxes">
+            <summary>
+            The bounding boxes used for build
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshCache.SettingsHash">
+            <summary>
+            Hash for the building settings used
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationMeshCache.Add(SiliconStudio.Xenko.Physics.StaticColliderComponent,SiliconStudio.Xenko.Navigation.NavigationMeshInputBuilder,System.Collections.Generic.ICollection{SiliconStudio.Core.Mathematics.Plane},System.Int32)">
+            <summary>
+            Registers a new processed object that is build into the navigation mesh
+            </summary>
+            <param name="collider">The collider that was processed</param>
+            <param name="data">The collider vertex data that is generated for this entity</param>
+            <param name="planes">Collection of infinite planes for this colliders, these are special since their size is not known until the bounding box are known</param>
+            <param name="entityColliderHash">The hash of the entity and collider obtained with <see cref="M:SiliconStudio.Xenko.Navigation.NavigationMeshBuildUtils.HashEntityCollider(SiliconStudio.Xenko.Physics.StaticColliderComponent,SiliconStudio.Xenko.Physics.CollisionFilterGroupFlags)"/></param>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Navigation.NavigationMeshCachedObject">
+            <summary>
+            Represents cached data for a static collider component on an entity
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshCachedObject.Guid">
+            <summary>
+            Guid of the collider
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshCachedObject.ParameterHash">
+            <summary>
+            Hash obtained with <see cref="M:SiliconStudio.Xenko.Navigation.NavigationMeshBuildUtils.HashEntityCollider(SiliconStudio.Xenko.Physics.StaticColliderComponent,SiliconStudio.Xenko.Physics.CollisionFilterGroupFlags)"/>
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshCachedObject.InputBuilder">
+            <summary>
+            Cached vertex data
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshCachedObject.Planes">
+            <summary>
+            List of infinite planes contained on this object
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationMeshInputBuilder.AppendOther(SiliconStudio.Xenko.Navigation.NavigationMeshInputBuilder)">
+            <summary>
+            Appends another vertex data builder
+            </summary>
+            <param name="other"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationMeshInputBuilder.AppendMeshData(SiliconStudio.Xenko.Graphics.GeometricMeshData{SiliconStudio.Xenko.Graphics.VertexPositionNormalTexture},SiliconStudio.Core.Mathematics.Matrix)">
+            <summary>
+            Appends local mesh data transformed with and object transform
+            </summary>
+            <param name="meshData"></param>
+            <param name="objectTransform"></param>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Navigation.NavigationMeshLayer">
+            <summary>
+            Layer containing built tiles for a single <see cref="T:SiliconStudio.Xenko.Navigation.NavigationAgentSettings"/>
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Navigation.NavigationMeshLayer.Tiles">
+            <summary>
+            Contains all the built tiles mapped to their tile coordinates
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.NavigationMeshLayer.FindTile(SiliconStudio.Core.Mathematics.Point)">
+            <summary>
+            Tries to find a built tile inside this layer
+            </summary>
+            <param name="tileCoordinate">The coordinate of the tile</param>
+            <returns>The found tile or null</returns>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Navigation.NavigationMeshTile">
+            <summary>
+            Tiles contained within <see cref="T:SiliconStudio.Xenko.Navigation.NavigationMeshLayer"/>
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshTile.MeshVertices">
+            <summary>
+            Vertices of the navigation mesh, used for visualization
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationMeshTile.Data">
+            <summary>
+            Binary data of the built navigation mesh tile
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Navigation.NavigationMeshTile.NavigationMeshTileSerializer">
+            <summary>
+            Serializes individually build tiles inside navigation meshes
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Navigation.NavigationQuerySettings">
+            <summary>
+            Provides advanced settings to be passed to navigation mesh queries
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationQuerySettings.Default">
+            <summary>
+            The default settings that are used when querying navigation meshes
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationQuerySettings.FindNearestPolyExtent">
+            <summary>
+            Used as the extend for the find nearest poly bounding box used when scanning for a polygon corresponding to the given starting/ending position. 
+            Making this bigger will allow you to find paths that allow the entity to start further away or higher from the navigation mesh bounds for example
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationQuerySettings.MaxPathPoints">
+            <summary>
+            The maximum number of path points used internally and also the maximum number of output points
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Navigation.NavigationRaycastResult">
+            <summary>
+            Result for a raycast query on a navigation mesh
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationRaycastResult.Hit">
+            <summary>
+            true if the raycast hit something
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationRaycastResult.Position">
+            <summary>
+            Position where the ray hit a non-walkable area boundary
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.NavigationRaycastResult.Normal">
+            <summary>
+            Normal of the non-walkable area boundary that was hit
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.Navigation.PathFindResult.PathPoints">
+            <summary>
+            Should point to a preallocated array of <see cref="T:SiliconStudio.Core.Mathematics.Vector3"/>'s matching the amount in <see cref="F:SiliconStudio.Xenko.Navigation.Navigation.PathFindQuery.MaxPathPoints"/>
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.Navigation.CreateNavmesh(System.Single)">
+            <summary>
+            Creates a new navigation mesh object. 
+            You must add tiles to it with AddTile before you can perform navigation queries using Query
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.Navigation.AddTile(System.IntPtr,System.IntPtr,System.Int32)">
+            <summary>
+            Adds a new tile to the navigation mesh object
+            </summary>
+            <param name="navmesh"></param>
+            <param name="data">Navigation mesh binary data in the detour format to load</param>
+            <param name="dataLength">Length of the binary mesh data</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.Navigation.RemoveTile(System.IntPtr,SiliconStudio.Core.Mathematics.Point)">
+            <summary>
+            Removes a tile from the navigation mesh object
+            </summary>
+            <param name="navmesh"></param>
+            <param name="tileCoordinate">Coordinate of the tile to remove</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.Navigation.DoPathFindQuery(System.IntPtr,SiliconStudio.Xenko.Navigation.Navigation.PathFindQuery,System.IntPtr)">
+            <summary>
+            Perform a pathfinding query on the navigation mesh
+            </summary>
+            <param name="query"></param>
+            <param name="pathFindQuery">The query to perform</param>
+            <param name="resultStructure">A structure of type PathFindResult, should have the PathPoints field initialized to point to an array of Vector3's with the appropriate size</param>
+            <returns>A PathFindQueryResult</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Navigation.Navigation.DoRaycastQuery(System.IntPtr,SiliconStudio.Xenko.Navigation.Navigation.RaycastQuery,System.IntPtr)">
+            <summary>
+            Perform a raycast on the navigation mesh
+            </summary>
+            <param name="query"></param>
+            <param name="pathFindQuery">The query to perform</param>
+            <param name="resultStructure">A structure of type PathFindResult</param>
+            <returns>A RaycastQueryResult</returns>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Navigation.StaticColliderData">
+            <summary>
+            Data associated with static colliders for incremental building of navigation meshes
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Navigation.StaticColliderData.Planes">
+            <remarks>
+            Planes are an exceptions to normal geometry since their size depends on the size of the bounding boxes in the scene, however we don't want to rebuild the whole scene, unless the actual shape of the plane changes
+            </remarks>
+        </member>
+        <member name="T:SiliconStudio.XenkoVersion">
+            <summary>
+            Internal version used to identify Xenko version.
+            </summary>
+            <remarks>
+            Note: Xenko.xkpkg and PublicVersion versions should match.
+            Also, during package build, PackageUpdateVersionTask is updating that file and expect some specific text regex so be careful if you change any of this.
+            </remarks>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.CopyrightYear">
+            <summary>
+            The copyright year or year range.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.PublicVersion">
+            <summary>
+            The version used by editor for display purpose. 4th digit needs to be at least 1 if used (due to NuGet special cases).
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.AssemblyVersion">
+            <summary>
+            The current assembly version as text, currently same as <see cref="F:SiliconStudio.XenkoVersion.PublicVersion"/>.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.NuGetVersionSimple">
+            <summary>
+            The NuGet package version without special tags.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.NuGetVersion">
+            <summary>
+            The NuGet package version.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.NuGetVersionSuffix">
+            <summary>
+            The NuGet package suffix (i.e. -beta01). Note: might be replaced during package build.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.AssemblyInformationalVersion">
+            <summary>
+            The informational assembly version, containing -dev or -g[git_hash] during package.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.AssemblyInformationalSuffix">
+            <summary>
+            The assembly suffix. Note: replaced by git commit during package build.
+            </summary>
+        </member>
+    </members>
+</doc>

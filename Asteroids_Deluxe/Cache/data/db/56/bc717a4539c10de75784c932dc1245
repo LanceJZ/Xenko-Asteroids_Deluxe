@@ -1,0 +1,13 @@
+// Copyright (c) 2014-2017 Silicon Studio Corp. All rights reserved. (https://www.siliconstudio.co.jp)
+// See LICENSE.md for full license information.
+/// <summary>
+/// Compute the color from a stream
+/// </summary>
+shader ComputeColorFromStream<Semantic TStream, MemberName TRgba> : ComputeColor
+{
+    stream float4 LocalColor : TStream;
+
+    override float4 Compute() {
+        return streams.LocalColor.TRgba;
+    }
+};

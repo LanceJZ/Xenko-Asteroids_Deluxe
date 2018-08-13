@@ -1,8 +1,11 @@
 ﻿using System;
-using SiliconStudio.Core;
-using SiliconStudio.Core.Mathematics;
-using SiliconStudio.Xenko.Engine;
-using SiliconStudio.Xenko.Input;
+using Xenko.Core.Mathematics;
+using Xenko.Input;
+using Xenko.Engine;
+using Xenko.Games.Time;
+using Xenko.Graphics;
+using Xenko.Rendering;
+using Xenko.Audio;
 
 namespace Asteroids_Deluxe
 {
@@ -41,12 +44,12 @@ namespace Asteroids_Deluxe
             // Default up-direction
             upVector = Vector3.UnitY;
 
-            // Configure touch input
-            if (!Platform.IsWindowsDesktop)
-            {
-                Input.ActivatedGestures.Add(new GestureConfigDrag());
-                Input.ActivatedGestures.Add(new GestureConfigComposite());
-            }
+            //// Configure touch input
+            //if (!Platform.IsWindowsDesktop)
+            //{
+            //    Input.ActivatedGestures.Add(new GestureConfigDrag());
+            //    Input.ActivatedGestures.Add(new GestureConfigComposite());
+            //}
         }
 
         public override void Update()

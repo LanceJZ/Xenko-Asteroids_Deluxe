@@ -1,10 +1,10 @@
 !PrefabAsset
 Id: 301cba05-8de1-4013-be09-f3d0948239c4
-SerializedVersion: {Xenko: 2.0.0.0}
+SerializedVersion: {Xenko: 2.1.0.1}
 Tags: []
 Hierarchy:
-    RootPartIds:
-        - 1b869c2e-5d40-4835-a549-286a92b5bbe5
+    RootParts:
+        - ref!! 1b869c2e-5d40-4835-a549-286a92b5bbe5
     Parts:
         -   Entity:
                 Id: 1b869c2e-5d40-4835-a549-286a92b5bbe5
@@ -57,7 +57,8 @@ Hierarchy:
                         Id: 21fa821c-4c88-44a3-bd67-97f0a81ac46b
                         Model: ff63aa78-fd1c-419e-a376-08989b875593:ADPodPair
                         Materials: {}
-        -   Entity:
+        -   Folder: null
+            Entity:
                 Id: 8144d624-4b86-4bf3-869b-c2b8566d390c
                 Name: PointTwo
                 Components:
@@ -67,7 +68,6 @@ Hierarchy:
                         Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: {}
-            Folder: null
         -   Entity:
                 Id: cf1f64be-95a5-4efe-b9fd-9d48faf9853b
                 Name: PointOne

@@ -94,7 +94,7 @@ UsedParameters:
                 -   ClassName: LightDirectionalGroup
                     GenericArguments: [1]
                 -   ClassName: ShadowMapReceiverDirectional
-                    GenericArguments: [4, 1, true, true, false]
+                    GenericArguments: [4, 1, true, true, false, false]
                 -   ClassName: ShadowMapFilterPcf
                     GenericArguments: [PerView.Lighting, 5]
         - !ShaderClassSource
@@ -108,9 +108,9 @@ UsedParameters:
             ClassName: EnvironmentLight
     XenkoEffectBase.RenderTargetExtensions: !ShaderMixinSource
         Macros:
-            -   Name: SILICON_STUDIO_RENDER_TARGET_COUNT
+            -   Name: XENKO_RENDER_TARGET_COUNT
                 Definition: 1
-            -   Name: SILICON_STUDIO_MULTISAMPLE_COUNT
+            -   Name: XENKO_MULTISAMPLE_COUNT
                 Definition: 1
 ---
 !EffectCompileRequest
@@ -148,7 +148,7 @@ UsedParameters:
                 -   ClassName: LightDirectionalGroup
                     GenericArguments: [1]
                 -   ClassName: ShadowMapReceiverDirectional
-                    GenericArguments: [4, 1, true, true, false]
+                    GenericArguments: [4, 1, true, true, false, false]
                 -   ClassName: ShadowMapFilterPcf
                     GenericArguments: [PerView.Lighting, 5]
         - !ShaderClassSource
@@ -162,9 +162,9 @@ UsedParameters:
             ClassName: EnvironmentLight
     XenkoEffectBase.RenderTargetExtensions: !ShaderMixinSource
         Macros:
-            -   Name: SILICON_STUDIO_RENDER_TARGET_COUNT
+            -   Name: XENKO_RENDER_TARGET_COUNT
                 Definition: 1
-            -   Name: SILICON_STUDIO_MULTISAMPLE_COUNT
+            -   Name: XENKO_MULTISAMPLE_COUNT
                 Definition: 1
 ---
 !EffectCompileRequest
@@ -202,7 +202,7 @@ UsedParameters:
                 -   ClassName: LightDirectionalGroup
                     GenericArguments: [1]
                 -   ClassName: ShadowMapReceiverDirectional
-                    GenericArguments: [4, 1, true, true, false]
+                    GenericArguments: [4, 1, true, true, false, false]
                 -   ClassName: ShadowMapFilterPcf
                     GenericArguments: [PerView.Lighting, 5]
         - !ShaderClassSource
@@ -250,7 +250,7 @@ UsedParameters:
                 -   ClassName: LightDirectionalGroup
                     GenericArguments: [1]
                 -   ClassName: ShadowMapReceiverDirectional
-                    GenericArguments: [4, 1, true, true, false]
+                    GenericArguments: [4, 1, true, true, false, false]
                 -   ClassName: ShadowMapFilterPcf
                     GenericArguments: [PerView.Lighting, 5]
         - !ShaderClassSource
@@ -490,9 +490,9 @@ UsedParameters:
             ClassName: EnvironmentLight
     XenkoEffectBase.RenderTargetExtensions: !ShaderMixinSource
         Macros:
-            -   Name: SILICON_STUDIO_RENDER_TARGET_COUNT
+            -   Name: XENKO_RENDER_TARGET_COUNT
                 Definition: 1
-            -   Name: SILICON_STUDIO_MULTISAMPLE_COUNT
+            -   Name: XENKO_MULTISAMPLE_COUNT
                 Definition: 1
 ---
 !EffectCompileRequest
@@ -540,9 +540,9 @@ UsedParameters:
             ClassName: EnvironmentLight
     XenkoEffectBase.RenderTargetExtensions: !ShaderMixinSource
         Macros:
-            -   Name: SILICON_STUDIO_RENDER_TARGET_COUNT
+            -   Name: XENKO_RENDER_TARGET_COUNT
                 Definition: 1
-            -   Name: SILICON_STUDIO_MULTISAMPLE_COUNT
+            -   Name: XENKO_MULTISAMPLE_COUNT
                 Definition: 1
 ---
 !EffectCompileRequest
@@ -609,9 +609,9 @@ UsedParameters:
             ClassName: EnvironmentLight
     XenkoEffectBase.RenderTargetExtensions: !ShaderMixinSource
         Macros:
-            -   Name: SILICON_STUDIO_RENDER_TARGET_COUNT
+            -   Name: XENKO_RENDER_TARGET_COUNT
                 Definition: 1
-            -   Name: SILICON_STUDIO_MULTISAMPLE_COUNT
+            -   Name: XENKO_MULTISAMPLE_COUNT
                 Definition: 1
 ---
 !EffectCompileRequest
@@ -676,3 +676,9 @@ UsedParameters:
             ClassName: LightSimpleAmbient
         - !ShaderClassSource
             ClassName: EnvironmentLight
+---
+!EffectCompileRequest
+EffectName: FXAAShaderEffect
+UsedParameters:
+    FXAAEffect.GreenAsLumaKey: 0
+    FXAAEffect.QualityKey: 23

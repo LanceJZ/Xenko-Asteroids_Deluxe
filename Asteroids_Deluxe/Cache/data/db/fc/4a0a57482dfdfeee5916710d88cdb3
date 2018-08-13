@@ -1,0 +1,23 @@
+// Copyright (c) 2014-2017 Silicon Studio Corp. All rights reserved. (https://www.siliconstudio.co.jp)
+// See LICENSE.md for full license information.
+namespace SiliconStudio.Xenko.Rendering.Materials
+{
+    /// <summary>
+    /// Material displacement map
+    /// </summary>
+    shader MaterialSurfaceVertexDisplacement<bool TScaleAndBias> : IMaterialSurfaceVertex
+    {
+        override void Compute()
+        {
+            var displacement = streams.matDisplacement;
+            if (TScaleAndBias)
+            {
+                displacement = displacement * 2 - 1;
+            }
+
+            displacement *= streams.matDisplacementIntensity;
+            
+            streams.Position = float4(streams.Position.xyz + displacement * streams.meshNormal, streams.Position.w);
+        }
+    };
+}
